@@ -1,7 +1,7 @@
 ---
 date: 2026-05-01 00:00:00
 created: 2026-05-01 08:30:00
-updated: 2026-05-01 08:37:00
+updated: 2026-05-01 08:46:00
 title: 前端工程师转 AI：一份我真正用过的学习资料整理
 cover: https://app.notion.com/images/page-cover/solid_beige.png
 id: 353260b3-9251-80fa-a48c-d0ec886816c8
@@ -49,9 +49,11 @@ Prompt、Agent、RAG、Tool Calling，各种概念一股脑冒出来，很难建
 
 ### 学习资料
 
-- [LangGraph 官方文档](https://docs.langchain.com/oss/python/langgraph/overview)
-- [deeplearning.ai 教程：AI Agents in LangGraph](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/)
-- [Multi-Agent Workflow 视频](https://www.youtube.com/watch?v=hvAPnpSfSGo&themeRefresh=1)
+- [LangGraph 官方文档](https://docs.langchain.com/oss/python/langgraph/overview) —— 快速建立 Agent Workflow 的整体认知
+- [deeplearning.ai 教程：AI Agents in LangGraph](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/) —— 实践教程，教你把 workflow、persistence、streaming 这些能力串起来
+- [Multi-Agent Workflow 视频](https://www.youtube.com/watch?v=hvAPnpSfSGo&themeRefresh=1) —— 学习多 Agent 的组织方式，比如 supervisor、路由、分工和上下文传递
+
+![](https://prod-files-secure.s3.us-west-2.amazonaws.com/493e8745-59f0-41aa-bf4a-cd898c3e48d5/3390b18f-bdd8-46bc-b7cd-0a621d33699e/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466SVPNDTOS%2F20260501%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260501T084631Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFgaCXVzLXdlc3QtMiJGMEQCIDL%2F%2FQPYrAcqn0q3%2F%2FVq9BPIrkcao2IpH9NCI7PMpFd2AiB0du7fq%2B0QTS7RSZXX64fQ6In6vOpPWzxkPpUuKGd8TCr%2FAwghEAAaDDYzNzQyMzE4MzgwNSIMN9xZ4bswHvztegsnKtwDwNJaNoaCurzhg1kfHEtWiCcIjqgyb4jsklT5XoecLs4w3R78GdbaYhYg05VkaYerSInVJWkZMEXvQHrGoTrfNLghmF%2FOWylZdjkYplNXDQITAS3Hv2P04OtoYiFN5lwMMffpVoXVLb7JPVmWLmbim7pGiwV962VLsYgfTCxefaocc7pv49nr4V2KB5Q0zaJix0ZRIloRKd1v60SGMIn0I8UwdSFsjzq%2BjoO84qJwuW8YELm21f%2Fu51uCEisA6jk8CjA9kxfHsx3Z86RDy7q6LHmyCNIOJtRSrv2PyuDsYSTeKz5bzJ6OpHjEI09LSyPg%2Fhdj9OoqjtvacRJSyhn4sGlQBYQAKZPbNmU5ViXrwJYcJ65XaNtJGNf1hJFsN7Ti1K3XWwNHsRpVVcSsODu%2BixYwFtBxwJ7uMBD7skCXvdyCjV5Wm4xOe0u3hvVsYwm6FN%2BmvfDP12EL4zHZXpldkEeZ%2BJ7MG6wZfhPckWINoocsexvBScIlayjxn85uLssCbQ0EbpChMo3pKGpwNCt4OrHvFLjJwUBddiBxcMZAtHHbfLRayXdRygj%2Fo1phQOstcOEK77GGdrnm3VI3%2BE6nRa2AozD2JkXon36FNeOLKJ0UYQWUoBn0eaci3ZYw%2Br%2FRzwY6pgGTMvZ2LFRh1WAO1VnZQI5W0PKkRWli5fw%2FadpIkMimZNkOeoIYjVnH%2BqB9XjxBlmUlfRp0yfym9JKKKpfo0ELK0KVhoqYd9uZWkKmGgouRZEZn0eCvK97duR6TuXttEk4NNk4m%2BTRYy5sksDINF2BUAdln0AZZFMoUF1TXFnyasiT1HG8LU8T7ChoDiO%2FZtv1u3Z%2F%2F1sDO4F1CBfRKLiZI5Yw38xTJ&X-Amz-Signature=9a4fe322fd0db60954b92221b3c62385eab596e1fe3fe584109e5064364ddccd&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 
 ---
 
@@ -92,8 +94,10 @@ fetch('/api/getPrice', { symbol: 'ETH' })
 
 ### 学习资料
 
-- [OpenAI Cookbook（函数调用）](https://cookbook.openai.com/examples/how_to_call_functions_with_chat_models)
-- [Anthropic Tool Use 指南](https://docs.anthropic.com/en/docs/build-with-claude/tool-use)
+- [OpenAI Cookbook（函数调用）](https://cookbook.openai.com/examples/how_to_call_functions_with_chat_models)—— 函数调用很经典的入门材料，基本接口、参数设计和执行流程都能摸清楚。
+- [Anthropic Tool Use 指南](https://docs.anthropic.com/en/docs/build-with-claude/tool-use) —— 更偏工程实践，重点在怎么让模型更稳定地选择工具、组织输入输出。
+
+![](https://prod-files-secure.s3.us-west-2.amazonaws.com/493e8745-59f0-41aa-bf4a-cd898c3e48d5/36173ccc-0cad-4cf3-bed0-ccdadf82169f/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466SVPNDTOS%2F20260501%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260501T084631Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFgaCXVzLXdlc3QtMiJGMEQCIDL%2F%2FQPYrAcqn0q3%2F%2FVq9BPIrkcao2IpH9NCI7PMpFd2AiB0du7fq%2B0QTS7RSZXX64fQ6In6vOpPWzxkPpUuKGd8TCr%2FAwghEAAaDDYzNzQyMzE4MzgwNSIMN9xZ4bswHvztegsnKtwDwNJaNoaCurzhg1kfHEtWiCcIjqgyb4jsklT5XoecLs4w3R78GdbaYhYg05VkaYerSInVJWkZMEXvQHrGoTrfNLghmF%2FOWylZdjkYplNXDQITAS3Hv2P04OtoYiFN5lwMMffpVoXVLb7JPVmWLmbim7pGiwV962VLsYgfTCxefaocc7pv49nr4V2KB5Q0zaJix0ZRIloRKd1v60SGMIn0I8UwdSFsjzq%2BjoO84qJwuW8YELm21f%2Fu51uCEisA6jk8CjA9kxfHsx3Z86RDy7q6LHmyCNIOJtRSrv2PyuDsYSTeKz5bzJ6OpHjEI09LSyPg%2Fhdj9OoqjtvacRJSyhn4sGlQBYQAKZPbNmU5ViXrwJYcJ65XaNtJGNf1hJFsN7Ti1K3XWwNHsRpVVcSsODu%2BixYwFtBxwJ7uMBD7skCXvdyCjV5Wm4xOe0u3hvVsYwm6FN%2BmvfDP12EL4zHZXpldkEeZ%2BJ7MG6wZfhPckWINoocsexvBScIlayjxn85uLssCbQ0EbpChMo3pKGpwNCt4OrHvFLjJwUBddiBxcMZAtHHbfLRayXdRygj%2Fo1phQOstcOEK77GGdrnm3VI3%2BE6nRa2AozD2JkXon36FNeOLKJ0UYQWUoBn0eaci3ZYw%2Br%2FRzwY6pgGTMvZ2LFRh1WAO1VnZQI5W0PKkRWli5fw%2FadpIkMimZNkOeoIYjVnH%2BqB9XjxBlmUlfRp0yfym9JKKKpfo0ELK0KVhoqYd9uZWkKmGgouRZEZn0eCvK97duR6TuXttEk4NNk4m%2BTRYy5sksDINF2BUAdln0AZZFMoUF1TXFnyasiT1HG8LU8T7ChoDiO%2FZtv1u3Z%2F%2F1sDO4F1CBfRKLiZI5Yw38xTJ&X-Amz-Signature=368dd4d5adde98db9beffc6640d09b96d9df042e58625735578ae8fb063af550&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 
 ---
 
@@ -127,8 +131,10 @@ fetch('/api/getPrice', { symbol: 'ETH' })
 
 ### 学习资料
 
-- [LangGraph Persistence](https://langchain-ai.github.io/langgraph/concepts/persistence/)
-- [视频讲解](https://www.youtube.com/watch?v=YE6A5d8kNp4)
+- [LangGraph Persistence](https://langchain-ai.github.io/langgraph/concepts/persistence/) —— 能快速看清为什么 Agent 需要状态持久化，以及 thread 级别状态怎么保存。
+- [视频讲解](https://www.youtube.com/watch?v=YE6A5d8kNp4) —— 适合作为视频版补充，帮助建立 Persistence 的使用直觉。
+
+![](https://prod-files-secure.s3.us-west-2.amazonaws.com/493e8745-59f0-41aa-bf4a-cd898c3e48d5/c7ac0924-323e-4cbd-9af7-c8e41dca27e7/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466SVPNDTOS%2F20260501%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260501T084631Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFgaCXVzLXdlc3QtMiJGMEQCIDL%2F%2FQPYrAcqn0q3%2F%2FVq9BPIrkcao2IpH9NCI7PMpFd2AiB0du7fq%2B0QTS7RSZXX64fQ6In6vOpPWzxkPpUuKGd8TCr%2FAwghEAAaDDYzNzQyMzE4MzgwNSIMN9xZ4bswHvztegsnKtwDwNJaNoaCurzhg1kfHEtWiCcIjqgyb4jsklT5XoecLs4w3R78GdbaYhYg05VkaYerSInVJWkZMEXvQHrGoTrfNLghmF%2FOWylZdjkYplNXDQITAS3Hv2P04OtoYiFN5lwMMffpVoXVLb7JPVmWLmbim7pGiwV962VLsYgfTCxefaocc7pv49nr4V2KB5Q0zaJix0ZRIloRKd1v60SGMIn0I8UwdSFsjzq%2BjoO84qJwuW8YELm21f%2Fu51uCEisA6jk8CjA9kxfHsx3Z86RDy7q6LHmyCNIOJtRSrv2PyuDsYSTeKz5bzJ6OpHjEI09LSyPg%2Fhdj9OoqjtvacRJSyhn4sGlQBYQAKZPbNmU5ViXrwJYcJ65XaNtJGNf1hJFsN7Ti1K3XWwNHsRpVVcSsODu%2BixYwFtBxwJ7uMBD7skCXvdyCjV5Wm4xOe0u3hvVsYwm6FN%2BmvfDP12EL4zHZXpldkEeZ%2BJ7MG6wZfhPckWINoocsexvBScIlayjxn85uLssCbQ0EbpChMo3pKGpwNCt4OrHvFLjJwUBddiBxcMZAtHHbfLRayXdRygj%2Fo1phQOstcOEK77GGdrnm3VI3%2BE6nRa2AozD2JkXon36FNeOLKJ0UYQWUoBn0eaci3ZYw%2Br%2FRzwY6pgGTMvZ2LFRh1WAO1VnZQI5W0PKkRWli5fw%2FadpIkMimZNkOeoIYjVnH%2BqB9XjxBlmUlfRp0yfym9JKKKpfo0ELK0KVhoqYd9uZWkKmGgouRZEZn0eCvK97duR6TuXttEk4NNk4m%2BTRYy5sksDINF2BUAdln0AZZFMoUF1TXFnyasiT1HG8LU8T7ChoDiO%2FZtv1u3Z%2F%2F1sDO4F1CBfRKLiZI5Yw38xTJ&X-Amz-Signature=74f379e8137a571dbf2402de11834944a18e3d9e9b33148aae690571e8b240c7&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 
 ---
 
@@ -155,8 +161,10 @@ Persistence 更偏“流程状态”，而 Memory 更像：
 
 ### 学习资料
 
-- [Memory & Store API](https://langchain-ai.github.io/langgraph/concepts/memory/)
-- [跨会话记忆](https://langchain-ai.github.io/langgraph/how-tos/cross-thread-persistence/)
+- [Memory & Store API](https://langchain-ai.github.io/langgraph/concepts/memory/) —— 关于短期记忆、长期记忆和外部存储的分工。
+- [跨会话记忆](https://langchain-ai.github.io/langgraph/how-tos/cross-thread-persistence/) —— “跨会话记忆”的实现指南。
+
+![](https://prod-files-secure.s3.us-west-2.amazonaws.com/493e8745-59f0-41aa-bf4a-cd898c3e48d5/c4e69808-0e54-421e-80c2-8e8e1f169339/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466SVPNDTOS%2F20260501%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260501T084631Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFgaCXVzLXdlc3QtMiJGMEQCIDL%2F%2FQPYrAcqn0q3%2F%2FVq9BPIrkcao2IpH9NCI7PMpFd2AiB0du7fq%2B0QTS7RSZXX64fQ6In6vOpPWzxkPpUuKGd8TCr%2FAwghEAAaDDYzNzQyMzE4MzgwNSIMN9xZ4bswHvztegsnKtwDwNJaNoaCurzhg1kfHEtWiCcIjqgyb4jsklT5XoecLs4w3R78GdbaYhYg05VkaYerSInVJWkZMEXvQHrGoTrfNLghmF%2FOWylZdjkYplNXDQITAS3Hv2P04OtoYiFN5lwMMffpVoXVLb7JPVmWLmbim7pGiwV962VLsYgfTCxefaocc7pv49nr4V2KB5Q0zaJix0ZRIloRKd1v60SGMIn0I8UwdSFsjzq%2BjoO84qJwuW8YELm21f%2Fu51uCEisA6jk8CjA9kxfHsx3Z86RDy7q6LHmyCNIOJtRSrv2PyuDsYSTeKz5bzJ6OpHjEI09LSyPg%2Fhdj9OoqjtvacRJSyhn4sGlQBYQAKZPbNmU5ViXrwJYcJ65XaNtJGNf1hJFsN7Ti1K3XWwNHsRpVVcSsODu%2BixYwFtBxwJ7uMBD7skCXvdyCjV5Wm4xOe0u3hvVsYwm6FN%2BmvfDP12EL4zHZXpldkEeZ%2BJ7MG6wZfhPckWINoocsexvBScIlayjxn85uLssCbQ0EbpChMo3pKGpwNCt4OrHvFLjJwUBddiBxcMZAtHHbfLRayXdRygj%2Fo1phQOstcOEK77GGdrnm3VI3%2BE6nRa2AozD2JkXon36FNeOLKJ0UYQWUoBn0eaci3ZYw%2Br%2FRzwY6pgGTMvZ2LFRh1WAO1VnZQI5W0PKkRWli5fw%2FadpIkMimZNkOeoIYjVnH%2BqB9XjxBlmUlfRp0yfym9JKKKpfo0ELK0KVhoqYd9uZWkKmGgouRZEZn0eCvK97duR6TuXttEk4NNk4m%2BTRYy5sksDINF2BUAdln0AZZFMoUF1TXFnyasiT1HG8LU8T7ChoDiO%2FZtv1u3Z%2F%2F1sDO4F1CBfRKLiZI5Yw38xTJ&X-Amz-Signature=ecf2464960e5bc700e6c5405d97d016ab3d862215e2044c5eaf7b5f68b5ab200&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 
 ---
 
@@ -185,8 +193,10 @@ Persistence 更偏“流程状态”，而 Memory 更像：
 
 ### 学习资料
 
-- [Anthropic Prompt Best Practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)
-- [OpenAI Prompt Guide](https://platform.openai.com/docs/guides/prompt-engineering)
+- [Anthropic Prompt Best Practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices) —— Prompt 的最佳实践。
+- [OpenAI Prompt Guide](https://platform.openai.com/docs/guides/prompt-engineering) —— Prompt Engineering 的核心策略。
+
+![](https://prod-files-secure.s3.us-west-2.amazonaws.com/493e8745-59f0-41aa-bf4a-cd898c3e48d5/73219565-3737-4058-bae6-6db93ffb2d4a/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466XYQFVDOH%2F20260501%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260501T084631Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFgaCXVzLXdlc3QtMiJGMEQCIHUC3dPdWS6evYkTLB1NrEGf5yKgJ1Fqvs3jQRmf%2BgH4AiBlDeWWps7ldXMlkou2HuFxchbEjRswKqYY9z96D0yvBCr%2FAwghEAAaDDYzNzQyMzE4MzgwNSIM5ArIerBCMIXTyVeiKtwDtDAoIcOZeBMeveWJIPcaJd%2FC6G79q7e%2BTwDP5lBaHzohc4ur6mzMzrOs4pKpYwi0YSfnMhVpszMJFDxdTQ3eG9HvS6JUYtkRRrvcLK89iIqOSePFFtTQ6VhJSjU0LDm79pMK7Cl8amA2O6QjDyIP5adrdC9TgFW8fCh2V9iTJocQYCdu0%2FKwAQAqe9OH6ASuDTo7EOZEySO2AibPgkyr%2FUuuH0i%2Bm9ChSvcJn4Zszu4ZdmCqxC6nTtkUu%2FiCXfXytFjcLPJa2wFXaGxP0wzpDncsIEGWwsFuRUXSuwcieUN30sLOXeEXxix5HWGCkJ0wCtmes1dDIuboSmMKWNeDn8J%2F%2Faz7vOI9EnjNL%2BHINJfPd3OhxnrUBtKqz70cHENZb94DFMJNxVbwIIOgz1Qi2S%2BImNonjrKld2lZPT4%2B4Ns6vFQGJVGfbEDJDOELnmCM16c1nEjNJg0arcHbd4KOMoP80ZDDs1MswkXSnBBFlHCuP%2FfZGQO0djayFKSnpj%2FAxHV%2BP6CIqr2BHzz9SJJf15KY03h2i06Eek3tDZ6%2BM2KXC505qKk6AOE6QSnjcOg%2BC2bpzvV55D8GMQTQhgyW%2FOmQidNna2Iong38DfVpjCqrPnu%2FUY9L9Gkue38whb7RzwY6pgG25FSnZoViJEPj7pmYkqt%2Fe8Z7c6GbJVm%2B29H4PzD2Wtgb9NoNyni8x4Ne82Oon9Kz%2BbaP2jtWF628Wt2UoxJymjXEAOolJB8r9PNq7RWX3AQSBWCHKY6%2FqsBWxKfw5JYmREWKgJ5ns%2Bb0b%2FBkLIIEDHMTVFBK7oEdGagEvVlPWjjQTY4ESXVQqE9mVy18WelKWocL62C%2FizUauWFRBq%2B3TKiWE6Gj&X-Amz-Signature=82159f682d357f3df4a3e629c604e298b5f3b00d5f105c536b4660c859b1b74c&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 
 ---
 
@@ -218,9 +228,11 @@ Persistence 更偏“流程状态”，而 Memory 更像：
 
 ### 学习资料
 
-- [Skills 概览](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
-- [Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
-- [Quickstart](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart)
+- [Skills 概览](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) —— Skill 和 prompt 的区别、Skill 架构、按需加载机制。
+- [Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices) —— Skill 的编写规范、命名方式、description 设计。
+- [Quickstart](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart) —— Skill 在 API 中的接入方式。
+
+![](https://cdn.jsdelivr.net/gh/Allengl/Allengl.github.io@main/img/53a9b8f8-89bf-4c84-af01-2782f4d37ab1.png)
 
 ---
 
@@ -246,8 +258,10 @@ Evaluation 本质上就是：
 
 ### 学习资料
 
-- [Agent Skills（SDK）](https://code.claude.com/docs/en/agent-sdk/skills)
-- [OpenAI Evaluation](https://platform.openai.com/docs/guides/evaluation-best-practices)
+- [Agent Skills（SDK）](https://code.claude.com/docs/en/agent-sdk/skills) —— `SKILL.md` 组织方式和 Skill 发现机制。
+- [OpenAI Evaluation](https://platform.openai.com/docs/guides/evaluation-best-practices) —— Prompt / Skill 的评测方法。
+
+![](https://prod-files-secure.s3.us-west-2.amazonaws.com/493e8745-59f0-41aa-bf4a-cd898c3e48d5/4f5dd3d5-a063-47ff-bfab-297f1b12a8b0/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466XYQFVDOH%2F20260501%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260501T084632Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFgaCXVzLXdlc3QtMiJGMEQCIHUC3dPdWS6evYkTLB1NrEGf5yKgJ1Fqvs3jQRmf%2BgH4AiBlDeWWps7ldXMlkou2HuFxchbEjRswKqYY9z96D0yvBCr%2FAwghEAAaDDYzNzQyMzE4MzgwNSIM5ArIerBCMIXTyVeiKtwDtDAoIcOZeBMeveWJIPcaJd%2FC6G79q7e%2BTwDP5lBaHzohc4ur6mzMzrOs4pKpYwi0YSfnMhVpszMJFDxdTQ3eG9HvS6JUYtkRRrvcLK89iIqOSePFFtTQ6VhJSjU0LDm79pMK7Cl8amA2O6QjDyIP5adrdC9TgFW8fCh2V9iTJocQYCdu0%2FKwAQAqe9OH6ASuDTo7EOZEySO2AibPgkyr%2FUuuH0i%2Bm9ChSvcJn4Zszu4ZdmCqxC6nTtkUu%2FiCXfXytFjcLPJa2wFXaGxP0wzpDncsIEGWwsFuRUXSuwcieUN30sLOXeEXxix5HWGCkJ0wCtmes1dDIuboSmMKWNeDn8J%2F%2Faz7vOI9EnjNL%2BHINJfPd3OhxnrUBtKqz70cHENZb94DFMJNxVbwIIOgz1Qi2S%2BImNonjrKld2lZPT4%2B4Ns6vFQGJVGfbEDJDOELnmCM16c1nEjNJg0arcHbd4KOMoP80ZDDs1MswkXSnBBFlHCuP%2FfZGQO0djayFKSnpj%2FAxHV%2BP6CIqr2BHzz9SJJf15KY03h2i06Eek3tDZ6%2BM2KXC505qKk6AOE6QSnjcOg%2BC2bpzvV55D8GMQTQhgyW%2FOmQidNna2Iong38DfVpjCqrPnu%2FUY9L9Gkue38whb7RzwY6pgG25FSnZoViJEPj7pmYkqt%2Fe8Z7c6GbJVm%2B29H4PzD2Wtgb9NoNyni8x4Ne82Oon9Kz%2BbaP2jtWF628Wt2UoxJymjXEAOolJB8r9PNq7RWX3AQSBWCHKY6%2FqsBWxKfw5JYmREWKgJ5ns%2Bb0b%2FBkLIIEDHMTVFBK7oEdGagEvVlPWjjQTY4ESXVQqE9mVy18WelKWocL62C%2FizUauWFRBq%2B3TKiWE6Gj&X-Amz-Signature=41b551acbd0c1c481c7deebe445837472343f5ce6e5cb38355130e9348b8d3a5&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 
 ---
 
@@ -270,9 +284,11 @@ Evaluation 本质上就是：
 
 ### 学习资料
 
-- [MCP 官方文档](https://modelcontextprotocol.io/docs/getting-started/intro)
-- [实战视频](https://www.youtube.com/watch?v=k_l_wKz1k1c)
-- [开源实现](https://github.com/modelcontextprotocol/servers)
+- [MCP 官方文档](https://modelcontextprotocol.io/docs/getting-started/intro) —— 从入门到实作的一组官方教程，涵盖 MCP 相关技术、server 接入、以及从零搭建 server 的 quickstart。
+- [实战视频](https://www.youtube.com/watch?v=k_l_wKz1k1c) —— 从零搭建 MCP Server 的实战示例。
+- [开源实现](https://github.com/modelcontextprotocol/servers) —— 官方维护的 MCP reference servers 仓库，用不同类型的 server 展示 MCP 的实现方式。
+
+![](https://prod-files-secure.s3.us-west-2.amazonaws.com/493e8745-59f0-41aa-bf4a-cd898c3e48d5/4245fcd0-de11-4110-a227-536aba9710da/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466XYQFVDOH%2F20260501%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260501T084632Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFgaCXVzLXdlc3QtMiJGMEQCIHUC3dPdWS6evYkTLB1NrEGf5yKgJ1Fqvs3jQRmf%2BgH4AiBlDeWWps7ldXMlkou2HuFxchbEjRswKqYY9z96D0yvBCr%2FAwghEAAaDDYzNzQyMzE4MzgwNSIM5ArIerBCMIXTyVeiKtwDtDAoIcOZeBMeveWJIPcaJd%2FC6G79q7e%2BTwDP5lBaHzohc4ur6mzMzrOs4pKpYwi0YSfnMhVpszMJFDxdTQ3eG9HvS6JUYtkRRrvcLK89iIqOSePFFtTQ6VhJSjU0LDm79pMK7Cl8amA2O6QjDyIP5adrdC9TgFW8fCh2V9iTJocQYCdu0%2FKwAQAqe9OH6ASuDTo7EOZEySO2AibPgkyr%2FUuuH0i%2Bm9ChSvcJn4Zszu4ZdmCqxC6nTtkUu%2FiCXfXytFjcLPJa2wFXaGxP0wzpDncsIEGWwsFuRUXSuwcieUN30sLOXeEXxix5HWGCkJ0wCtmes1dDIuboSmMKWNeDn8J%2F%2Faz7vOI9EnjNL%2BHINJfPd3OhxnrUBtKqz70cHENZb94DFMJNxVbwIIOgz1Qi2S%2BImNonjrKld2lZPT4%2B4Ns6vFQGJVGfbEDJDOELnmCM16c1nEjNJg0arcHbd4KOMoP80ZDDs1MswkXSnBBFlHCuP%2FfZGQO0djayFKSnpj%2FAxHV%2BP6CIqr2BHzz9SJJf15KY03h2i06Eek3tDZ6%2BM2KXC505qKk6AOE6QSnjcOg%2BC2bpzvV55D8GMQTQhgyW%2FOmQidNna2Iong38DfVpjCqrPnu%2FUY9L9Gkue38whb7RzwY6pgG25FSnZoViJEPj7pmYkqt%2Fe8Z7c6GbJVm%2B29H4PzD2Wtgb9NoNyni8x4Ne82Oon9Kz%2BbaP2jtWF628Wt2UoxJymjXEAOolJB8r9PNq7RWX3AQSBWCHKY6%2FqsBWxKfw5JYmREWKgJ5ns%2Bb0b%2FBkLIIEDHMTVFBK7oEdGagEvVlPWjjQTY4ESXVQqE9mVy18WelKWocL62C%2FizUauWFRBq%2B3TKiWE6Gj&X-Amz-Signature=c39b83c0ebf4a59a8d4f9641daa8270ad6c5a1ed329b480e92b47b361be334bf&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 
 ---
 
@@ -302,7 +318,7 @@ RAG 可以理解为：
 
 ### 学习资料
 
-- [LangChain RAG](https://docs.langchain.com/oss/javascript/langchain/rag)
+- [LangChain RAG](https://docs.langchain.com/oss/javascript/langchain/rag) —— 用 LangChain 搭建 RAG agent 和两步式 RAG 流程。
 - [RAG 评测](https://docs.langchain.com/langsmith/evaluate-rag-tutorial)
 
 ---
