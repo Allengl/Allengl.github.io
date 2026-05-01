@@ -1,3 +1,4 @@
 [submodule "themes/typography"]
 	path = themes/typography
-	url = https://github.com/SumiMakito/hexo-theme-typography.git
+	url = https://github.com/Allengl/hexo-theme-typography.git
+	branch = custom
