@@ -1,6 +1,9 @@
 name: Notion2Hexo
 on:
     workflow_dispatch:
+    repository_dispatch:
+        types:
+            - notion_sync
     schedule:
         - cron: "*/30 1-17/1 * * *"
 permissions:
