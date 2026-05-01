@@ -49,6 +49,24 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
+            - name: Create theme config with secrets
+              run: |
+                  cat > _config.typography.yml << EOF
+                  gitalk:
+                      enable: true
+                      clientID: "${{ secrets.GITALK_CLIENT_ID }}"
+                      clientSecret: "${{ secrets.GITALK_CLIENT_SECRET }}"
+                      repo: "Allengl.github.io"
+                      owner: "Allengl"
+                      admin: ["Allengl"]
+                      language: "zh-CN"
+                      labels: ["Gitalk"]
+                      perPage: 10
+                      pagerDirection: "last"
+                      distractionFreeMode: false
+                      createIssueManually: false
+                  EOF
+
             - name: Clean
               run: npx hexo clean
 
