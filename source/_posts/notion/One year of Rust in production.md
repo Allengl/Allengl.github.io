@@ -1,7 +1,8 @@
 ---
 date: 2026-05-01 08:00:00
+Notes: notes
 created: 2026-05-01 10:45:00
-updated: 2026-05-01 11:20:00
+updated: 2026-05-01 11:28:00
 title: One year of Rust in production
 cover: https://app.notion.com/images/page-cover/solid_beige.png
 id: 353260b3-9251-80df-9cab-fbb2b3bb81b8
