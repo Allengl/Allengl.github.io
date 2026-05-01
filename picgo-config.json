@@ -1,0 +1,10 @@
+{
+    "uploader": "github",
+    "github": {
+        "repo": "Allengl/Allengl.github.io",
+        "token": "你的Token",
+        "path": "img/",
+        "customUrl": "https://cdn.jsdelivr.net/gh/Allengl/Allengl.github.io@main",
+        "branch": "main"
+    }
+}
