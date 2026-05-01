@@ -1,7 +1,7 @@
 ---
-date: 2026-05-01 00:00:00
+date: 2026-04-23 00:00:00
 created: 2026-05-01 07:53:00
-updated: 2026-05-01 08:10:00
+updated: 2026-05-01 08:37:00
 title: 写了一段时间 Agent 之后的一些碎片记录
 cover: https://app.notion.com/images/page-cover/solid_beige.png
 id: 353260b3-9251-80f5-9063-c18aad0dee59
