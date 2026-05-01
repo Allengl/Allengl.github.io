@@ -1,10 +1,7 @@
 ---
-tags:
-  - Blog
 date: 2026-05-01 08:00:00
 created: 2026-05-01 10:45:00
-categories: 心情随笔
-updated: 2026-05-01 10:46:00
+updated: 2026-05-01 10:58:00
 title: Article Template
 cover: https://app.notion.com/images/page-cover/solid_beige.png
 id: 353260b3-9251-80df-9cab-fbb2b3bb81b8
