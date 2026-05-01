@@ -1,7 +1,7 @@
 ---
 date: 2026-05-01 00:00:00
 created: 2026-05-01 00:22:00
-updated: 2026-05-01 07:37:00
+updated: 2026-05-01 08:10:00
 title: "前端工程师，开始琢磨转型 Agent "
 cover: https://app.notion.com/images/page-cover/solid_beige.png
 id: 353260b3-9251-80b9-a247-c08e1257b524
