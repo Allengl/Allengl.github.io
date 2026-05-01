@@ -4,7 +4,9 @@
 
 # Site
 title: Hexo
-subtitle: "明志而锐取 | 心安而笃行"
+subtitle: ""
+title_primary: "明志而锐取 | 心安而笃行" # the bigger text
+title_secondary: "allengl's blog" # the smaller text
 description: ""
 keywords:
 author: Allengl
