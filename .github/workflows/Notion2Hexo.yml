@@ -26,7 +26,7 @@ jobs:
                   echo -e "Latest notion sync datetime:\n$NOTION_SYNC_DATETIME"
             - name: Convert notion to markdown
               id: NotionSync
-              uses: deusyu/notion2markdown-action@main
+              uses: allengl/notion2markdown-action@main
               with:
                   notion_secret: ${{ secrets.NOTION_SECRET }}
                   database_id: ${{ secrets.NOTION_DATABASE_ID }}
