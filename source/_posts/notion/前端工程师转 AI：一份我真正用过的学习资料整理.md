@@ -1,9 +1,9 @@
 ---
-date: 2026-05-01T00:00:00+00:00
+date: 2026-04-28T00:00:00+00:00
 created: 2026-05-01T08:30:00+00:00
-updated: 2026-05-01T10:18:00+00:00
+updated: 2026-05-02T06:26:00+00:00
 title: 前端工程师转 AI：一份我真正用过的学习资料整理
-cover: https://app.notion.com/images/page-cover/solid_beige.png
+cover: https://www.notion.so/images/page-cover/solid_beige.png
 id: 353260b3-9251-80fa-a48c-d0ec886816c8
 ---
 
@@ -196,7 +196,7 @@ Persistence 更偏“流程状态”，而 Memory 更像：
 - [Anthropic Prompt Best Practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices) —— Prompt 的最佳实践。
 - [OpenAI Prompt Guide](https://platform.openai.com/docs/guides/prompt-engineering) —— Prompt Engineering 的核心策略。
 
-![](https://prod-files-secure.s3.us-west-2.amazonaws.com/493e8745-59f0-41aa-bf4a-cd898c3e48d5/73219565-3737-4058-bae6-6db93ffb2d4a/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4667BYJWC7Y%2F20260501%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260501T101843Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFoaCXVzLXdlc3QtMiJHMEUCIQCfFM2qRlsO%2BwK06yxSZOURpDM5XyEtP3Ur6aONy9dCXAIgcmRRL0hsZeRLPXemM2bvz%2Fa2tfROo7BgZAkbDej56u8q%2FwMIIhAAGgw2Mzc0MjMxODM4MDUiDDGHeFE89WwNGHTA6CrcAx%2BZP1lLf6hTHwfCglMpFTK0PX%2BwTHOlmu3CdkNoQAb518gQpsS4qAGGWhp4R0BeDhe9ggUP14Z3JwpYzjPXNEUKLZhShkYFsQ8Q8CoUD%2BLLirXXTnapsHa4iBPCps0wgItJUEtbnpL4vapyguDTSkovTyLuXI80dPXQPiHMJW9f7PlAf2ybmsoExVB2qel1v9p8s9JKnSlH6GwJk%2BFZ8G0xngmTITk0eBJ%2F%2BKKxGh8AhzPgsM9kQEHd%2BZe1K6XDyIsoczoEWD2blmNBJKGTIKTxeeQtwdFL6G%2FjbJ%2BwKYD7Sxf6YM5gSx59%2FaSOseNPxucQ2xGfChmhdxovDXoEd%2B9MdZVFApeTkmo1FlBeKQ4eKiciniXGc2%2Bk8mTTo8LYa7UJqN6oqcZXV4N03IWiZVxpKQxgIQM1dA%2BlKm4Z3qljaysUpxyBSbjQ44saNa31qHX%2FsW%2Fqu%2FZRdrAu%2Fdkaw7%2FO6Mn8BfpUbzQg3A84DAHoIuvSXtASOXRwNQBSzJVUlYvvlp5eVmMOKR4VBwjCmXzq4%2BV8GkLv9E4pP5E14SjYWvoa7KvTUq%2Br7simYlRa6TMi5XyB3K2jAN3a1CVM5%2FmEsdcgg%2FOt1jvNSDSOYxvPOXEOFdcdvcJ%2F7LpnMJ3g0c8GOqUBqBGtW2Nd0E8%2BuNzFWwZik9RLHvsZms5ER7IDdy4NgaAOQ6PZJGGtI2EjBv8Jt1S84JOXLrkpFLNnDWCbSQdNFRqjz1mO3umWUlwu3adkx%2BJWQvcICc03eGjKIajUjg7ZIQISyWVYNPTle9ZzQEEnrva5zhdMGKchuuAPRw6Xs2GKbaYi0aRbH9ZC6rjUO6O8A3SPrl9O8Gr4jU4EpVpE%2FgUmv%2BKz&X-Amz-Signature=9094503f866e62050796b73adeb079211f7e1569c048e67adeddc197f61ed341&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![](https://cdn.jsdelivr.net/gh/Allengl/Allengl.github.io@main/img/73219565-3737-4058-bae6-6db93ffb2d4a.png)
 
 ---
 
