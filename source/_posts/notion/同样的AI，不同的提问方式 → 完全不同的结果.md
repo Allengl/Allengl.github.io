@@ -1,7 +1,7 @@
 ---
 date: 2026-05-03T00:00:00+00:00
 created: 2026-05-02T08:11:00+00:00
-updated: 2026-05-03T00:03:00+00:00
+updated: 2026-05-03T00:29:00+00:00
 title: 同样的AI，不同的提问方式 → 完全不同的结果
 cover: https://www.notion.so/images/page-cover/solid_beige.png
 id: 354260b3-9251-80dc-971f-ea7d18ba47d2
