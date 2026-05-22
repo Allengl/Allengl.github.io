@@ -1,5 +1,5 @@
 ---
-title: 股票研究
+title: stocks
 date: 2026-05-22
 ---
 
