@@ -15,11 +15,22 @@ date: 2026-05-22
 </div>
 
 <style>
+/* 隐藏日期 */
+.post-meta {
+  display: none;
+}
+
+/* 去掉页面标题下划线 */
+.post-title a {
+  border-bottom: none !important;
+}
+
+/* 2列网格，卡片变小 */
 .notes-slide-grid {
   margin-top: 8px;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 48px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 24px;
 }
 
 .notes-slide-card {
@@ -34,28 +45,27 @@ date: 2026-05-22
   color: inherit !important;
 }
 
+/* 卡片标题：去掉下划线 */
 .notes-slide-title {
-  font-size: 24px;
+  font-size: 16px;
   font-weight: bold;
-  margin: 0 0 18px 0;
+  margin: 0 0 10px 0;
   line-height: 1.4;
   color: #2e405b;
-  border-bottom: solid #2e405b 2px;
-  display: inline;
-  padding-bottom: 1px;
+  border-bottom: none;
+  display: block;
 }
 
 .notes-slide-card:hover .notes-slide-title {
-  color: #fff !important;
-  background-color: #2e405b;
+  color: #2e405b !important;
+  background: transparent !important;
 }
 
 .notes-slide-cover {
-  margin-top: 18px;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
   box-shadow:
-    0 4px 24px rgba(46, 64, 91, 0.10),
+    0 4px 20px rgba(46, 64, 91, 0.10),
     0 1px 4px rgba(46, 64, 91, 0.06);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -63,7 +73,7 @@ date: 2026-05-22
 .notes-slide-card:hover .notes-slide-cover {
   transform: translateY(-3px);
   box-shadow:
-    0 10px 40px rgba(46, 64, 91, 0.16),
+    0 10px 36px rgba(46, 64, 91, 0.15),
     0 2px 8px rgba(46, 64, 91, 0.08);
 }
 
