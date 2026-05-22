@@ -1,0 +1,2023 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>华辰装备深度研究报告｜深度解读版 HTML Slides</title>
+        <!-- Based on uploaded file: 华辰装备_深度研究报告_v4_20260307-1(4).docx -->
+        <style>
+            :root {
+                --paper: #f5efe2;
+                --paper-2: #fbf7ee;
+                --ink: #24231f;
+                --muted: #776f63;
+                --line: #ded3bf;
+                --line-2: #e8decc;
+                --card: rgba(255, 255, 255, 0.68);
+                --coral: #be6a56;
+                --green: #315f52;
+                --bluegray: #526b7a;
+                --gold: #b08a3c;
+                --lav: #8b7aa8;
+                --shadow:
+                    0 22px 60px rgba(53, 43, 25, 0.13),
+                    0 2px 10px rgba(53, 43, 25, 0.06);
+                --sidebar-w: 330px;
+                --radius: 24px;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                margin: 0;
+                min-height: 100vh;
+                color: var(--ink);
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI",
+                    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial,
+                    sans-serif;
+                background:
+                    linear-gradient(
+                        rgba(255, 255, 255, 0.38),
+                        rgba(255, 255, 255, 0.22)
+                    ),
+                    radial-gradient(
+                        circle at 20% 0%,
+                        rgba(176, 138, 60, 0.12),
+                        transparent 36%
+                    ),
+                    radial-gradient(
+                        circle at 85% 15%,
+                        rgba(82, 107, 122, 0.1),
+                        transparent 34%
+                    ),
+                    linear-gradient(var(--line-2) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--line-2) 1px, transparent 1px),
+                    var(--paper);
+                background-size:
+                    auto,
+                    auto,
+                    auto,
+                    28px 28px,
+                    28px 28px,
+                    auto;
+                line-height: 1.72;
+            }
+            .deck-frame {
+                width: min(1480px, calc(100vw - 34px));
+                min-height: calc(100vh - 34px);
+                margin: 17px auto;
+                display: grid;
+                grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+                gap: 18px;
+            }
+            .sidebar {
+                position: sticky;
+                top: 17px;
+                height: calc(100vh - 34px);
+                padding: 26px 22px;
+                background: rgba(251, 247, 238, 0.78);
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                backdrop-filter: blur(12px);
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+            }
+            .brand {
+                font-family: Georgia, "Times New Roman", serif;
+                font-size: 13px;
+                letter-spacing: 0.08em;
+                color: var(--green);
+                text-transform: uppercase;
+                margin-bottom: 10px;
+            }
+            .series {
+                font-family: Georgia, "Times New Roman", "Songti SC", serif;
+                font-size: 28px;
+                line-height: 1.12;
+                margin: 0 0 12px;
+                font-weight: 600;
+            }
+            .summary {
+                margin: 0 0 18px;
+                color: var(--muted);
+                font-size: 14px;
+                line-height: 1.7;
+            }
+            .nav-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                overflow: auto;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            .nav-item {
+                display: grid;
+                grid-template-columns: 40px 1fr;
+                gap: 10px;
+                padding: 12px 12px;
+                border: 1px solid transparent;
+                border-radius: 16px;
+                cursor: pointer;
+                color: var(--muted);
+                transition: 0.22s ease;
+                background: rgba(255, 255, 255, 0.22);
+            }
+            .nav-item:hover {
+                border-color: var(--line);
+                background: rgba(255, 255, 255, 0.52);
+                color: var(--ink);
+            }
+            .nav-item.active {
+                background: rgba(255, 255, 255, 0.78);
+                border-color: #d7c7ad;
+                color: var(--ink);
+                box-shadow: 0 8px 18px rgba(53, 43, 25, 0.06);
+            }
+            .nav-num {
+                font-family: Georgia, "Times New Roman", serif;
+                color: var(--coral);
+                font-size: 15px;
+                padding-top: 1px;
+            }
+            .nav-title {
+                display: block;
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 1.35;
+            }
+            .nav-sub {
+                display: block;
+                font-size: 12px;
+                color: var(--muted);
+                line-height: 1.45;
+                margin-top: 3px;
+            }
+            .sidebar-footer {
+                padding-top: 18px;
+            }
+            .progress-bar {
+                height: 7px;
+                border-radius: 999px;
+                background: rgba(49, 95, 82, 0.14);
+                overflow: hidden;
+                margin-bottom: 12px;
+            }
+            .progress-bar span {
+                display: block;
+                height: 100%;
+                width: 0;
+                background: linear-gradient(90deg, var(--green), var(--gold));
+                border-radius: 999px;
+                transition: width 0.28s ease;
+            }
+            .pager {
+                display: flex;
+                justify-content: space-between;
+                font-family: Georgia, "Times New Roman", serif;
+                color: var(--muted);
+                font-size: 13px;
+                margin-bottom: 8px;
+            }
+            .copyright {
+                font-size: 12px;
+                color: #958c7e;
+                line-height: 1.5;
+            }
+            .stage {
+                min-height: calc(100vh - 34px);
+                background: rgba(251, 247, 238, 0.58);
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                overflow: hidden;
+                position: relative;
+            }
+            .slide {
+                display: none;
+                min-height: calc(100vh - 34px);
+                padding: 34px;
+                align-items: center;
+                justify-content: center;
+            }
+            .slide.active {
+                display: flex;
+                animation: fadeUp 0.42s ease both;
+            }
+            @keyframes fadeUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(14px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .slide-inner {
+                width: 100%;
+                min-height: calc(100vh - 102px);
+                border: 1px solid var(--line);
+                border-radius: 28px;
+                background:
+                    linear-gradient(
+                        rgba(255, 255, 255, 0.22),
+                        rgba(255, 255, 255, 0.08)
+                    ),
+                    linear-gradient(var(--line-2) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--line-2) 1px, transparent 1px),
+                    rgba(251, 247, 238, 0.84);
+                background-size:
+                    auto,
+                    24px 24px,
+                    24px 24px,
+                    auto;
+                padding: 48px 50px;
+                position: relative;
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.66);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .top-align .slide-inner {
+                justify-content: flex-start;
+            }
+            .kicker {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                color: var(--green);
+                font-weight: 700;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                font-size: 13px;
+                margin-bottom: 14px;
+            }
+            .kicker::before {
+                content: "";
+                width: 26px;
+                height: 1px;
+                background: var(--green);
+                display: inline-block;
+            }
+            .title {
+                font-family:
+                    Georgia, "Times New Roman", "Songti SC", "Noto Serif SC",
+                    serif;
+                font-size: 58px;
+                line-height: 1.08;
+                letter-spacing: -0.02em;
+                margin: 0 0 20px;
+                max-width: 920px;
+                font-weight: 650;
+            }
+            .slide-title {
+                font-family:
+                    Georgia, "Times New Roman", "Songti SC", "Noto Serif SC",
+                    serif;
+                font-size: 39px;
+                line-height: 1.17;
+                margin: 0 0 20px;
+                font-weight: 650;
+            }
+            .lead {
+                font-size: 19px;
+                color: #4a463e;
+                max-width: 880px;
+                margin: 0 0 24px;
+                line-height: 1.82;
+            }
+            .small {
+                font-size: 13px;
+                color: var(--muted);
+            }
+            .chips {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 28px;
+            }
+            .chip {
+                border: 1px solid #d9cbb5;
+                background: rgba(255, 255, 255, 0.56);
+                border-radius: 999px;
+                padding: 7px 12px;
+                font-size: 13px;
+                color: #5e574e;
+            }
+            .three-col {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+                margin-top: 24px;
+            }
+            .two-col {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 18px;
+                margin-top: 24px;
+                align-items: stretch;
+            }
+            .card,
+            .panel,
+            .note,
+            .quote {
+                background: var(--card);
+                border: 1px solid var(--line);
+                border-radius: 20px;
+                padding: 20px;
+                box-shadow: 0 10px 28px rgba(53, 43, 25, 0.05);
+            }
+            .card h3,
+            .panel h3 {
+                margin: 0 0 10px;
+                font-size: 18px;
+                line-height: 1.35;
+                color: #2c2a26;
+            }
+            .card p,
+            .panel p {
+                margin: 0;
+                color: var(--muted);
+                font-size: 15px;
+            }
+            .metric {
+                font-family: Georgia, "Times New Roman", serif;
+                font-size: 35px;
+                color: var(--coral);
+                line-height: 1;
+                margin: 10px 0 8px;
+            }
+            .note {
+                border-left: 4px solid var(--gold);
+                background: rgba(255, 252, 243, 0.84);
+                color: #5b503d;
+                margin-top: 20px;
+            }
+            .quote {
+                font-family: Georgia, "Times New Roman", "Songti SC", serif;
+                font-size: 26px;
+                line-height: 1.52;
+                color: #34312b;
+                border-left: 5px solid var(--green);
+                padding: 26px;
+                margin-top: 24px;
+            }
+            .diagram {
+                display: flex;
+                gap: 12px;
+                align-items: stretch;
+                margin-top: 24px;
+            }
+            .node {
+                flex: 1;
+                background: rgba(255, 255, 255, 0.66);
+                border: 1px solid var(--line);
+                border-radius: 18px;
+                padding: 17px;
+                position: relative;
+                min-height: 126px;
+            }
+            .node:not(:last-child)::after {
+                content: "→";
+                position: absolute;
+                right: -15px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--coral);
+                font-size: 22px;
+                font-family: Georgia, serif;
+                z-index: 2;
+            }
+            .node b {
+                display: block;
+                margin-bottom: 8px;
+                color: var(--green);
+            }
+            .node span {
+                font-size: 14px;
+                color: var(--muted);
+            }
+            .timeline {
+                display: grid;
+                gap: 12px;
+                margin-top: 20px;
+            }
+            .time-item {
+                display: grid;
+                grid-template-columns: 140px 1fr;
+                gap: 16px;
+                align-items: start;
+                background: rgba(255, 255, 255, 0.58);
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                padding: 15px;
+            }
+            .time-item strong {
+                color: var(--coral);
+                font-family: Georgia, "Times New Roman", serif;
+            }
+            .material-table {
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 0;
+                margin-top: 20px;
+                overflow: hidden;
+                border: 1px solid var(--line);
+                border-radius: 18px;
+                background: rgba(255, 255, 255, 0.62);
+                font-size: 14px;
+            }
+            .material-table th,
+            .material-table td {
+                padding: 13px 14px;
+                text-align: left;
+                border-bottom: 1px solid var(--line);
+                vertical-align: top;
+            }
+            .material-table th {
+                background: rgba(49, 95, 82, 0.1);
+                color: #2d5147;
+                font-weight: 750;
+            }
+            .material-table tr:last-child td {
+                border-bottom: 0;
+            }
+            .tag {
+                display: inline-block;
+                border-radius: 999px;
+                padding: 2px 8px;
+                background: rgba(190, 106, 86, 0.12);
+                color: #8e4638;
+                font-size: 12px;
+                margin-right: 6px;
+                white-space: nowrap;
+            }
+            .accent-green {
+                color: var(--green);
+            }
+            .accent-coral {
+                color: var(--coral);
+            }
+            .accent-gold {
+                color: var(--gold);
+            }
+            .accent-lav {
+                color: var(--lav);
+            }
+            .evidence-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 12px;
+                margin-top: 22px;
+            }
+            .evidence {
+                background: rgba(255, 255, 255, 0.66);
+                border: 1px solid var(--line);
+                border-radius: 18px;
+                padding: 16px;
+                min-height: 150px;
+            }
+            .evidence .num {
+                font-family: Georgia, "Times New Roman", serif;
+                color: var(--coral);
+                font-size: 26px;
+                line-height: 1;
+            }
+            .evidence b {
+                display: block;
+                margin: 10px 0 8px;
+                color: #2d5147;
+            }
+            .evidence span {
+                font-size: 13px;
+                color: var(--muted);
+            }
+            .mini-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+                margin-top: 18px;
+            }
+            .mini {
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.56);
+                border-radius: 16px;
+                padding: 15px;
+            }
+            .mini b {
+                color: var(--green);
+            }
+            .mini p {
+                margin: 6px 0 0;
+                color: var(--muted);
+                font-size: 14px;
+            }
+            .footer-note {
+                position: absolute;
+                left: 50px;
+                right: 50px;
+                bottom: 28px;
+                font-size: 12px;
+                color: var(--muted);
+                border-top: 1px solid var(--line);
+                padding-top: 12px;
+            }
+
+            .layer-stack {
+                display: grid;
+                gap: 12px;
+                margin-top: 22px;
+            }
+            .layer {
+                display: grid;
+                grid-template-columns: 180px 1fr 160px;
+                gap: 16px;
+                align-items: center;
+                background: rgba(255, 255, 255, 0.62);
+                border: 1px solid var(--line);
+                border-radius: 18px;
+                padding: 16px 18px;
+            }
+            .layer .level {
+                font-family: Georgia, "Times New Roman", serif;
+                color: var(--coral);
+                font-size: 20px;
+                white-space: nowrap;
+            }
+            .layer b {
+                color: var(--green);
+            }
+            .layer p {
+                margin: 4px 0 0;
+                color: var(--muted);
+                font-size: 14px;
+                line-height: 1.65;
+            }
+            .layer .state {
+                justify-self: end;
+                border: 1px solid #dccbb1;
+                border-radius: 999px;
+                padding: 5px 10px;
+                font-size: 12px;
+                color: #5e574e;
+                background: rgba(255, 255, 255, 0.52);
+            }
+            .compare {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 18px;
+                margin-top: 24px;
+            }
+            .compare-col {
+                background: rgba(255, 255, 255, 0.62);
+                border: 1px solid var(--line);
+                border-radius: 20px;
+                padding: 22px;
+                min-height: 210px;
+            }
+            .compare-col h3 {
+                margin: 0 0 12px;
+                color: var(--green);
+                font-size: 20px;
+            }
+            .compare-col.misread h3 {
+                color: var(--coral);
+            }
+            .compare-col p {
+                margin: 0;
+                color: var(--muted);
+            }
+            .pyramid {
+                display: flex;
+                flex-direction: column-reverse;
+                align-items: center;
+                gap: 8px;
+                margin: 24px auto 0;
+                max-width: 900px;
+            }
+            .pyramid-level {
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.64);
+                border-radius: 16px;
+                padding: 12px 18px;
+                text-align: center;
+                box-shadow: 0 8px 20px rgba(53, 43, 25, 0.04);
+            }
+            .pyramid-level b {
+                display: block;
+                color: var(--green);
+                margin-bottom: 4px;
+            }
+            .pyramid-level span {
+                font-size: 13px;
+                color: var(--muted);
+            }
+            .pyramid-level:nth-child(1) {
+                width: 100%;
+            }
+            .pyramid-level:nth-child(2) {
+                width: 86%;
+            }
+            .pyramid-level:nth-child(3) {
+                width: 72%;
+            }
+            .pyramid-level:nth-child(4) {
+                width: 58%;
+            }
+            .pyramid-level:nth-child(5) {
+                width: 44%;
+                border-color: #cdb37b;
+                background: rgba(255, 250, 235, 0.76);
+            }
+            .term-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+                margin-top: 20px;
+            }
+            .term {
+                background: rgba(255, 255, 255, 0.6);
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                padding: 15px;
+            }
+            .term b {
+                display: block;
+                color: var(--green);
+                margin-bottom: 6px;
+            }
+            .term span {
+                font-size: 13px;
+                color: var(--muted);
+                line-height: 1.6;
+            }
+            .research-questions {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+                margin-top: 24px;
+            }
+            .question-card {
+                background: rgba(255, 255, 255, 0.62);
+                border: 1px solid var(--line);
+                border-radius: 20px;
+                padding: 20px;
+                min-height: 145px;
+            }
+            .question-card .qnum {
+                font-family: Georgia, "Times New Roman", serif;
+                color: var(--coral);
+                font-size: 28px;
+                line-height: 1;
+            }
+            .question-card b {
+                display: block;
+                margin: 10px 0 8px;
+                color: var(--green);
+            }
+            .question-card p {
+                margin: 0;
+                color: var(--muted);
+                font-size: 14px;
+            }
+            @media (max-width: 980px) {
+                .deck-frame {
+                    display: block;
+                    width: 100%;
+                    margin: 0;
+                    min-height: 100vh;
+                }
+                .sidebar {
+                    position: relative;
+                    top: 0;
+                    height: auto;
+                    border-radius: 0;
+                    box-shadow: none;
+                    border-left: 0;
+                    border-right: 0;
+                    padding: 20px;
+                }
+                .nav-list {
+                    display: flex;
+                    gap: 10px;
+                    overflow-x: auto;
+                    padding-bottom: 10px;
+                    flex: none;
+                    flex-direction: row;
+                }
+                .nav-item {
+                    min-width: 220px;
+                }
+                .stage {
+                    border-radius: 0;
+                    box-shadow: none;
+                    border-left: 0;
+                    border-right: 0;
+                }
+                .slide {
+                    display: flex;
+                    min-height: auto;
+                    padding: 18px;
+                }
+                .slide:not(.active) {
+                    display: flex;
+                }
+                .slide.active {
+                    animation: none;
+                }
+                .slide-inner {
+                    min-height: auto;
+                    padding: 28px;
+                    border-radius: 22px;
+                }
+                .title {
+                    font-size: 38px;
+                }
+                .slide-title {
+                    font-size: 29px;
+                }
+                .lead {
+                    font-size: 16px;
+                }
+                .three-col,
+                .two-col,
+                .evidence-grid,
+                .mini-grid,
+                .compare,
+                .term-grid,
+                .research-questions {
+                    grid-template-columns: 1fr;
+                }
+                .layer {
+                    grid-template-columns: 1fr;
+                }
+                .layer .state {
+                    justify-self: start;
+                }
+                .pyramid-level {
+                    width: 100% !important;
+                }
+                .diagram {
+                    flex-direction: column;
+                }
+                .node:not(:last-child)::after {
+                    content: "↓";
+                    right: 50%;
+                    top: auto;
+                    bottom: -21px;
+                    transform: translateX(50%);
+                }
+                .footer-note {
+                    position: relative;
+                    left: auto;
+                    right: auto;
+                    bottom: auto;
+                    margin-top: 24px;
+                }
+                .time-item {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main class="deck-frame">
+            <aside class="sidebar">
+                <div class="brand">Allen’s Talk #300809</div>
+                <h1 class="series">磨削当下<br />光铸未来</h1>
+                <p class="summary">
+                    增强版：保留原版的克制叙事，同时补足证据链、估值逻辑、跟踪框架与证伪条件。
+                </p>
+                <ol class="nav-list" id="navList"></ol>
+                <div class="sidebar-footer">
+                    <div class="progress-bar"><span id="progress"></span></div>
+                    <div class="pager">
+                        <span id="pageNow">00</span
+                        ><span id="pageTotal">00</span>
+                    </div>
+                    <div class="copyright">
+                        © 2026 Allen Deng · 研究交流，不构成投资建议
+                    </div>
+                </div>
+            </aside>
+
+            <section class="stage" id="stage">
+                <section
+                    class="slide active"
+                    data-title="开场：一台磨床的叙事"
+                    data-sub="稀缺设备、现金牛、战略期权"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">2026.03.07 · Research Talk</div>
+                        <h2 class="title">华辰装备：磨削当下，光铸未来</h2>
+                        <p class="lead">
+                            这份分享不把华辰讲成一个单一概念股，而是把它拆成一条可验证的产业证据链：现金牛业务提供底座，机器人丝杠订单提供现实验证，碳化硅与
+                            EUV 提供向上的战略弹性。
+                        </p>
+                        <div class="chips">
+                            <span class="chip">高端精密磨削</span
+                            ><span class="chip">人形机器人</span
+                            ><span class="chip">行星滚柱丝杠</span
+                            ><span class="chip">碳化硅</span
+                            ><span class="chip">EUV 供应链</span
+                            ><span class="chip">认知差</span
+                            ><span class="chip">扣非利润</span>
+                        </div>
+                        <div class="footer-note">
+                            作者 / 平台：Allen Deng ·
+                            版权声明：内容由公开资料研究整理，仅供研究交流。
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    class="slide"
+                    data-title="总览：先给结论"
+                    data-sub="三条支撑，一张期权"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Big Picture</div>
+                        <h2 class="slide-title">
+                            这不是“哪个概念更热”的问题，而是“哪些证据已经落地”。
+                        </h2>
+                        <p class="lead">
+                            核心判断是：当前价格附近由三条确定性更强的逻辑支撑，而
+                            EUV 供应链像一张不付费的战略期权压在上方。
+                        </p>
+                        <div class="three-col">
+                            <div class="card">
+                                <h3>底部支撑：轧辊磨床</h3>
+                                <p>
+                                    全球前三、国内高端市占率约
+                                    28–40%，是现金流、客户、制造经验的来源。
+                                </p>
+                            </div>
+                            <div class="card">
+                                <h3>现实验证：丝杠磨床</h3>
+                                <p>
+                                    福立旺 100
+                                    台订单让机器人逻辑从“题材”走向“合同”，其中内螺纹磨床是最稀缺环节。
+                                </p>
+                            </div>
+                            <div class="card">
+                                <h3>向上弹性：碳化硅 + EUV</h3>
+                                <p>
+                                    碳化硅看首单落地，EUV
+                                    看战略稀缺性重估。两者不宜简单按短期收入线性折现。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    class="slide top-align"
+                    data-title="研究问题"
+                    data-sub="先建立问题意识"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Research Questions</div>
+                        <h2 class="slide-title">
+                            本次研究关注的，不是“华辰会不会涨”，而是四个更底层的问题。
+                        </h2>
+                        <p class="lead">
+                            先把研究对象拆成问题。只有问题清楚，后面的订单、财务、技术、筹码，才不会变成一堆孤立信息。
+                        </p>
+                        <div class="research-questions">
+                            <div class="question-card">
+                                <div class="qnum">01</div>
+                                <b>它还是一家普通磨床公司吗？</b>
+                                <p>
+                                    看它是否从轧辊磨床，迁移到螺纹、半导体、光学级超精密加工。
+                                </p>
+                            </div>
+                            <div class="question-card">
+                                <div class="qnum">02</div>
+                                <b>几条逻辑之间是什么关系？</b>
+                                <p>
+                                    轧辊是底座，机器人是订单，碳化硅是产业升级，EUV
+                                    是战略期权。
+                                </p>
+                            </div>
+                            <div class="question-card">
+                                <div class="qnum">03</div>
+                                <b>市场现在可能漏看了什么？</b>
+                                <p>
+                                    不是所有故事都未定价：要区分已定价、部分定价与完全未定价。
+                                </p>
+                            </div>
+                            <div class="question-card">
+                                <div class="qnum">04</div>
+                                <b>未来靠什么事实验证？</b>
+                                <p>
+                                    看扣非利润、订单确认、首单公告、调研记录与减持窗口，而不是只盯股价波动。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    class="slide top-align"
+                    data-title="研究方法"
+                    data-sub="从故事到证据链"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Method</div>
+                        <h2 class="slide-title">
+                            深入研究的关键：不要只听故事，要看证据是否能闭环。
+                        </h2>
+                        <p class="lead">
+                            本页把每条逻辑拆成四个问题：它解决什么产业瓶颈？有什么已发生事实？市场有没有定价？后面用什么指标验证或证伪？
+                        </p>
+                        <div class="diagram">
+                            <div class="node">
+                                <b>产业瓶颈</b
+                                ><span
+                                    >机器人、半导体、EUV
+                                    的共同底层，是更高精度的加工能力。</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>公司能力</b
+                                ><span
+                                    >看产品、订单、专利、客户、产能，而不是只看概念标签。</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>市场定价</b
+                                ><span
+                                    >区分已定价、部分定价、完全未定价，避免重复买单。</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>跟踪指标</b
+                                ><span
+                                    >年报、扣非、调研、订单、减持窗口、技术里程碑。</span
+                                >
+                            </div>
+                        </div>
+                        <p class="note">
+                            这也是为什么“半年零调研”值得重视：如果核心逻辑成立，而主流机构尚未覆盖，就可能存在认知差。
+                        </p>
+                    </div>
+                </section>
+
+                <section
+                    class="slide"
+                    data-title="公司本质"
+                    data-sub="不是泛机床，而是精密磨削平台"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Company</div>
+                        <h2 class="slide-title">
+                            华辰的本质：用磨床能力切入更高精度的制造环节。
+                        </h2>
+                        <div class="two-col">
+                            <div class="panel">
+                                <h3>底座业务</h3>
+                                <p>
+                                    成立于 2007
+                                    年，长期做高端精密数控磨削装备。轧辊磨床业务连接钢铁龙头客户，提供现金流和制造组织能力。
+                                </p>
+                            </div>
+                            <div class="panel">
+                                <h3>转型方向</h3>
+                                <p>
+                                    从传统轧辊磨床，扩展到内 /
+                                    外螺纹磨床、亚微米复合磨削、半导体衬底、光学级磨抛，这是一条“精度上移”的路径。
+                                </p>
+                            </div>
+                        </div>
+                        <table class="material-table">
+                            <tr>
+                                <th>维度</th>
+                                <th>关键信息</th>
+                                <th>深入解读</th>
+                            </tr>
+                            <tr>
+                                <td>客户</td>
+                                <td>宝武、鞍钢、首钢等 200 余家钢铁客户</td>
+                                <td>
+                                    不是从零做设备，而是在高端装备交付体系里长期训练出来
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>研发</td>
+                                <td>专精特新小巨人、清华联合研究中心</td>
+                                <td>
+                                    说明公司有能力承接更复杂的控制、磨削、测量问题
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>认知差</td>
+                                <td>最近半年零调研</td>
+                                <td>
+                                    如果业务线兑现，这会成为后续估值重估的起点
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+
+                <section
+                    class="slide top-align"
+                    data-title="术语注释"
+                    data-sub="保留专业度，但降低理解门槛"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Research Notes</div>
+                        <h2 class="slide-title">
+                            关键术语需要给出研究者注释。
+                        </h2>
+                        <p class="lead">
+                            理解一家公司，必须先弄清楚指标背后的含义：它到底在描述真实经营，还是只是在描述一次性会计结果。
+                        </p>
+                        <div class="term-grid">
+                            <div class="term">
+                                <b>归母净利润</b
+                                ><span
+                                    >上市公司归属于母公司股东的净利润，容易形成市场标题效应。</span
+                                >
+                            </div>
+                            <div class="term">
+                                <b>扣非净利润</b
+                                ><span
+                                    >剔除非经常性损益后的利润，更适合观察主营业务是否真正改善。</span
+                                >
+                            </div>
+                            <div class="term">
+                                <b>非经常性损益</b
+                                ><span
+                                    >例如股权投资浮盈，能让当期利润变好看，但通常不可持续。</span
+                                >
+                            </div>
+                            <div class="term">
+                                <b>合同负债</b
+                                ><span
+                                    >常用于观察客户预付款或订单确认信号，是需求侧的重要线索。</span
+                                >
+                            </div>
+                            <div class="term">
+                                <b>认知差</b
+                                ><span
+                                    >公司基本面变化已经发生，但市场尚未充分理解、覆盖或定价。</span
+                                >
+                            </div>
+                            <div class="term">
+                                <b>战略期权</b
+                                ><span
+                                    >短期不一定贡献收入，但产业进程推进时可能触发估值重估。</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    class="slide top-align"
+                    data-title="四层增长结构"
+                    data-sub="不要把六条逻辑平铺"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Layered Thesis</div>
+                        <h2 class="slide-title">
+                            可以把六条增长逻辑重排成四层结构。
+                        </h2>
+                        <p class="lead">
+                            平铺六条线容易让人误以为它们同等重要、同一节奏。更准确的理解是：不同逻辑承担不同估值功能。
+                        </p>
+                        <div class="layer-stack">
+                            <div class="layer">
+                                <div class="level">Layer 01</div>
+                                <div>
+                                    <b>现金流底座：轧辊磨床</b>
+                                    <p>
+                                        全球前三、国内高端市占率约
+                                        28–40%，客户深、交付经验深，决定公司不是纯概念标的。
+                                    </p>
+                                </div>
+                                <span class="state">已定价 / 托底</span>
+                            </div>
+                            <div class="layer">
+                                <div class="level">Layer 02</div>
+                                <div>
+                                    <b>订单兑现层：人形机器人丝杠磨床</b>
+                                    <p>
+                                        福立旺 100
+                                        台订单让外螺纹、外圆、内螺纹磨床进入收入确认观察期。
+                                    </p>
+                                </div>
+                                <span class="state">部分定价 / 验证</span>
+                            </div>
+                            <div class="layer">
+                                <div class="level">Layer 03</div>
+                                <div>
+                                    <b>产业升级层：碳化硅超精密磨床</b>
+                                    <p>
+                                        如果首单落地，华辰不再只是机器人设备链，而会被重新理解为半导体超精密设备公司。
+                                    </p>
+                                </div>
+                                <span class="state">未定价 / 弹性</span>
+                            </div>
+                            <div class="layer">
+                                <div class="level">Layer 04</div>
+                                <div>
+                                    <b>战略期权层：国产 EUV 供应链</b>
+                                    <p>
+                                        不按短期收入建模，而按国家级超精密光学加工能力与稀缺性重估理解。
+                                    </p>
+                                </div>
+                                <span class="state">未定价 / 期权</span>
+                            </div>
+                        </div>
+                        <p class="note">
+                            核心不是罗列信息，而是建立结构：不同逻辑对应不同确定性、不同兑现节奏、不同估值功能。
+                        </p>
+                    </div>
+                </section>
+
+                <section
+                    class="slide"
+                    data-title="估值结构"
+                    data-sub="下有底，上有期权"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Valuation Logic</div>
+                        <h2 class="slide-title">
+                            华辰的估值结构，本质上是“分层定价”。
+                        </h2>
+                        <div class="diagram">
+                            <div class="node">
+                                <b>第一层：现金牛</b
+                                ><span
+                                    >轧辊磨床决定公司不是纯概念股，有稳定客户与现金流基础。</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>第二层：订单兑现</b
+                                ><span
+                                    >机器人丝杠磨床订单把成长逻辑落实到收入确认节奏。</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>第三层：首单弹性</b
+                                ><span
+                                    >碳化硅首单如果出现，会改变市场对半导体设备属性的认知。</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>第四层：战略期权</b
+                                ><span
+                                    >EUV
+                                    不看短期收入，看国产替代进程触发的稀缺性重估。</span
+                                >
+                            </div>
+                        </div>
+                        <div class="quote">
+                            “好研究不是把所有未来都算进目标价，而是知道哪些部分已经该定价，哪些部分只是免费期权。”
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    class="slide"
+                    data-title="EUV 防误读"
+                    data-sub="战略稀缺性，不是短期营收"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">EUV Option</div>
+                        <h2 class="slide-title">
+                            EUV 这条线最重要的，是避免讲错。
+                        </h2>
+                        <p class="lead">
+                            它很重要，但不能被讲成“马上放量赚钱”。严肃的讲法应该把短期业绩与长期稀缺性分开。
+                        </p>
+                        <div class="compare">
+                            <div class="compare-col misread">
+                                <h3>容易误读</h3>
+                                <p>
+                                    “华辰进入 EUV 供应链，所以很快会靠 EUV
+                                    贡献大规模营收。”<br /><br />这个说法过度线性，忽略了
+                                    EUV
+                                    光学元件需求量小、国产化进程受国家战略节奏影响。
+                                </p>
+                            </div>
+                            <div class="compare-col">
+                                <h3>更准确的理解</h3>
+                                <p>
+                                    “华辰中标长春光机所亚微米数控磨抛加工中心，证明其进入国家级超精密光学加工验证体系。”<br /><br />这条线的价值在于技术背书、供应链稀缺性和战略估值溢价。
+                                </p>
+                            </div>
+                        </div>
+                        <p class="note">
+                            跟踪 EUV，不看短期收入贡献；看长春光机所与国产 EUV
+                            进程的里程碑是否触发市场重新定价。
+                        </p>
+                    </div>
+                </section>
+
+                <section
+                    class="slide"
+                    data-title="丝杠磨床"
+                    data-sub="机器人逻辑的设备瓶颈"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Screw Grinder</div>
+                        <h2 class="slide-title">
+                            人形机器人的传动升级，最终会落回“谁能加工出来”。
+                        </h2>
+                        <p class="lead">
+                            行星滚柱丝杠的难点不只是设计，而是稳定、批量、低成本地加工。内螺旋槽超精密磨削，是国产化绕不开的一道门槛。
+                        </p>
+                        <table class="material-table">
+                            <tr>
+                                <th>丝杠类型</th>
+                                <th>应用</th>
+                                <th>加工难度</th>
+                                <th>华辰位置</th>
+                            </tr>
+                            <tr>
+                                <td>行星滚柱丝杠：内螺纹</td>
+                                <td>人形机器人高端关节</td>
+                                <td>最高，内螺旋槽加工</td>
+                                <td><span class="tag">国内唯一能量产</span></td>
+                            </tr>
+                            <tr>
+                                <td>行星滚柱丝杠：外螺纹</td>
+                                <td>人形机器人高端关节</td>
+                                <td>高，PO 级精度</td>
+                                <td>国内领先，100 台订单验证</td>
+                            </tr>
+                            <tr>
+                                <td>普通滚珠丝杠</td>
+                                <td>工业机器人 / 工业母机</td>
+                                <td>中等</td>
+                                <td>竞争更多，壁垒相对低</td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+
+                <section
+                    class="slide top-align"
+                    data-title="100 台订单"
+                    data-sub="从主题投资到财报验证"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Order Translation</div>
+                        <h2 class="slide-title">
+                            福立旺 100 台订单的意义，不只是金额，而是状态切换。
+                        </h2>
+                        <div class="evidence-grid">
+                            <div class="evidence">
+                                <div class="num">01</div>
+                                <b>从样机到批量</b
+                                ><span
+                                    >订单意味着客户不是只看样机，而是开始为产业化准备设备。</span
+                                >
+                            </div>
+                            <div class="evidence">
+                                <div class="num">02</div>
+                                <b>从概念到合同</b
+                                ><span
+                                    >人形机器人逻辑不再只是二级市场叙事，而有合同作为锚点。</span
+                                >
+                            </div>
+                            <div class="evidence">
+                                <div class="num">03</div>
+                                <b>从外螺纹到内螺纹</b
+                                ><span
+                                    >内螺纹磨床是稀缺环节，一旦确认收入，市场可能重新评估壁垒。</span
+                                >
+                            </div>
+                            <div class="evidence">
+                                <div class="num">04</div>
+                                <b>从估值到验证</b
+                                ><span
+                                    >2026 Q1–Q2
+                                    收入确认节奏，是判断订单质量的关键窗口。</span
+                                >
+                            </div>
+                        </div>
+                        <p class="note">
+                            演讲时这里不要只说“100
+                            台很大”，而要说清楚：它让机器人逻辑从预期曲线进入财务确认曲线。
+                        </p>
+                    </div>
+                </section>
+
+                <section
+                    class="slide top-align"
+                    data-title="长光华辰"
+                    data-sub="技术转化不是口号"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Joint Venture</div>
+                        <h2 class="slide-title">
+                            合资公司真正值得看的，是技术有没有从实验室迁移到工厂。
+                        </h2>
+                        <table class="material-table">
+                            <tr>
+                                <th>证据层</th>
+                                <th>关键事实</th>
+                                <th>深入解读</th>
+                            </tr>
+                            <tr>
+                                <td>法律层</td>
+                                <td>长光大器以专利权出资，华辰现金出资</td>
+                                <td>
+                                    技术不是简单合作意向，而是以产权形式进入公司结构
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>物理层</td>
+                                <td>合资公司注册于华辰昆山总部</td>
+                                <td>
+                                    量产导向强于纯科研导向，地点选择本身就是信号
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>人员层</td>
+                                <td>
+                                    长春光机所专家、清华中心、华辰工程师协作
+                                </td>
+                                <td>
+                                    隐性知识通过人和工艺沉淀，而不是只靠专利文本
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>产能层</td>
+                                <td>现有无尘车间、精密装配、百台级产能承接</td>
+                                <td>商业化最后一公里的时间和资本开支被压缩</td>
+                            </tr>
+                        </table>
+                        <p class="quote" style="font-size: 23px">
+                            “技术转化最怕停在协议层。关键在于证明这件事已经进入法律、场地、人员、产能四个层面。”
+                        </p>
+                    </div>
+                </section>
+
+                <section
+                    class="slide"
+                    data-title="碳化硅首单"
+                    data-sub="四层证据共同指向"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">SiC</div>
+                        <h2 class="slide-title">
+                            碳化硅是更容易自主把握节奏的商业化支线。
+                        </h2>
+                        <p class="lead">
+                            相比 EUV
+                            的国家战略节奏，碳化硅更接近商业设备订单。它的关键在于：客户是否愿意为更高良率、更高精度、本地化服务买单。
+                        </p>
+                        <div class="diagram">
+                            <div class="node">
+                                <b>市场空间</b
+                                ><span
+                                    >碳化硅磨抛设备增速快，高端环节仍依赖进口。</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>技术对位</b
+                                ><span
+                                    >8 英寸衬底 TTV &lt; 1μm、主轴 0.1μm
+                                    级，对应亚微米磨抛能力。</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>客户动力</b
+                                ><span
+                                    >价格战背景下，良率提升是正回报投入。</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>本地优势</b
+                                ><span
+                                    >海外设备标准化供货，华辰 +
+                                    长光华辰可做定制化开发。</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    class="slide top-align"
+                    data-title="碳化硅证据金字塔"
+                    data-sub="从背景到订单触发"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Evidence Pyramid</div>
+                        <h2 class="slide-title">
+                            碳化硅逻辑最适合做成证据金字塔：越往上，越接近订单确认。
+                        </h2>
+                        <p class="lead">
+                            判断这条逻辑时，不能把所有证据当成同等强度。市场背景、技术能力、招标规格、企业行为、订单公告，权重完全不同。
+                        </p>
+                        <div class="pyramid">
+                            <div class="pyramid-level">
+                                <b>公开市场空间</b
+                                ><span
+                                    >碳化硅磨抛设备需求增长、进口依赖、客户良率压力。</span
+                                >
+                            </div>
+                            <div class="pyramid-level">
+                                <b>技术能力迁移</b
+                                ><span
+                                    >长光华辰、亚微米磨抛、气浮主轴、超精密加工经验。</span
+                                >
+                            </div>
+                            <div class="pyramid-level">
+                                <b>招标规格对位</b
+                                ><span
+                                    >TTV &lt; 1μm、主轴 0.1μm
+                                    级等参数与华辰能力匹配。</span
+                                >
+                            </div>
+                            <div class="pyramid-level">
+                                <b>企业行为信号</b
+                                ><span
+                                    >社保净增、人才公寓、岗位薪资溢价、半导体设备岗位。</span
+                                >
+                            </div>
+                            <div class="pyramid-level">
+                                <b>订单 / 验证公告</b
+                                ><span
+                                    >最高权重确认点：客户试用、招标中标、首单公告。</span
+                                >
+                            </div>
+                        </div>
+                        <p class="note">
+                            需要强调：前四层提高概率，第五层才是事实确认。这样既保留进攻性，也避免把推断说成事实。
+                        </p>
+                    </div>
+                </section>
+
+                <section
+                    class="slide top-align"
+                    data-title="竞争格局"
+                    data-sub="财务质量与技术天花板"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Competition</div>
+                        <h2 class="slide-title">
+                            精密磨床的护城河，最终会体现在定价权和利润质量上。
+                        </h2>
+                        <table class="material-table">
+                            <tr>
+                                <th>公司</th>
+                                <th>核心方向</th>
+                                <th>精度天花板</th>
+                                <th>与华辰关系</th>
+                            </tr>
+                            <tr>
+                                <td>秦川机床</td>
+                                <td>齿轮磨床为主，兼做螺纹磨床</td>
+                                <td>微米级</td>
+                                <td>外螺纹有交集，内螺纹空白</td>
+                            </tr>
+                            <tr>
+                                <td>日发精机</td>
+                                <td>轴承磨床、加工中心</td>
+                                <td>微米级</td>
+                                <td>财务危机中，竞争压力有限</td>
+                            </tr>
+                            <tr>
+                                <td>宇环数控</td>
+                                <td>蓝宝石 / 碳化硅研磨抛光</td>
+                                <td>亚微米级</td>
+                                <td>路线相近但工序不同：研磨 ≠ 磨削</td>
+                            </tr>
+                            <tr>
+                                <td>华辰装备</td>
+                                <td>超精密磨削，长光华辰专利注入</td>
+                                <td>亚微米 / 纳米级</td>
+                                <td>具备 EUV 光学加工基因</td>
+                            </tr>
+                        </table>
+                        <p class="quote" style="font-size: 23px">
+                            “同行的精度天花板，可能只是华辰超精密产品线的起点。”
+                        </p>
+                    </div>
+                </section>
+
+                <section
+                    class="slide top-align"
+                    data-title="财务解读"
+                    data-sub="归母漂亮，扣非关键"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Financials</div>
+                        <h2 class="slide-title">
+                            2025 年归母净利润很好看，但估值重构要看扣非爬坡。
+                        </h2>
+                        <table class="material-table">
+                            <tr>
+                                <th>年度</th>
+                                <th>营收</th>
+                                <th>归母净利润</th>
+                                <th>扣非 / 备注</th>
+                            </tr>
+                            <tr>
+                                <td>2023</td>
+                                <td>4.50 亿</td>
+                                <td>0.84 亿</td>
+                                <td>正常基准年</td>
+                            </tr>
+                            <tr>
+                                <td>2024</td>
+                                <td>约 4.5 亿</td>
+                                <td>大幅下滑</td>
+                                <td>转型阵痛：研发 + 产能建设</td>
+                            </tr>
+                            <tr>
+                                <td>2025 预增</td>
+                                <td>—</td>
+                                <td>1.82–2.12 亿</td>
+                                <td>
+                                    扣非 3,200–4,200 万；大部分来自非经常损益
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2026E</td>
+                                <td>5.83 亿</td>
+                                <td>1.42 亿</td>
+                                <td>折旧压力缓解，新品收入确认</td>
+                            </tr>
+                            <tr>
+                                <td>2027E</td>
+                                <td>8.27 亿</td>
+                                <td>1.85 亿</td>
+                                <td>机器人丝杠订单持续放量</td>
+                            </tr>
+                        </table>
+                        <p class="note">
+                            财务解读应区分：标题效应看归母，质量验证看扣非，估值重构看
+                            2026 年主营利润曲线。
+                        </p>
+                    </div>
+                </section>
+
+                <section
+                    class="slide top-align"
+                    data-title="筹码与压制"
+                    data-sub="短期压力不是基本面问题"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Shareholder Dynamics</div>
+                        <h2 class="slide-title">
+                            当前压制来自实控人减持窗口，属于有限期、已知变量。
+                        </h2>
+                        <div class="two-col">
+                            <div class="panel">
+                                <h3>筹码结构</h3>
+                                <p>
+                                    120 天平均持仓成本约 38.56 元，当前 35.20
+                                    元低于成本线；筹码集中度高，老股民占比较高，说明市场并未充分换手。
+                                </p>
+                            </div>
+                            <div class="panel">
+                                <h3>减持窗口</h3>
+                                <p>
+                                    三位实控人计划 2026 年 1 月 20 日至 4 月 19
+                                    日减持不超过
+                                    2%。这会压制股价，但窗口期明确。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mini-grid">
+                            <div class="mini">
+                                <b>中性理解</b>
+                                <p>
+                                    2%
+                                    比例不大，减持后仍绝对控股，可能是个人资金安排。
+                                </p>
+                            </div>
+                            <div class="mini">
+                                <b>谨慎理解</b>
+                                <p>
+                                    实控人在业绩好看时减持，说明当前价格判断需要尊重。
+                                </p>
+                            </div>
+                        </div>
+                        <p class="note">
+                            这里的策略含义是：不要把所有短期下跌都解释成基本面恶化，也不要忽视实控人减持带来的真实供给压力。
+                        </p>
+                    </div>
+                </section>
+
+                <section
+                    class="slide"
+                    data-title="催化剂时间线"
+                    data-sub="认知差如何消失"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Timeline</div>
+                        <h2 class="slide-title">
+                            真正清晰的部分，是未来几个月该跟踪什么。
+                        </h2>
+                        <div class="timeline">
+                            <div class="time-item">
+                                <strong>2026.04.19</strong>
+                                <div>
+                                    <b>实控人减持窗口到期</b><br /><span
+                                        class="small"
+                                        >第一个明确时间节点，压制是否解除需要公告确认。</span
+                                    >
+                                </div>
+                            </div>
+                            <div class="time-item">
+                                <strong>2026.04</strong>
+                                <div>
+                                    <b>2025 年报披露</b><br /><span
+                                        class="small"
+                                        >净利润预增标题效应 +
+                                        扣非拐点验证。</span
+                                    >
+                                </div>
+                            </div>
+                            <div class="time-item">
+                                <strong>2026 Q1–Q2</strong>
+                                <div>
+                                    <b>100 台福立旺订单收入确认</b><br /><span
+                                        class="small"
+                                        >人形机器人逻辑进入财报数字。</span
+                                    >
+                                </div>
+                            </div>
+                            <div class="time-item">
+                                <strong>2026 Q1–Q2</strong>
+                                <div>
+                                    <b>碳化硅首单公告</b><br /><span
+                                        class="small"
+                                        >半导体设备属性被市场重新理解的强触发点。</span
+                                    >
+                                </div>
+                            </div>
+                            <div class="time-item">
+                                <strong>持续监测</strong>
+                                <div>
+                                    <b>中金 / 中信 / 招商 / 华泰等调研</b
+                                    ><br /><span class="small"
+                                        >如果主流机构开始调研，认知差可能进入快速修复阶段。</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    class="slide"
+                    data-title="不要只跟踪股价"
+                    data-sub="把观点转成事实清单"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Learning Focus</div>
+                        <h2 class="slide-title">
+                            这家公司最值得跟踪的不是股价，而是事实是否继续兑现。
+                        </h2>
+                        <p class="lead">
+                            股价每天都会变，但研究假设不是每天都会变。关键是分清：哪些新事实会增强判断，哪些新事实会削弱判断。
+                        </p>
+                        <div class="three-col">
+                            <div class="card">
+                                <h3>经营事实</h3>
+                                <p>
+                                    扣非利润、收入确认、合同负债，决定主营业务是否真的改善。
+                                </p>
+                            </div>
+                            <div class="card">
+                                <h3>产业事实</h3>
+                                <p>
+                                    碳化硅首单、客户验证、招标结果，决定第二增长曲线是否成立。
+                                </p>
+                            </div>
+                            <div class="card">
+                                <h3>市场事实</h3>
+                                <p>
+                                    主流机构调研、覆盖研报、减持窗口结束，决定认知差是否开始修复。
+                                </p>
+                            </div>
+                        </div>
+                        <p class="quote" style="font-size: 23px">
+                            “看股价是看结果，看事实是看原因。做研究，重点是建立因果链。”
+                        </p>
+                    </div>
+                </section>
+
+                <section
+                    class="slide top-align"
+                    data-title="跟踪仪表盘"
+                    data-sub="把研究变成可执行清单"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Dashboard</div>
+                        <h2 class="slide-title">
+                            后续跟踪不要散，看五个优先级最高的指标。
+                        </h2>
+                        <table class="material-table">
+                            <tr>
+                                <th>指标</th>
+                                <th>看什么</th>
+                                <th>触发含义</th>
+                            </tr>
+                            <tr>
+                                <td>大行调研记录</td>
+                                <td>中金 / 中信 / 招商 / 华泰是否首次出现</td>
+                                <td>认知差开始消失</td>
+                            </tr>
+                            <tr>
+                                <td>碳化硅首单</td>
+                                <td>三安、天岳或其他半导体客户试用 / 订单</td>
+                                <td>半导体设备逻辑被确认</td>
+                            </tr>
+                            <tr>
+                                <td>扣非利润</td>
+                                <td>2025 扣非转正后，2026 爬坡速度</td>
+                                <td>主营质量验证</td>
+                            </tr>
+                            <tr>
+                                <td>丝杠收入</td>
+                                <td>100 台订单确认节奏与后续订单</td>
+                                <td>机器人逻辑进入业绩</td>
+                            </tr>
+                            <tr>
+                                <td>合同负债</td>
+                                <td>是否延续增长</td>
+                                <td>在手订单是否饱满</td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+
+                <section
+                    class="slide top-align"
+                    data-title="风险矩阵"
+                    data-sub="证伪条件要写清楚"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Risk Matrix</div>
+                        <h2 class="slide-title">
+                            越看好，越要写清楚什么时候应该重评。
+                        </h2>
+                        <table class="material-table">
+                            <tr>
+                                <th>风险项</th>
+                                <th>具体内容</th>
+                                <th>重评条件</th>
+                            </tr>
+                            <tr>
+                                <td>扣非利润不及预期</td>
+                                <td>2026 主营利润没有按机构预测爬坡</td>
+                                <td>年报 / 中报出现偏离，重估成长逻辑</td>
+                            </tr>
+                            <tr>
+                                <td>机器人量产延迟</td>
+                                <td>丝杠磨床后续订单不连续</td>
+                                <td>100 台之后没有新订单或交付延后</td>
+                            </tr>
+                            <tr>
+                                <td>碳化硅认证周期</td>
+                                <td>试用到批量采购需要 6–12 个月</td>
+                                <td>首单迟迟不公告，或客户验证结果不明</td>
+                            </tr>
+                            <tr>
+                                <td>实控人继续减持</td>
+                                <td>2% 之后出现更大规模计划</td>
+                                <td>超预期减持应立即重评</td>
+                            </tr>
+                            <tr>
+                                <td>EUV 节奏不确定</td>
+                                <td>国产 EUV 进程由国家战略决定</td>
+                                <td>只作为期权，不作为短期业绩假设</td>
+                            </tr>
+                        </table>
+                        <p class="note">
+                            风险框架不是为了泼冷水，而是为了让研究从“观点”变成“纪律”。
+                        </p>
+                    </div>
+                </section>
+
+                <section
+                    class="slide top-align"
+                    data-title="反证框架"
+                    data-sub="什么情况说明判断要重评"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Falsification</div>
+                        <h2 class="slide-title">
+                            好研究必须写清楚：什么情况下自己可能错。
+                        </h2>
+                        <div class="two-col">
+                            <div class="panel">
+                                <h3>财务反证</h3>
+                                <p>
+                                    如果 2026
+                                    年扣非利润没有继续爬坡，说明新品收入确认或主营改善低于预期，估值重构基础需要下修。
+                                </p>
+                            </div>
+                            <div class="panel">
+                                <h3>订单反证</h3>
+                                <p>
+                                    如果福立旺 100
+                                    台收入确认明显慢于预期，或后续没有新订单，机器人逻辑只能停留在单点订单。
+                                </p>
+                            </div>
+                            <div class="panel">
+                                <h3>产业反证</h3>
+                                <p>
+                                    如果碳化硅首单长期没有出现，或客户验证失败，半导体设备属性就不能提前定价。
+                                </p>
+                            </div>
+                            <div class="panel">
+                                <h3>筹码反证</h3>
+                                <p>
+                                    如果减持结束后仍持续弱势，且没有正面催化，应承认市场可能看到了一些研究未覆盖的信息。
+                                </p>
+                            </div>
+                        </div>
+                        <p class="note">
+                            反证框架的作用不是削弱观点，而是防止自己只收集支持观点的信息。
+                        </p>
+                    </div>
+                </section>
+
+                <section
+                    class="slide top-align"
+                    data-title="技术面与建仓"
+                    data-sub="左侧、右侧、重评线"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Position Framework</div>
+                        <h2 class="slide-title">
+                            这里给出的不是一句“看好”，而是分阶段验证框架。
+                        </h2>
+                        <table class="material-table">
+                            <tr>
+                                <th>阶段</th>
+                                <th>时间 / 条件</th>
+                                <th>动作</th>
+                                <th>核心逻辑</th>
+                            </tr>
+                            <tr>
+                                <td>第一阶段</td>
+                                <td>逻辑确认后</td>
+                                <td>35.15 元锚定初始仓位</td>
+                                <td>防止提前抢跑</td>
+                            </tr>
+                            <tr>
+                                <td>第二阶段</td>
+                                <td>3 月至 4 月初，减持窗口内</td>
+                                <td>逢低滚动，34 元以下更积极</td>
+                                <td>利用已知压制完成左侧建仓</td>
+                            </tr>
+                            <tr>
+                                <td>第三阶段</td>
+                                <td>4 月 19 日后，放量站稳 38.56 元</td>
+                                <td>右侧确认后补足仓位</td>
+                                <td>压制解除 + 技术确认</td>
+                            </tr>
+                            <tr>
+                                <td>重评线</td>
+                                <td>窗口结束后仍在 32 元以下且无催化</td>
+                                <td>不执行右侧加仓，降仓观察</td>
+                                <td>承认研究可能没有被市场验证</td>
+                            </tr>
+                        </table>
+                        <p class="note">
+                            这个框架更适合作为研究纪律，而不是投资建议。核心是：左侧看赔率，右侧看确认，错了要有重评线。
+                        </p>
+                    </div>
+                </section>
+
+                <section
+                    class="slide"
+                    data-title="结尾：研究方法总结"
+                    data-sub="Q&A / Thanks"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">Closing</div>
+                        <h2 class="slide-title">
+                            这次研究的核心沉淀，不只是一个股票代码，而是一套拆解框架。
+                        </h2>
+                        <div class="three-col">
+                            <div class="card">
+                                <h3>先分层</h3>
+                                <p>
+                                    看公司，先分清现金流底座、订单兑现层、产业弹性和战略期权。
+                                </p>
+                            </div>
+                            <div class="card">
+                                <h3>再找证据</h3>
+                                <p>
+                                    不要只看概念，要看合同、公告、客户、产能、招聘和财务数据是否互相印证。
+                                </p>
+                            </div>
+                            <div class="card">
+                                <h3>最后写纪律</h3>
+                                <p>
+                                    不要只问会不会涨，要写清楚未来靠什么验证，以及什么情况下需要重评。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="quote">
+                            “真正有价值的研究，是把故事拆成证据，把证据写成跟踪表，把跟踪表变成纪律。”
+                        </div>
+                        <div class="footer-note">
+                            免责声明：本页面仅为公开资料可视化整理，不构成任何投资建议。投资有风险，决策需独立判断。
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </main>
+
+        <script>
+            const slides = Array.from(document.querySelectorAll(".slide"));
+            const navList = document.getElementById("navList");
+            const progress = document.getElementById("progress");
+            const pageNow = document.getElementById("pageNow");
+            const pageTotal = document.getElementById("pageTotal");
+            let current = 0;
+
+            function pad(n) {
+                return String(n).padStart(2, "0");
+            }
+
+            slides.forEach((slide, i) => {
+                const item = document.createElement("li");
+                item.className = "nav-item" + (i === 0 ? " active" : "");
+                item.innerHTML = `<span class="nav-num">${pad(i)}</span><span><span class="nav-title">${slide.dataset.title}</span><span class="nav-sub">${slide.dataset.sub || ""}</span></span>`;
+                item.addEventListener("click", () => goTo(i));
+                navList.appendChild(item);
+            });
+
+            const navItems = Array.from(document.querySelectorAll(".nav-item"));
+            pageTotal.textContent = pad(slides.length - 1);
+
+            function goTo(index) {
+                current = Math.max(0, Math.min(index, slides.length - 1));
+                slides.forEach((slide, i) =>
+                    slide.classList.toggle("active", i === current),
+                );
+                navItems.forEach((item, i) =>
+                    item.classList.toggle("active", i === current),
+                );
+                pageNow.textContent = pad(current);
+                progress.style.width = `${(current / (slides.length - 1)) * 100}%`;
+                const activeNav = navItems[current];
+                if (activeNav && window.innerWidth > 980) {
+                    activeNav.scrollIntoView({
+                        block: "nearest",
+                        behavior: "smooth",
+                    });
+                }
+                if (window.innerWidth <= 980) {
+                    slides[current].scrollIntoView({
+                        block: "start",
+                        behavior: "smooth",
+                    });
+                }
+                history.replaceState(null, "", `#slide-${current}`);
+            }
+
+            function next() {
+                goTo(current + 1);
+            }
+            function prev() {
+                goTo(current - 1);
+            }
+
+            document.addEventListener("keydown", (e) => {
+                const tag =
+                    document.activeElement && document.activeElement.tagName;
+                if (["INPUT", "TEXTAREA", "SELECT"].includes(tag)) return;
+                if (["ArrowRight", "PageDown", " "].includes(e.key)) {
+                    e.preventDefault();
+                    next();
+                }
+                if (["ArrowLeft", "PageUp"].includes(e.key)) {
+                    e.preventDefault();
+                    prev();
+                }
+            });
+
+            const initial = Number(
+                (location.hash || "").replace("#slide-", ""),
+            );
+            if (Number.isFinite(initial) && initial >= 0) goTo(initial);
+            else goTo(0);
+        </script>
+    </body>
+</html>
