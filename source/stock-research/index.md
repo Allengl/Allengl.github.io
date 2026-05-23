@@ -37,6 +37,12 @@ comments: false
 </div>
 
 <style>
+/* 隐藏评论区 */
+#gitalk-container,
+.gt-container {
+  display: none !important;
+}
+
 /* 隐藏日期 */
 .post-meta {
   display: none;
