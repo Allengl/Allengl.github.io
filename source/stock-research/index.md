@@ -6,6 +6,13 @@ comments: false
 
 <div class="notes-slide-grid">
 
+  <a class="notes-slide-card" href="/stock-research/688376/" title="美埃科技（688376）深度研究报告">
+    <p class="notes-slide-title">美埃科技：洁净室精密过滤龙头</p>
+    <div class="notes-slide-cover">
+      <img src="/stock-research/688376/688376.png" alt="美埃科技：洁净室精密过滤龙头">
+    </div>
+  </a>
+
   <a class="notes-slide-card" href="/stock-research/002611/" title="东方精工（002611）深度研究报告">
     <p class="notes-slide-title">东方精工：人形机器人完整产业链</p>
     <div class="notes-slide-cover">

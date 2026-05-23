@@ -1,0 +1,1695 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>澜起科技深度研究报告｜澜起科技 688008</title>
+        <style>
+            :root {
+                --paper: #f3eadc;
+                --paper2: #fbf7ef;
+                --ink: #2f2a24;
+                --muted: #756b60;
+                --line: #d8ccbc;
+                --line2: #c7b8a6;
+                --white: rgba(255, 255, 255, 0.58);
+                --shadow: 0 24px 68px rgba(77, 60, 38, 0.13);
+                --soft: 0 12px 26px rgba(77, 60, 38, 0.07);
+                --coral: #c9796b;
+                --green: #5d735f;
+                --blue: #728697;
+                --gold: #ac8950;
+                --purple: #8b7da6;
+                --side: 360px;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                height: 100%;
+            }
+            body {
+                margin: 0;
+                color: var(--ink);
+                font-family:
+                    "PingFang SC", "Noto Sans SC", "Microsoft YaHei", Arial,
+                    sans-serif;
+                background:
+                    radial-gradient(
+                        circle at 8% 3%,
+                        rgba(255, 255, 255, 0.6),
+                        transparent 31%
+                    ),
+                    radial-gradient(
+                        circle at 95% 92%,
+                        rgba(201, 121, 107, 0.1),
+                        transparent 26%
+                    ),
+                    repeating-linear-gradient(
+                        0deg,
+                        rgba(95, 77, 55, 0.045) 0 1px,
+                        transparent 1px 30px
+                    ),
+                    repeating-linear-gradient(
+                        90deg,
+                        rgba(95, 77, 55, 0.045) 0 1px,
+                        transparent 1px 30px
+                    ),
+                    linear-gradient(180deg, #efe4d4, #f7efe3);
+            }
+            body:before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                opacity: 0.55;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+                mix-blend-mode: multiply;
+            }
+            .page-shell {
+                min-height: 100vh;
+                padding: clamp(56px, 7vh, 86px) clamp(48px, 7vw, 120px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .deck-frame {
+                width: min(1690px, calc(100vw - 160px));
+                height: min(900px, calc(100vh - 140px));
+                min-height: 720px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: var(--side) 1fr;
+                overflow: hidden;
+                background: rgba(249, 244, 236, 0.76);
+                border: 1px solid var(--line);
+                border-radius: 32px;
+                box-shadow: var(--shadow);
+                backdrop-filter: blur(10px);
+            }
+            .sidebar {
+                position: relative;
+                z-index: 2;
+                display: flex;
+                flex-direction: column;
+                gap: 22px;
+                min-height: 0;
+                overflow: hidden;
+                padding: 28px 24px 22px;
+                border-right: 1px solid var(--line);
+                background: linear-gradient(
+                    180deg,
+                    rgba(255, 255, 255, 0.48),
+                    rgba(255, 255, 255, 0.2)
+                );
+            }
+            .kicker,
+            .eyebrow {
+                font-size: 12px;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: var(--muted);
+            }
+            .title,
+            .slide-title {
+                margin: 0;
+                font-family:
+                    "Iowan Old Style", "Palatino Linotype", "Songti SC",
+                    "STSong", serif;
+                font-weight: 700;
+                letter-spacing: 0.01em;
+                color: #2d2822;
+            }
+            .title {
+                font-size: 36px;
+                line-height: 1.1;
+            }
+            .slide-title {
+                font-size: 42px;
+                line-height: 1.14;
+            }
+            .lead,
+            .slide-subtitle {
+                margin: 0;
+                color: #51483f;
+                line-height: 1.85;
+                font-size: 15px;
+            }
+            .sidebar-meta {
+                display: grid;
+                gap: 10px;
+            }
+            .meta-item {
+                padding: 14px 16px;
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                background: var(--white);
+                box-shadow: var(--soft);
+            }
+            .meta-label {
+                display: block;
+                margin-bottom: 6px;
+                font-size: 11px;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+                color: var(--muted);
+            }
+            .meta-text {
+                font-size: 14px;
+                line-height: 1.7;
+            }
+            .nav-list {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                flex: 1 1 auto;
+                min-height: 0;
+                overflow: auto;
+                padding-right: 4px;
+            }
+            .nav-list::-webkit-scrollbar,
+            .slide::-webkit-scrollbar {
+                width: 10px;
+                height: 10px;
+            }
+            .nav-list::-webkit-scrollbar-thumb,
+            .slide::-webkit-scrollbar-thumb {
+                background: rgba(117, 107, 96, 0.24);
+                border: 2px solid transparent;
+                border-radius: 999px;
+                background-clip: padding-box;
+            }
+            .nav-list::-webkit-scrollbar-track,
+            .slide::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            .nav-item {
+                display: grid;
+                grid-template-columns: 42px 1fr;
+                gap: 12px;
+                width: 100%;
+                padding: 13px 14px 13px 12px;
+                text-align: left;
+                color: inherit;
+                cursor: pointer;
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                background: rgba(255, 255, 255, 0.38);
+                box-shadow: 0 8px 16px rgba(72, 54, 33, 0.04);
+                transition: 0.22s ease;
+            }
+            .nav-item:hover {
+                transform: translateY(-1px);
+                background: rgba(255, 255, 255, 0.58);
+                border-color: var(--line2);
+            }
+            .nav-item.is-active {
+                background: rgba(255, 255, 255, 0.76);
+                border-color: rgba(114, 134, 151, 0.55);
+                box-shadow: var(--soft);
+            }
+            .nav-num {
+                display: grid;
+                place-items: center;
+                width: 30px;
+                height: 30px;
+                border-radius: 999px;
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.78);
+                font-size: 12px;
+                letter-spacing: 0.08em;
+                color: var(--muted);
+            }
+            .nav-copy strong {
+                display: block;
+                font-size: 14px;
+                line-height: 1.45;
+            }
+            .nav-copy small {
+                display: block;
+                font-size: 12px;
+                line-height: 1.6;
+                color: var(--muted);
+            }
+            .sidebar-bottom {
+                display: grid;
+                gap: 12px;
+            }
+            .progress-wrap {
+                height: 10px;
+                border-radius: 999px;
+                background: rgba(131, 115, 94, 0.14);
+                overflow: hidden;
+            }
+            .progress-bar {
+                height: 100%;
+                width: 0;
+                border-radius: 999px;
+                background: linear-gradient(90deg, var(--blue), var(--coral));
+                transition: width 0.3s;
+            }
+            .page-status {
+                display: flex;
+                justify-content: space-between;
+                color: var(--muted);
+                font-size: 13px;
+            }
+            .page-status strong {
+                color: var(--ink);
+                font-size: 16px;
+            }
+            .sidebar-foot {
+                font-size: 12px;
+                line-height: 1.7;
+                color: var(--muted);
+            }
+            .stage {
+                position: relative;
+                height: 100%;
+                min-height: 0;
+                overflow: hidden;
+                background: rgba(249, 244, 236, 0.32);
+            }
+            .stage:before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                background:
+                    repeating-linear-gradient(
+                        0deg,
+                        rgba(96, 78, 54, 0.025) 0 1px,
+                        transparent 1px 34px
+                    ),
+                    repeating-linear-gradient(
+                        90deg,
+                        rgba(96, 78, 54, 0.025) 0 1px,
+                        transparent 1px 34px
+                    );
+            }
+            .slide {
+                position: absolute;
+                inset: 18px 22px;
+                opacity: 0;
+                transform: translateY(24px);
+                transition:
+                    opacity 0.42s,
+                    transform 0.42s;
+                pointer-events: none;
+                overflow: auto;
+                padding-right: 8px;
+                scrollbar-gutter: stable;
+            }
+            .slide.active {
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: auto;
+            }
+            .slide-inner {
+                position: relative;
+                z-index: 1;
+                min-height: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                padding: 38px 42px 36px;
+                border: 1px solid rgba(216, 205, 191, 0.95);
+                border-radius: 18px;
+                background: linear-gradient(
+                    180deg,
+                    rgba(255, 255, 255, 0.6),
+                    rgba(255, 255, 255, 0.38)
+                );
+                box-shadow: var(--soft);
+            }
+            .slide.cover .slide-inner {
+                justify-content: center;
+            }
+            .slide-header {
+                display: grid;
+                gap: 12px;
+            }
+            .chips {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .chip {
+                padding: 8px 12px;
+                border-radius: 999px;
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.72);
+                font-size: 13px;
+                color: #4d453d;
+            }
+            .chip.coral {
+                border-color: rgba(201, 121, 107, 0.38);
+            }
+            .chip.green {
+                border-color: rgba(93, 115, 95, 0.38);
+            }
+            .chip.blue {
+                border-color: rgba(114, 134, 151, 0.38);
+            }
+            .chip.gold {
+                border-color: rgba(172, 137, 80, 0.38);
+            }
+            .chip.purple {
+                border-color: rgba(139, 125, 166, 0.38);
+            }
+            .three-col {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 18px;
+            }
+            .three-col.tight {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+            .two-col {
+                display: grid;
+                grid-template-columns: minmax(0, 1.16fr) minmax(300px, 0.84fr);
+                gap: 18px;
+                align-items: start;
+            }
+            .two-col.balance {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .card,
+            .panel,
+            .note,
+            .quote,
+            .node {
+                padding: 18px;
+                border: 1px solid rgba(216, 205, 191, 0.94);
+                border-radius: 20px;
+                background: var(--white);
+                box-shadow: 0 12px 24px rgba(73, 57, 37, 0.05);
+            }
+            .panel {
+                padding: 22px;
+            }
+            .note {
+                border-left: 4px solid rgba(172, 137, 80, 0.64);
+                background: rgba(255, 250, 243, 0.72);
+            }
+            .card h3,
+            .panel h3,
+            .node h3 {
+                margin: 0 0 10px;
+                font:
+                    700 18px/1.4 "Iowan Old Style",
+                    "Palatino Linotype",
+                    "Songti SC",
+                    serif;
+            }
+            .card p,
+            .panel p,
+            .note p,
+            .node p,
+            .quote p {
+                margin: 0;
+                line-height: 1.85;
+                font-size: 15px;
+                color: #443c34;
+            }
+            .quote {
+                padding: 24px;
+                background: rgba(255, 255, 255, 0.64);
+            }
+            .quote p {
+                font:
+                    700 27px/1.5 "Iowan Old Style",
+                    "Palatino Linotype",
+                    "Songti SC",
+                    serif;
+                color: #332d27;
+            }
+            .quote small {
+                display: block;
+                margin-top: 12px;
+                color: var(--muted);
+                font-size: 13px;
+            }
+            .accent-coral {
+                border-color: rgba(201, 121, 107, 0.42);
+            }
+            .accent-green {
+                border-color: rgba(93, 115, 95, 0.42);
+            }
+            .accent-blue {
+                border-color: rgba(114, 134, 151, 0.42);
+            }
+            .accent-gold {
+                border-color: rgba(172, 137, 80, 0.42);
+            }
+            .accent-purple {
+                border-color: rgba(139, 125, 166, 0.42);
+            }
+            .diagram {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 14px;
+            }
+            .diagram.flow {
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+            }
+            .node {
+                min-height: 152px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .node-step {
+                display: grid;
+                place-items: center;
+                width: 32px;
+                height: 32px;
+                border-radius: 999px;
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.82);
+                font-size: 12px;
+                color: var(--muted);
+                font-weight: 700;
+            }
+            .timeline {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 16px;
+                position: relative;
+            }
+            .timeline:before {
+                content: "";
+                position: absolute;
+                left: 8%;
+                right: 8%;
+                top: 22px;
+                height: 1px;
+                background: rgba(172, 137, 80, 0.42);
+            }
+            .timeline .node {
+                min-height: 205px;
+            }
+            .date {
+                font-size: 12px;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-bottom: 4px;
+            }
+            .material-table {
+                width: 100%;
+                border-collapse: collapse;
+                border: 1px solid var(--line);
+                border-radius: 18px;
+                overflow: hidden;
+                background: rgba(255, 255, 255, 0.55);
+                box-shadow: var(--soft);
+            }
+            .material-table th,
+            .material-table td {
+                padding: 13px 15px;
+                border-bottom: 1px solid rgba(216, 205, 191, 0.8);
+                border-right: 1px solid rgba(216, 205, 191, 0.65);
+                vertical-align: top;
+                text-align: left;
+                font-size: 14px;
+                line-height: 1.75;
+            }
+            .material-table th {
+                color: #3e372f;
+                background: rgba(248, 244, 238, 0.68);
+                font-weight: 700;
+            }
+            .material-table thead th {
+                font-size: 12px;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--muted);
+            }
+            .material-table tr:last-child td,
+            .material-table tr:last-child th {
+                border-bottom: none;
+            }
+            .material-table td:last-child,
+            .material-table th:last-child {
+                border-right: none;
+            }
+            .hero-metrics {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+            .metric {
+                min-width: 168px;
+                padding: 16px 18px;
+                border-radius: 18px;
+                border: 1px solid var(--line);
+                background: var(--white);
+                box-shadow: var(--soft);
+            }
+            .metric strong {
+                display: block;
+                margin-bottom: 6px;
+                font:
+                    700 28px/1.1 "Iowan Old Style",
+                    "Palatino Linotype",
+                    "Songti SC",
+                    serif;
+            }
+            .metric span {
+                font-size: 13px;
+                color: var(--muted);
+                line-height: 1.6;
+            }
+            .grid-note {
+                display: grid;
+                grid-template-columns: 1.25fr 0.75fr;
+                gap: 18px;
+            }
+            .center-stack {
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+                justify-content: center;
+                min-height: 100%;
+            }
+            .closing {
+                display: grid;
+                grid-template-columns: 1.1fr 0.9fr;
+                gap: 18px;
+                align-items: start;
+            }
+            .slide-footer {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 12px;
+                margin-top: auto;
+                padding-top: 4px;
+                color: var(--muted);
+                font-size: 12px;
+                line-height: 1.7;
+            }
+            @media (max-width: 1320px) {
+                :root {
+                    --side: 330px;
+                }
+                .slide-title {
+                    font-size: 38px;
+                }
+                .three-col.tight {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .diagram.flow {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+            @media (max-width: 1500px) {
+                :root {
+                    --side: 330px;
+                }
+                .deck-frame {
+                    width: min(1450px, calc(100vw - 96px));
+                    height: min(820px, calc(100vh - 108px));
+                    min-height: 680px;
+                }
+                .title {
+                    font-size: 32px;
+                }
+                .slide-title {
+                    font-size: 38px;
+                }
+            }
+            @media (max-width: 1100px) {
+                .deck-frame {
+                    grid-template-columns: 310px 1fr;
+                }
+                .slide {
+                    inset: 18px;
+                }
+                .slide-inner {
+                    padding: 32px;
+                }
+                .three-col,
+                .diagram {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .timeline {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .timeline:before {
+                    display: none;
+                }
+                .grid-note,
+                .closing,
+                .two-col,
+                .two-col.balance {
+                    grid-template-columns: 1fr;
+                }
+            }
+            @media (max-width: 860px) {
+                .page-shell {
+                    padding: 12px;
+                    display: block;
+                }
+                .deck-frame {
+                    width: calc(100vw - 24px);
+                    height: auto;
+                    min-height: auto;
+                    grid-template-columns: 1fr;
+                    border-radius: 24px;
+                }
+                .sidebar {
+                    position: sticky;
+                    top: 12px;
+                    border-right: none;
+                    border-bottom: 1px solid var(--line);
+                    padding: 20px 18px;
+                    gap: 18px;
+                }
+                .title {
+                    font-size: 31px;
+                }
+                .nav-list {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    max-height: 216px;
+                }
+                .stage {
+                    min-height: auto;
+                    overflow: visible;
+                    padding: 14px;
+                }
+                .slide {
+                    position: relative;
+                    inset: auto;
+                    opacity: 1;
+                    transform: none;
+                    pointer-events: auto;
+                    overflow: visible;
+                    margin-bottom: 16px;
+                    padding: 0;
+                }
+                .slide-inner {
+                    min-height: auto;
+                    padding: 24px 20px;
+                    border-radius: 22px;
+                }
+                .slide-title {
+                    font-size: 31px;
+                }
+                .quote p {
+                    font-size: 23px;
+                }
+                .three-col,
+                .three-col.tight,
+                .diagram,
+                .diagram.flow,
+                .timeline {
+                    grid-template-columns: 1fr;
+                }
+                .hero-metrics {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+            @media (max-width: 560px) {
+                .nav-list,
+                .hero-metrics {
+                    grid-template-columns: 1fr;
+                }
+                .slide-title {
+                    font-size: 28px;
+                }
+                .metric {
+                    min-width: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page-shell">
+            <div class="deck-frame">
+                <aside class="sidebar">
+                    <div class="brand">
+                        <div class="kicker">Allen 's Notes #688008</div>
+                        <h1 class="title">澜起科技<br />深度研究报告</h1>
+                        <p class="lead">
+                            688008 · 科创板。技术壁垒最深 · DDR5
+                            标准制定者。围绕内存互连芯片、DDR5/DDR6、PCIe
+                            Retimer 与 CXL MXC 展开研究复盘。
+                        </p>
+                    </div>
+                    <nav class="nav-list" id="navList"></nav>
+                    <div class="sidebar-bottom">
+                        <div class="progress-wrap">
+                            <div class="progress-bar" id="progressBar"></div>
+                        </div>
+                        <div class="page-status">
+                            <span
+                                ><strong id="currentPage">01</strong> /
+                                <span id="totalPage">10</span></span
+                            ><span id="pageHint">进度</span>
+                        </div>
+                        <div class="sidebar-foot">
+                            内容来源：02_澜起科技_投资报告.docx<br />声明：仅供参考，不构成投资建议。
+                        </div>
+                    </div>
+                </aside>
+
+                <main class="stage" id="stage">
+                    <section
+                        class="slide cover active"
+                        data-title="开场"
+                        data-subtitle="主题、边界与关键词"
+                    >
+                        <div class="slide-inner center-stack">
+                            <div class="slide-header">
+                                <div class="eyebrow">2026 / 03 / 04</div>
+                                <h2 class="slide-title">澜起科技</h2>
+                                <p class="slide-subtitle">
+                                    688008。今收：150.31
+                                    元（+1.64%）。技术壁垒最深 · DDR5
+                                    标准制定者。<br />本报告围绕公司概览、四大壁垒、财务数据、估值、H
+                                    股解禁、CXL 新曲线与跟踪节点展开。
+                                </p>
+                            </div>
+                            <div class="hero-metrics">
+                                <div class="metric">
+                                    <strong>688008</strong
+                                    ><span>科创板证券代码</span>
+                                </div>
+                                <div class="metric">
+                                    <strong>150.31 元</strong
+                                    ><span>报告记录的当日收盘价</span>
+                                </div>
+                                <div class="metric">
+                                    <strong>36.80%</strong
+                                    ><span>内存互连芯片全球市占率</span>
+                                </div>
+                            </div>
+                            <div class="chips">
+                                <span class="chip blue">DDR5</span
+                                ><span class="chip blue">DDR6</span
+                                ><span class="chip green">RCD / CKD</span
+                                ><span class="chip purple">PCIe Retimer</span
+                                ><span class="chip coral">CXL MXC</span
+                                ><span class="chip gold">AI 数据中心</span
+                                ><span class="chip green">代际涨价</span
+                                ><span class="chip coral">估值重构</span>
+                            </div>
+                            <div class="slide-footer">
+                                <span
+                                    >作者 / 平台 / 版权声明：Allen Deng ·
+                                    仅供参考</span
+                                ><span>股市有风险，投资需谨慎</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section
+                        class="slide"
+                        data-title="今天聊什么"
+                        data-subtitle="四条主线"
+                    >
+                        <div class="slide-inner">
+                            <div class="slide-header">
+                                <div class="eyebrow">overview</div>
+                                <h2 class="slide-title">今天聊什么</h2>
+                                <p class="slide-subtitle">
+                                    原始报告虽然篇幅克制，但判断非常集中。为了更适合演讲，我把它拆成四条主线：公司处在什么位置，护城河与财务是否互相验证，估值分歧究竟来自哪里，以及风险与催化剂如何改变叙事节奏。
+                                </p>
+                            </div>
+                            <div class="three-col tight">
+                                <article class="card accent-blue">
+                                    <h3>公司位置</h3>
+                                    <p>
+                                        证券代码、核心产品、全球市占率、财务亮点与港股情况，回答“这家公司处在产业链哪里”。
+                                    </p>
+                                </article>
+                                <article class="card accent-green">
+                                    <h3>护城河</h3>
+                                    <p>
+                                        标准制定者、强制性需求、代际自动涨价、CXL
+                                        新曲线，构成报告判断“技术壁垒最深”的基础。
+                                    </p>
+                                </article>
+                                <article class="card accent-gold">
+                                    <h3>估值分歧</h3>
+                                    <p>
+                                        报告明确写到“PE
+                                        不是正确工具”，分歧不只在倍数高低，而在于市场有没有理解标准制定者的终局价值。
+                                    </p>
+                                </article>
+                                <article class="card accent-coral">
+                                    <h3>风险与拐点</h3>
+                                    <p>
+                                        H 股基石投资者解禁是明确风险节点；CXL
+                                        MXC
+                                        验证与量产订单则是潜在估值体系重构触发点。
+                                    </p>
+                                </article>
+                            </div>
+                            <div class="note">
+                                <p>
+                                    这份报告保留原始判断，并把阅读节奏拉开：先看公司所处的位置，再看壁垒、财务、估值与风险，最后回到同一个问题——为什么这家公司会被写成“技术壁垒最深”。
+                                </p>
+                            </div>
+                            <div class="slide-footer">
+                                <span
+                                    >阅读路径：位置 → 壁垒 → 财务 → 估值 → 风险
+                                    → CXL → 跟踪节点</span
+                                ><span>仅供参考，不构成投资建议</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section
+                        class="slide"
+                        data-title="公司概览"
+                        data-subtitle="从产品与位置开始"
+                    >
+                        <div class="slide-inner">
+                            <div class="slide-header">
+                                <div class="eyebrow">company snapshot</div>
+                                <h2 class="slide-title">
+                                    先把公司放回产业位置里看
+                                </h2>
+                                <p class="slide-subtitle">
+                                    报告给出的切入点很直接：澜起科技，688008，科创板；核心产品覆盖
+                                    DDR5 / DDR6 内存接口芯片、PCIe Retimer 与
+                                    CXL
+                                    MXC。它既在传统内存互连链条里，也明显在向 AI
+                                    时代的新型内存扩展链条前移。
+                                </p>
+                            </div>
+                            <div class="two-col">
+                                <div class="panel">
+                                    <h3>公司概览</h3>
+                                    <table class="material-table">
+                                        <tbody>
+                                            <tr>
+                                                <th>证券代码</th>
+                                                <td>688008（科创板）</td>
+                                            </tr>
+                                            <tr>
+                                                <th>核心产品</th>
+                                                <td>
+                                                    DDR5/DDR6
+                                                    内存接口芯片（RCD/CKD/MRCD/MDB）、PCIe
+                                                    Retimer、CXL MXC
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>全球市占率</th>
+                                                <td>
+                                                    内存互连芯片第一，市占率
+                                                    36.80%
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>财务亮点</th>
+                                                <td>
+                                                    2025H1 营收 26.3
+                                                    亿（+58%）、净利 11.59
+                                                    亿（+95%）、毛利率 64%，连续
+                                                    9 季度环比增长
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>H 股情况</th>
+                                                <td>
+                                                    已在港交所上市，2026 年 7 月
+                                                    13 日基石投资者解禁 50%
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>从高点回调</th>
+                                                <td>
+                                                    约 220 元 → 150.31
+                                                    元，回调约 32%
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="center-stack">
+                                    <article class="card accent-blue">
+                                        <h3>封面传递的信息</h3>
+                                        <p>
+                                            报告把“今收 150.31
+                                            元”“技术壁垒最深”“DDR5
+                                            标准制定者”摆在最前面。它不是先讲增长故事，而是先强调位置与规则权。
+                                        </p>
+                                    </article>
+                                    <article class="card accent-purple">
+                                        <h3>为什么这一步重要</h3>
+                                        <p>
+                                            当一家芯片公司同时拥有标准参与权、关键接口产品与下一代平台切换相关性时，讨论它不能只看短期出货，而要看它是否处在更长的产业迁移主线上。
+                                        </p>
+                                    </article>
+                                    <div class="chips">
+                                        <span class="chip blue"
+                                            >内存互连芯片第一</span
+                                        ><span class="chip green"
+                                            >连续 9 季度环比增长</span
+                                        ><span class="chip coral"
+                                            >港股解禁节点明确</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-footer">
+                                <span>对应原报告第一页：公司概览</span
+                                ><span>后续判断围绕“标准、接口、代际”展开</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section
+                        class="slide"
+                        data-title="技术壁垒"
+                        data-subtitle="四大核心竞争壁垒"
+                    >
+                        <div class="slide-inner">
+                            <div class="slide-header">
+                                <div class="eyebrow">moat</div>
+                                <h2 class="slide-title">
+                                    为什么报告写成“技术护城河最深”
+                                </h2>
+                                <p class="slide-subtitle">
+                                    报告没有抽象地说“研发能力强”，而是把壁垒拆成四条可验证、可传导到利润与估值的话：标准制定、强制性需求、代际自动涨价，以及
+                                    CXL 这条从 0 到 1 的新曲线。
+                                </p>
+                            </div>
+                            <div class="diagram">
+                                <article class="node">
+                                    <span class="node-step">01</span>
+                                    <h3>标准制定者</h3>
+                                    <p>
+                                        深度参与 DDR5、DDR6
+                                        国际标准制定，竞争对手必须追赶澜起，而非澜起追赶别人。
+                                    </p>
+                                </article>
+                                <article class="node">
+                                    <span class="node-step">02</span>
+                                    <h3>强制性需求</h3>
+                                    <p>
+                                        三星、海力士、美光生产 DDR5
+                                        必须使用澜起的 RCD/CKD
+                                        芯片，切换成本极高。
+                                    </p>
+                                </article>
+                                <article class="node">
+                                    <span class="node-step">03</span>
+                                    <h3>代际自动涨价</h3>
+                                    <p>
+                                        从 DDR5 第一子代到第三子代，RCD
+                                        单价每代提升 15%–25%，形成内生涨价机制。
+                                    </p>
+                                </article>
+                                <article class="node">
+                                    <span class="node-step">04</span>
+                                    <h3>CXL 新曲线</h3>
+                                    <p>
+                                        PCIe Retimer / MRCD / MDB / CXL MXC
+                                        新品对应 AI 数据中心内存扩展核心需求，从
+                                        0 到 1。
+                                    </p>
+                                </article>
+                            </div>
+                            <div class="grid-note">
+                                <div class="quote">
+                                    <p>
+                                        “竞争对手必须追赶澜起，而非澜起追赶别人。”
+                                    </p>
+                                    <small
+                                        >这句话概括了报告对其产业位置的判断。</small
+                                    >
+                                </div>
+                                <div class="note">
+                                    <p>
+                                        真正有分量的壁垒，不只是技术做出来，而是被标准、客户与代际迁移共同锁住。报告之所以强调“护城河最深”，本质上是在强调这种多层次约束。
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="slide-footer">
+                                <span>对应原报告第一页：四大核心竞争壁垒</span
+                                ><span>壁垒决定财务、估值与催化剂是否成立</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section
+                        class="slide"
+                        data-title="财务数据"
+                        data-subtitle="数字是否能跟上逻辑"
+                    >
+                        <div class="slide-inner">
+                            <div class="slide-header">
+                                <div class="eyebrow">financials</div>
+                                <h2 class="slide-title">
+                                    逻辑能不能落到报表里
+                                </h2>
+                                <p class="slide-subtitle">
+                                    公司再会讲技术故事，也需要盈利质量来证明自己。报告给出的交叉验证是：营收加速、净利提速、毛利率抬升、新产品从零到一起量，并且连续
+                                    9 个季度环比增长。
+                                </p>
+                            </div>
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>指标</th>
+                                        <th>2024 年</th>
+                                        <th>2025H1</th>
+                                        <th>趋势</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>营业收入</th>
+                                        <td>约 35 亿元</td>
+                                        <td>26.3 亿元（+58%）</td>
+                                        <td>加速</td>
+                                    </tr>
+                                    <tr>
+                                        <th>归母净利润</th>
+                                        <td>约 12 亿元</td>
+                                        <td>11.59 亿元（+95%）</td>
+                                        <td>大幅提速</td>
+                                    </tr>
+                                    <tr>
+                                        <th>毛利率</th>
+                                        <td>约 61%</td>
+                                        <td>64%</td>
+                                        <td>持续提升</td>
+                                    </tr>
+                                    <tr>
+                                        <th>新产品收入</th>
+                                        <td>——</td>
+                                        <td>2.94 亿元</td>
+                                        <td>从零到一起量</td>
+                                    </tr>
+                                    <tr>
+                                        <th>连续环比增长</th>
+                                        <td>——</td>
+                                        <td>连续 9 季度</td>
+                                        <td>稳健</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="three-col">
+                                <article class="card accent-green">
+                                    <h3>利润弹性已经显形</h3>
+                                    <p>
+                                        2025H1 净利同比 +95%，明显快于营收同比
+                                        +58%。这不是单季惊喜，而是产品结构和经营杠杆开始同步兑现。
+                                    </p>
+                                </article>
+                                <article class="card accent-blue">
+                                    <h3>毛利率不是静态数字</h3>
+                                    <p>
+                                        从约 61% 到
+                                        64%，说明公司没有在放量中牺牲质量。对于站在标准与接口位置上的芯片公司，毛利率抬升很能说明壁垒强度。
+                                    </p>
+                                </article>
+                                <article class="card accent-gold">
+                                    <h3>新产品起量很关键</h3>
+                                    <p>
+                                        新产品收入 2.94
+                                        亿元，是“第二增长曲线开始落地”的早期证据，也为
+                                        CXL 估值重构埋下伏笔。
+                                    </p>
+                                </article>
+                            </div>
+                            <div class="slide-footer">
+                                <span>对应原报告第一页：财务数据</span
+                                ><span>数字验证技术壁垒是否转化为利润表</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section
+                        class="slide"
+                        data-title="估值分析"
+                        data-subtitle="分歧真正发生在哪里"
+                    >
+                        <div class="slide-inner">
+                            <div class="slide-header">
+                                <div class="eyebrow">valuation</div>
+                                <h2 class="slide-title">
+                                    估值争议，本质上是方法争议
+                                </h2>
+                                <p class="slide-subtitle">
+                                    报告写得很明确：当前股价 150.31 元，2025 /
+                                    2026 / 2027 年预测 PE 约 187 倍 / 74 倍 / 44
+                                    倍。但同时又强调：PE
+                                    不是正确工具，应以标准制定者的终局市场价值 +
+                                    代际涨价的永续性来定价。
+                                </p>
+                            </div>
+                            <div class="two-col balance">
+                                <div class="panel">
+                                    <h3>估值框架</h3>
+                                    <table class="material-table">
+                                        <tbody>
+                                            <tr>
+                                                <th>当前股价</th>
+                                                <td>150.31 元</td>
+                                            </tr>
+                                            <tr>
+                                                <th>预测 PE</th>
+                                                <td>
+                                                    2025 / 2026 / 2027 年约 187
+                                                    倍 / 74 倍 / 44 倍
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>估值方法论</th>
+                                                <td>
+                                                    PE
+                                                    不是正确工具。应以标准制定者的终局市场价值
+                                                    + 代际涨价的永续性来定价。
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>合理类比</th>
+                                                <td>
+                                                    全球内存互联标准制定者，类似
+                                                    Synopsys 在 EDA
+                                                    领域的结构性地位。
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="center-stack">
+                                    <div class="quote">
+                                        <p>
+                                            “DDR5 渗透率见顶 ≠ 澜起业绩见顶。”
+                                        </p>
+                                        <small
+                                            >报告反驳空头逻辑的核心句。</small
+                                        >
+                                    </div>
+                                    <article class="card accent-coral">
+                                        <h3>空头逻辑</h3>
+                                        <p>
+                                            DDR5 渗透率见顶 → 澜起 2026
+                                            年净利负增长。这是一种把渗透率放缓直接外推为公司盈利能力见顶的判断。
+                                        </p>
+                                    </article>
+                                    <article class="card accent-green">
+                                        <h3>报告的反驳</h3>
+                                        <p>
+                                            子代迭代涨价与 CXL
+                                            新产品是两条独立增长引擎，不依赖渗透率加速。即使
+                                            DDR5
+                                            渗透率进入平台期，单价仍因代际升级持续提升。
+                                        </p>
+                                    </article>
+                                </div>
+                            </div>
+                            <div class="slide-footer">
+                                <span
+                                    >对应原报告第二页：估值分析、空头逻辑与反驳</span
+                                ><span
+                                    >核心争议是用什么模型理解规则权与代际涨价</span
+                                >
+                            </div>
+                        </div>
+                    </section>
+
+                    <section
+                        class="slide"
+                        data-title="H 股解禁"
+                        data-subtitle="明确的风险节点"
+                    >
+                        <div class="slide-inner">
+                            <div class="slide-header">
+                                <div class="eyebrow">risk</div>
+                                <h2 class="slide-title">
+                                    已知风险，往往比隐藏风险更容易处理
+                                </h2>
+                                <p class="slide-subtitle">
+                                    报告没有回避 H
+                                    股解禁，而是单独拎出。因为它是带日期、带对象、带比例的明确事件，可以提前计入仓位与预期。
+                                </p>
+                            </div>
+                            <div class="two-col balance">
+                                <div class="panel">
+                                    <h3>H 股解禁风险分析</h3>
+                                    <table class="material-table">
+                                        <tbody>
+                                            <tr>
+                                                <th>H 股上市</th>
+                                                <td>
+                                                    已上市，2026 年 7 月 13
+                                                    日基石投资者解禁 50%
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>基石投资者</th>
+                                                <td>
+                                                    CPE 源峰、景林、Dymon Asia
+                                                    等机构
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>已完成减持</th>
+                                                <td>
+                                                    中电投控 0.97%、珠海融英
+                                                    1.00% 已减持完毕
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>当前 AH 溢价</th>
+                                                <td>
+                                                    H 股比 A 股贵约 4%（AH
+                                                    溢价率 -3.76%）
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>风险判断</th>
+                                                <td>
+                                                    7
+                                                    月解禁是明确时间节点。已知风险优于隐藏风险，可提前规划仓位策略。
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="timeline">
+                                    <article class="node">
+                                        <div class="date">time</div>
+                                        <h3>时间清楚</h3>
+                                        <p>
+                                            2026 年 7 月 13 日，基石投资者解禁
+                                            50%。
+                                        </p>
+                                    </article>
+                                    <article class="node">
+                                        <div class="date">holder</div>
+                                        <h3>对象清楚</h3>
+                                        <p>
+                                            CPE 源峰、景林、Dymon Asia
+                                            等机构在名单里。
+                                        </p>
+                                    </article>
+                                    <article class="node">
+                                        <div class="date">spread</div>
+                                        <h3>价格关系清楚</h3>
+                                        <p>
+                                            H 股比 A 股贵约
+                                            4%，影响市场对解禁后供给压力的感知。
+                                        </p>
+                                    </article>
+                                    <article class="node">
+                                        <div class="date">plan</div>
+                                        <h3>策略清楚</h3>
+                                        <p>
+                                            报告建议提前减仓应对，把它当成可规划的风险节点。
+                                        </p>
+                                    </article>
+                                </div>
+                            </div>
+                            <div class="slide-footer">
+                                <span>对应原报告第二页：H 股解禁风险分析</span
+                                ><span>风险写清楚，是为了让逻辑有边界</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section
+                        class="slide"
+                        data-title="CXL 引擎"
+                        data-subtitle="估值重构触发器"
+                    >
+                        <div class="slide-inner">
+                            <div class="slide-header">
+                                <div class="eyebrow">new curve</div>
+                                <h2 class="slide-title">
+                                    CXL 为什么是下一个估值重构引擎
+                                </h2>
+                                <p class="slide-subtitle">
+                                    CXL 是 AI
+                                    时代数据中心内存扩展的核心协议，解决 GPU
+                                    算力爆发后的内存带宽瓶颈。澜起 CXL MXC
+                                    芯片已送样，一旦验证完成进入量产，收入体量将远超当前
+                                    DDR5 RCD 业务。
+                                </p>
+                            </div>
+                            <div class="diagram flow">
+                                <article class="node">
+                                    <span class="node-step">A</span>
+                                    <h3>AI 训练负载上升</h3>
+                                    <p>
+                                        GPU
+                                        算力提升后，数据中心越来越容易遇到内存带宽与容量瓶颈。
+                                    </p>
+                                </article>
+                                <article class="node">
+                                    <span class="node-step">B</span>
+                                    <h3>CXL 的角色</h3>
+                                    <p>
+                                        CXL 被报告定义为 AI
+                                        数据中心内存扩展的核心协议。
+                                    </p>
+                                </article>
+                                <article class="node">
+                                    <span class="node-step">C</span>
+                                    <h3>MXC 已送样</h3>
+                                    <p>
+                                        澜起 CXL MXC
+                                        芯片已送样，故事进入客户验证阶段。
+                                    </p>
+                                </article>
+                                <article class="node">
+                                    <span class="node-step">D</span>
+                                    <h3>量产打开曲线</h3>
+                                    <p>
+                                        验证完成并进入量产后，收入体量有望远超当前
+                                        DDR5 RCD 业务。
+                                    </p>
+                                </article>
+                                <article class="node">
+                                    <span class="node-step">E</span>
+                                    <h3>单颗价值量更高</h3>
+                                    <p>
+                                        CXL 芯片单颗价值量显著高于 DDR5
+                                        RCD，产品结构升级将推动毛利率进一步提升至
+                                        70%+。
+                                    </p>
+                                </article>
+                                <article class="node">
+                                    <span class="node-step">F</span>
+                                    <h3>市场仍未充分定价</h3>
+                                    <p>
+                                        报告判断这是一条从 0 到 1 的新曲线，不是
+                                        DDR5 的线性外推。
+                                    </p>
+                                </article>
+                            </div>
+                            <div class="grid-note">
+                                <div class="quote">
+                                    <p>
+                                        “这不是 DDR5 的线性外推，而是一条从 0 到
+                                        1 的新曲线。”
+                                    </p>
+                                    <small
+                                        >这句话定义了报告对 CXL
+                                        的估值语气。</small
+                                    >
+                                </div>
+                                <div class="note">
+                                    <p>
+                                        真正能重构估值的，不是“又一个新产品”，而是新产品同时具备更高价值量、更高毛利弹性，以及新的产业必要性。
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="slide-footer">
+                                <span
+                                    >对应原报告第二页：CXL——下一个估值重构引擎</span
+                                ><span
+                                    >CXL 将公司叙事推向 AI
+                                    数据中心基础设施</span
+                                >
+                            </div>
+                        </div>
+                    </section>
+
+                    <section
+                        class="slide"
+                        data-title="跟踪节点"
+                        data-subtitle="催化剂与验证节奏"
+                    >
+                        <div class="slide-inner">
+                            <div class="slide-header">
+                                <div class="eyebrow">tracking</div>
+                                <h2 class="slide-title">
+                                    真正值得持续跟踪的，是节点
+                                </h2>
+                                <p class="slide-subtitle">
+                                    报告最后列出四个最需要盯住的节点。研究进入执行层面时，重要的不是口号式看多或看空，而是知道接下来应该等待什么证据出现。
+                                </p>
+                            </div>
+                            <div class="timeline">
+                                <article class="node">
+                                    <div class="date">catalyst</div>
+                                    <h3>最重要催化剂</h3>
+                                    <p>
+                                        CXL MXC
+                                        客户验证完成形成量产订单——估值体系重构触发点。
+                                    </p>
+                                </article>
+                                <article class="node">
+                                    <div class="date">roadmap</div>
+                                    <h3>次重要催化剂</h3>
+                                    <p>
+                                        DDR6
+                                        标准敲定，下一代产品路线图清晰，代际涨价预期再次打开。
+                                    </p>
+                                </article>
+                                <article class="node">
+                                    <div class="date">risk node</div>
+                                    <h3>风险节点</h3>
+                                    <p>
+                                        2026 年 7 月 13 日 H
+                                        股基石投资者解禁，建议提前减仓应对。
+                                    </p>
+                                </article>
+                                <article class="node">
+                                    <div class="date">quarter</div>
+                                    <h3>季报节点</h3>
+                                    <p>
+                                        2026 年一季报，验证连续 10
+                                        季度环比增长是否延续。
+                                    </p>
+                                </article>
+                            </div>
+                            <div class="two-col balance">
+                                <article class="card accent-blue">
+                                    <h3>研究框架</h3>
+                                    <p>
+                                        输入是产业位置与标准地位；过程是把壁垒翻译成财务，再把财务翻译成估值；工具是产品路线图、验证进度、季报与事件日历；产出是对价格与风险更有边界的判断；反馈闭环来自每一次验证是否兑现。
+                                    </p>
+                                </article>
+                                <article class="card accent-gold">
+                                    <h3>为什么比情绪更重要</h3>
+                                    <p>
+                                        情绪会反复，但节点可跟踪。真正有用的复盘，不是“当时觉得会涨”，而是“当时盯住了哪些事实，后来这些事实有没有发生”。
+                                    </p>
+                                </article>
+                            </div>
+                            <div class="slide-footer">
+                                <span
+                                    >对应原报告第二页：核心催化剂与跟踪节点</span
+                                ><span>节点清晰，研究才进入证据管理</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section
+                        class="slide"
+                        data-title="结尾"
+                        data-subtitle="综合评级、观点与 Q&A"
+                    >
+                        <div class="slide-inner">
+                            <div class="slide-header">
+                                <div class="eyebrow">closing</div>
+                                <h2 class="slide-title">
+                                    最后，把结论说得克制一点
+                                </h2>
+                                <p class="slide-subtitle">
+                                    原报告以五星彩评级收束：技术壁垒最深首选。核心理由是标准制定者、强制性需求、代际涨价三重叠加，形成最深护城河；150
+                                    元从 220 高点回调 32%
+                                    被视为买入窗口。但报告同样提醒：7
+                                    月解禁前需动态管理仓位。
+                                </p>
+                            </div>
+                            <div class="closing">
+                                <div class="quote">
+                                    <p>
+                                        “标准制定者 + 强制性需求 +
+                                        代际涨价，三重叠加，护城河最深。”
+                                    </p>
+                                    <small
+                                        >原报告综合评级：★★★★★
+                                        技术壁垒最深首选</small
+                                    >
+                                </div>
+                                <div class="center-stack">
+                                    <article class="card accent-green">
+                                        <h3>核心总结</h3>
+                                        <p>
+                                            报告真正想说明的，不是公司“还不错”，而是它可能同时踩中标准、接口与下一代内存扩展三个关键位置。
+                                        </p>
+                                    </article>
+                                    <article class="card accent-purple">
+                                        <h3>个人观察</h3>
+                                        <p>
+                                            最值得复盘的不是目标价，而是研究者如何把“标准权”翻译成“估值权”。这套方法论比单次判断更有价值。
+                                        </p>
+                                    </article>
+                                    <article class="card accent-coral">
+                                        <h3>给研究者的提醒</h3>
+                                        <p>
+                                            不要把单一结论当作替代独立判断的答案。所有判断都应回到数据、验证进度、风险边界与时间节点。
+                                        </p>
+                                    </article>
+                                </div>
+                            </div>
+                            <div class="note">
+                                <p>
+                                    以上分析仅供参考，不构成任何投资建议。股市有风险，投资需谨慎。<br />Q&amp;A
+                                    / Thanks
+                                </p>
+                            </div>
+                            <div class="slide-footer">
+                                <span>对应原报告第三页：综合评级与风险提示</span
+                                ><span>感谢观看</span>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+
+        <script>
+            (function () {
+                const slides = [...document.querySelectorAll(".slide")];
+                const navList = document.getElementById("navList");
+                const progressBar = document.getElementById("progressBar");
+                const currentPage = document.getElementById("currentPage");
+                const totalPage = document.getElementById("totalPage");
+                const pageHint = document.getElementById("pageHint");
+                const mobile = window.matchMedia("(max-width: 860px)");
+                let current = 0,
+                    ticking = false;
+                const pad = (n) => String(n + 1).padStart(2, "0");
+
+                function buildNav() {
+                    navList.innerHTML = "";
+                    slides.forEach((s, i) => {
+                        const b = document.createElement("button");
+                        b.type = "button";
+                        b.className = "nav-item";
+                        b.dataset.index = i;
+                        b.innerHTML = `<span class="nav-num">${String(i).padStart(2, "0")}</span><span class="nav-copy"><strong>${s.dataset.title || "未命名章节"}</strong><small>${s.dataset.subtitle || ""}</small></span>`;
+                        b.addEventListener("click", () =>
+                            goTo(i, { scroll: mobile.matches }),
+                        );
+                        navList.appendChild(b);
+                    });
+                }
+                function updateUI() {
+                    [...navList.querySelectorAll(".nav-item")].forEach(
+                        (it, i) => {
+                            it.classList.toggle("is-active", i === current);
+                            it.setAttribute(
+                                "aria-current",
+                                i === current ? "true" : "false",
+                            );
+                        },
+                    );
+                    currentPage.textContent = pad(current);
+                    totalPage.textContent = String(slides.length).padStart(
+                        2,
+                        "0",
+                    );
+                    progressBar.style.width =
+                        ((current + 1) / slides.length) * 100 + "%";
+                    pageHint.textContent = mobile.matches ? "纵向浏览" : "进度";
+                }
+                function applyDesktop() {
+                    slides.forEach((s, i) =>
+                        s.classList.toggle("active", i === current),
+                    );
+                    if (slides[current]) slides[current].scrollTop = 0;
+                }
+                function goTo(i, opt = {}) {
+                    current = Math.max(0, Math.min(i, slides.length - 1));
+                    if (mobile.matches) {
+                        slides.forEach((s) => s.classList.add("active"));
+                        if (opt.scroll)
+                            slides[current].scrollIntoView({
+                                behavior: opt.instant ? "auto" : "smooth",
+                                block: "start",
+                            });
+                    } else applyDesktop();
+                    updateUI();
+                }
+                function go(d) {
+                    goTo(current + d, { scroll: mobile.matches });
+                }
+                function currentFromViewport() {
+                    if (!mobile.matches) return;
+                    const anchor = innerHeight * 0.38;
+                    let best = current,
+                        dist = Infinity;
+                    slides.forEach((s, i) => {
+                        const r = s.getBoundingClientRect();
+                        if (r.bottom < 0 || r.top > innerHeight) return;
+                        const c = r.top + Math.min(r.height, innerHeight) / 2,
+                            d = Math.abs(c - anchor);
+                        if (d < dist) {
+                            dist = d;
+                            best = i;
+                        }
+                    });
+                    if (best !== current) {
+                        current = best;
+                        updateUI();
+                    }
+                }
+                function onScroll() {
+                    if (!mobile.matches || ticking) return;
+                    ticking = true;
+                    requestAnimationFrame(() => {
+                        currentFromViewport();
+                        ticking = false;
+                    });
+                }
+                function onKey(e) {
+                    const tag = (
+                        (e.target && e.target.tagName) ||
+                        ""
+                    ).toLowerCase();
+                    if (["input", "textarea", "select"].includes(tag)) return;
+                    if (["ArrowRight", "PageDown", " "].includes(e.key)) {
+                        e.preventDefault();
+                        go(1);
+                    }
+                    if (["ArrowLeft", "PageUp"].includes(e.key)) {
+                        e.preventDefault();
+                        go(-1);
+                    }
+                    if (e.key === "Home") {
+                        e.preventDefault();
+                        goTo(0, { scroll: mobile.matches });
+                    }
+                    if (e.key === "End") {
+                        e.preventDefault();
+                        goTo(slides.length - 1, { scroll: mobile.matches });
+                    }
+                }
+                function onMode() {
+                    mobile.matches
+                        ? slides.forEach((s) => s.classList.add("active"))
+                        : applyDesktop();
+                    currentFromViewport();
+                    updateUI();
+                }
+                buildNav();
+                onMode();
+                addEventListener("keydown", onKey);
+                addEventListener("resize", onMode);
+                addEventListener("scroll", onScroll, { passive: true });
+                if (mobile.addEventListener)
+                    mobile.addEventListener("change", onMode);
+                else mobile.addListener(onMode);
+            })();
+        </script>
+    </body>
+</html>

@@ -31,6 +31,7 @@ i18n_dir: :lang
 skip_render:
     - "stock-research/300809/**"
     - "stock-research/002611/**"
+    - "stock-research/688376/**"
 
 # Writing
 new_post_name: :title.md # File name of new posts

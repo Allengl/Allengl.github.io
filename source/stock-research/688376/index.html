@@ -1,0 +1,2049 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>美埃科技深度研究报告｜</title>
+        <style>
+            :root {
+                --paper: #f4efe7;
+                --paper-2: #fbf8f2;
+                --ink: #2f2a24;
+                --muted: #675f56;
+                --line: #d8cfc1;
+                --line-2: #e6ddd1;
+                --shadow:
+                    0 20px 60px rgba(61, 46, 35, 0.08),
+                    0 6px 18px rgba(61, 46, 35, 0.06);
+                --coral: #c27867;
+                --green: #4a6a5a;
+                --blue: #697c8e;
+                --gold: #b0905d;
+                --violet: #87739b;
+                --sidebar-w: 336px;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                height: 100%;
+            }
+            body {
+                margin: 0;
+                color: var(--ink);
+                font-family:
+                    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+                    "Noto Sans SC", system-ui, sans-serif;
+                line-height: 1.75;
+                letter-spacing: 0.01em;
+                background:
+                    linear-gradient(
+                        rgba(99, 87, 76, 0.05) 1px,
+                        transparent 1px
+                    ),
+                    linear-gradient(
+                        90deg,
+                        rgba(99, 87, 76, 0.05) 1px,
+                        transparent 1px
+                    ),
+                    radial-gradient(
+                        circle at top left,
+                        rgba(194, 120, 103, 0.08),
+                        transparent 28%
+                    ),
+                    radial-gradient(
+                        circle at bottom right,
+                        rgba(74, 106, 90, 0.08),
+                        transparent 30%
+                    ),
+                    linear-gradient(180deg, var(--paper-2), var(--paper));
+                background-size:
+                    28px 28px,
+                    28px 28px,
+                    auto,
+                    auto,
+                    auto;
+                background-attachment: fixed;
+            }
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                background:
+                    radial-gradient(
+                        circle at 20% 20%,
+                        rgba(255, 255, 255, 0.42),
+                        transparent 18%
+                    ),
+                    radial-gradient(
+                        circle at 65% 40%,
+                        rgba(255, 255, 255, 0.22),
+                        transparent 20%
+                    );
+                opacity: 0.55;
+            }
+            .-frame {
+                min-height: 100vh;
+                display: grid;
+                grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+                gap: 22px;
+                padding: 18px;
+                position: relative;
+                z-index: 1;
+            }
+            .sidebar,
+            .stage {
+                background: rgba(255, 251, 245, 0.72);
+                border: 1px solid rgba(180, 164, 146, 0.62);
+                box-shadow: var(--shadow);
+                backdrop-filter: blur(12px);
+            }
+            .sidebar {
+                border-radius: 30px;
+                position: sticky;
+                top: 18px;
+                align-self: start;
+                height: calc(100vh - 36px);
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+            .sidebar-head {
+                padding: 24px 24px 18px;
+                border-bottom: 1px solid var(--line-2);
+                background: linear-gradient(
+                    180deg,
+                    rgba(255, 255, 255, 0.45),
+                    rgba(255, 255, 255, 0.12)
+                );
+            }
+            .brand {
+                font-size: 0.78rem;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-bottom: 14px;
+            }
+            .sidebar-title {
+                margin: 0;
+                font-size: 1.65rem;
+                line-height: 1.28;
+                font-weight: 600;
+                font-family:
+                    "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+                    "Songti SC", "Noto Serif SC", serif;
+            }
+            .sidebar-desc {
+                margin: 12px 0 0;
+                font-size: 0.95rem;
+                color: var(--muted);
+            }
+            .nav-list {
+                padding: 10px 14px 16px;
+                overflow: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                scrollbar-width: thin;
+            }
+            .nav-item {
+                width: 100%;
+                border: none;
+                background: transparent;
+                text-align: left;
+                border-radius: 20px;
+                padding: 12px 12px 12px 10px;
+                display: grid;
+                grid-template-columns: 42px minmax(0, 1fr);
+                gap: 10px;
+                cursor: pointer;
+                color: inherit;
+                border: 1px solid transparent;
+                transition: 0.25s ease;
+            }
+            .nav-item:hover {
+                background: rgba(255, 255, 255, 0.45);
+                transform: translateY(-1px);
+            }
+            .nav-item.active {
+                background: rgba(255, 255, 255, 0.72);
+                border-color: var(--line);
+                box-shadow: 0 8px 20px rgba(80, 62, 44, 0.08);
+            }
+            .nav-num {
+                font-family:
+                    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+                    monospace;
+                color: var(--gold);
+                font-size: 0.86rem;
+                padding-top: 1px;
+            }
+            .nav-copy strong {
+                display: block;
+                font-size: 0.96rem;
+                line-height: 1.35;
+                font-weight: 600;
+            }
+            .nav-copy small {
+                display: block;
+                margin-top: 4px;
+                color: var(--muted);
+                font-size: 0.8rem;
+                line-height: 1.45;
+            }
+            .sidebar-foot {
+                margin-top: auto;
+                padding: 18px 24px 24px;
+                border-top: 1px solid var(--line-2);
+                background: linear-gradient(
+                    180deg,
+                    rgba(255, 255, 255, 0.12),
+                    rgba(255, 255, 255, 0.35)
+                );
+            }
+            .meta-line {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 12px;
+                font-size: 0.88rem;
+                color: var(--muted);
+                margin-bottom: 10px;
+            }
+            .progress-track {
+                width: 100%;
+                height: 8px;
+                border-radius: 999px;
+                overflow: hidden;
+                background: rgba(120, 106, 90, 0.12);
+                border: 1px solid rgba(180, 164, 146, 0.38);
+            }
+            .progress-bar {
+                width: 0;
+                height: 100%;
+                border-radius: 999px;
+                background: linear-gradient(90deg, var(--gold), var(--green));
+                transition: width 0.35s ease;
+            }
+            .copyright {
+                margin-top: 12px;
+                font-size: 0.78rem;
+                color: var(--muted);
+                line-height: 1.6;
+            }
+            .stage {
+                border-radius: 34px;
+                min-height: calc(100vh - 36px);
+                height: calc(100vh - 36px);
+                overflow: hidden;
+                position: relative;
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(255, 255, 255, 0.44),
+                        rgba(255, 255, 255, 0.18)
+                    ),
+                    linear-gradient(
+                        rgba(99, 87, 76, 0.05) 1px,
+                        transparent 1px
+                    ),
+                    linear-gradient(
+                        90deg,
+                        rgba(99, 87, 76, 0.05) 1px,
+                        transparent 1px
+                    ),
+                    linear-gradient(
+                        180deg,
+                        rgba(247, 242, 234, 0.88),
+                        rgba(243, 237, 228, 0.92)
+                    );
+                background-size:
+                    auto,
+                    24px 24px,
+                    24px 24px,
+                    auto;
+            }
+            .slide {
+                position: absolute;
+                inset: 0;
+                padding: 34px;
+                overflow: auto;
+                opacity: 0;
+                transform: translateY(24px);
+                visibility: hidden;
+                pointer-events: none;
+                transition:
+                    opacity 0.42s ease,
+                    transform 0.42s ease,
+                    visibility 0.42s ease;
+            }
+            .slide.active {
+                opacity: 1;
+                transform: translateY(0);
+                visibility: visible;
+                pointer-events: auto;
+            }
+            .slide-inner {
+                min-height: 100%;
+                max-width: 1240px;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                gap: 18px;
+            }
+            .slide.center .slide-inner {
+                justify-content: center;
+            }
+            .slide-panel {
+                background: rgba(255, 255, 255, 0.58);
+                border: 1px solid rgba(181, 166, 148, 0.6);
+                border-radius: 32px;
+                box-shadow: 0 16px 36px rgba(71, 55, 39, 0.07);
+                padding: 28px;
+            }
+            .kicker {
+                color: var(--muted);
+                font-size: 0.82rem;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+                margin-bottom: 4px;
+            }
+            .title {
+                margin: 0;
+                font-weight: 600;
+                line-height: 1.08;
+                font-family:
+                    "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+                    "Songti SC", "Noto Serif SC", serif;
+                font-size: clamp(2.35rem, 4.2vw, 4.55rem);
+            }
+            .title span {
+                font-size: 0.68em;
+            }
+            .slide-title {
+                margin: 0;
+                font-weight: 600;
+                line-height: 1.18;
+                font-family:
+                    "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+                    "Songti SC", "Noto Serif SC", serif;
+                font-size: clamp(1.7rem, 2.3vw, 2.6rem);
+            }
+            .lead {
+                margin: 0;
+                color: var(--muted);
+                font-size: 1.02rem;
+                max-width: 980px;
+            }
+            .mt {
+                margin-top: 16px;
+            }
+            .chips {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .chip {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 12px;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.65);
+                border: 1px solid var(--line);
+                color: #4d443c;
+                font-size: 0.88rem;
+                box-shadow: 0 6px 18px rgba(73, 56, 41, 0.04);
+            }
+            .chip::before {
+                content: "";
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: var(--coral);
+            }
+            .three-col,
+            .two-col,
+            .grid-2,
+            .closing-grid {
+                display: grid;
+                gap: 16px;
+            }
+            .three-col {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+            .two-col {
+                grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+            }
+            .grid-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .closing-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .card,
+            .panel,
+            .note,
+            .quote,
+            .diagram,
+            .node,
+            .timeline-card {
+                background: rgba(255, 255, 255, 0.64);
+                border: 1px solid rgba(181, 166, 148, 0.65);
+                border-radius: 24px;
+                box-shadow: 0 10px 24px rgba(73, 56, 41, 0.06);
+            }
+            .card,
+            .panel,
+            .note,
+            .quote,
+            .diagram,
+            .timeline-card {
+                padding: 18px 18px 20px;
+            }
+            .card h3,
+            .panel h3,
+            .note h3 {
+                margin: 0 0 8px;
+                font-size: 1.02rem;
+                line-height: 1.4;
+            }
+            .card p,
+            .panel p,
+            .note p,
+            .timeline-card p {
+                margin: 0;
+                color: #4c443c;
+                font-size: 0.95rem;
+            }
+            .mini {
+                color: var(--muted);
+                font-size: 0.82rem;
+                margin-bottom: 8px;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+            }
+            .note {
+                border-left: 4px solid var(--coral);
+                background: rgba(255, 250, 248, 0.84);
+            }
+            .note.green {
+                border-left-color: var(--green);
+                background: rgba(248, 252, 249, 0.84);
+            }
+            .note.blue {
+                border-left-color: var(--blue);
+                background: rgba(248, 250, 252, 0.84);
+            }
+            .note.gold {
+                border-left-color: var(--gold);
+                background: rgba(252, 249, 245, 0.84);
+            }
+            .note.violet {
+                border-left-color: var(--violet);
+                background: rgba(250, 248, 252, 0.84);
+            }
+            .quote {
+                position: relative;
+                font-family:
+                    "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+                    "Songti SC", "Noto Serif SC", serif;
+                font-size: 1.16rem;
+                line-height: 1.85;
+                color: #3a332d;
+                padding: 24px 26px 24px 30px;
+            }
+            .quote::before {
+                content: "“";
+                position: absolute;
+                left: 16px;
+                top: 4px;
+                font-size: 2.4rem;
+                color: rgba(176, 144, 93, 0.55);
+                line-height: 1;
+            }
+            .diagram {
+                display: grid;
+                gap: 14px;
+            }
+            .diagram-flow {
+                display: grid;
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+                gap: 12px;
+                align-items: stretch;
+            }
+            .diagram-flow.four {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+            .diagram-flow.three {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+            .node {
+                padding: 16px 14px;
+                position: relative;
+                min-height: 118px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 10px;
+            }
+            .node::after {
+                content: "→";
+                position: absolute;
+                right: -11px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: rgba(111, 98, 84, 0.65);
+                font-size: 1.1rem;
+            }
+            .diagram-flow .node:last-child::after {
+                display: none;
+            }
+            .node b {
+                display: block;
+                font-size: 1rem;
+                margin-bottom: 4px;
+            }
+            .node span {
+                font-size: 0.9rem;
+                color: var(--muted);
+            }
+            .timeline {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+            }
+            .timeline-card {
+                min-height: 145px;
+            }
+            .timeline-card strong {
+                display: block;
+                margin-bottom: 10px;
+                font-size: 1rem;
+            }
+            .timeline-card small {
+                display: block;
+                color: var(--muted);
+                font-size: 0.82rem;
+                margin-bottom: 10px;
+            }
+            .table-wrap {
+                width: 100%;
+                overflow: auto;
+                border-radius: 22px;
+                border: 1px solid rgba(181, 166, 148, 0.68);
+                box-shadow: 0 10px 26px rgba(73, 56, 41, 0.06);
+                background: rgba(255, 255, 255, 0.68);
+            }
+            .material-table {
+                width: 100%;
+                border-collapse: collapse;
+                table-layout: auto;
+                min-width: 680px;
+            }
+            .material-table th,
+            .material-table td {
+                padding: 12px 14px;
+                text-align: left;
+                vertical-align: top;
+                border-bottom: 1px solid rgba(216, 207, 193, 0.88);
+                font-size: 0.92rem;
+                line-height: 1.6;
+            }
+            .material-table thead th {
+                background: rgba(246, 240, 232, 0.96);
+                color: #463f38;
+                font-weight: 600;
+                font-family:
+                    "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+                    "Songti SC", "Noto Serif SC", serif;
+            }
+            .material-table tbody tr:nth-child(even) {
+                background: rgba(255, 255, 255, 0.42);
+            }
+            .material-table tbody tr:last-child td {
+                border-bottom: none;
+            }
+            .tiny {
+                font-size: 0.82rem;
+                color: var(--muted);
+            }
+            @media (max-width: 1280px) {
+                :root {
+                    --sidebar-w: 308px;
+                }
+                .slide {
+                    padding: 26px;
+                }
+                .slide-panel {
+                    padding: 24px;
+                }
+            }
+            @media (max-width: 1080px) {
+                .three-col {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+                .diagram-flow,
+                .diagram-flow.four,
+                .diagram-flow.three {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+                .two-col,
+                .closing-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+            @media (max-width: 960px) {
+                .-frame {
+                    grid-template-columns: 1fr;
+                    gap: 14px;
+                    padding: 12px;
+                }
+                .sidebar {
+                    position: sticky;
+                    top: 12px;
+                    height: auto;
+                    z-index: 9;
+                    border-radius: 24px;
+                }
+                .sidebar-head {
+                    padding: 18px;
+                }
+                .nav-list {
+                    padding: 10px;
+                    display: grid;
+                    grid-auto-flow: column;
+                    grid-auto-columns: minmax(230px, 1fr);
+                    overflow-x: auto;
+                    overflow-y: hidden;
+                }
+                .sidebar-foot {
+                    padding: 14px 18px 18px;
+                }
+                .stage {
+                    height: auto;
+                    min-height: unset;
+                    background: transparent;
+                    border: none;
+                    box-shadow: none;
+                    overflow: visible;
+                    backdrop-filter: none;
+                }
+                .slide {
+                    position: relative;
+                    inset: auto;
+                    opacity: 1 !important;
+                    transform: none !important;
+                    visibility: visible !important;
+                    pointer-events: auto !important;
+                    padding: 0;
+                    margin-bottom: 14px;
+                    overflow: visible;
+                }
+                .slide-panel {
+                    padding: 22px 18px;
+                    border-radius: 24px;
+                }
+                .slide-inner {
+                    min-height: unset;
+                }
+                .title {
+                    font-size: clamp(2rem, 8vw, 3rem);
+                }
+                .slide-title {
+                    font-size: clamp(1.45rem, 5.5vw, 2rem);
+                }
+                .three-col,
+                .two-col,
+                .grid-2,
+                .closing-grid,
+                .diagram-flow,
+                .diagram-flow.four,
+                .diagram-flow.three,
+                .timeline {
+                    grid-template-columns: 1fr;
+                }
+                .node {
+                    min-height: unset;
+                }
+                .node::after {
+                    content: "↓";
+                    right: auto;
+                    left: 50%;
+                    top: auto;
+                    bottom: -18px;
+                    transform: translateX(-50%);
+                }
+                .material-table {
+                    min-width: 620px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="-frame">
+            <aside class="sidebar" aria-label="演示目录">
+                <div class="sidebar-head">
+                    <div class="brand">Allen's Notes #688376</div>
+                    <h1 class="sidebar-title">美埃科技研究报告</h1>
+                    <p class="sidebar-desc">
+                        围绕公司本质、核心投资逻辑、财务数据、减持压制、跟踪指标与风险矩阵展开。
+                    </p>
+                </div>
+                <nav class="nav-list" id="navList"></nav>
+                <div class="sidebar-foot">
+                    <div class="meta-line">
+                        <span>当前页</span
+                        ><span
+                            ><span id="currentPage">01</span> /
+                            <span id="totalPage">01</span></span
+                        >
+                    </div>
+                    <div class="progress-track" aria-hidden="true">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <div class="copyright">
+                        原始报告日期：2026-03-06<br />研究主题：美埃科技跟踪<br />说明：仅供研究交流，不构成投资建议
+                    </div>
+                </div>
+            </aside>
+            <main class="stage" id="stage">
+                <section
+                    class="slide center active"
+                    id="slide-0"
+                    data-title="开场"
+                    data-subtitle="主题、日期、作者与关键词"
+                >
+                    <div class="slide-inner">
+                        <div class="slide-panel">
+                            <div class="kicker">
+                                2026-03-06 · 原始报告建立日期
+                            </div>
+                            <h2 class="title">
+                                美埃科技深度研究报告<br /><span
+                                    >半导体洁净室基础设施龙头 ·
+                                    耗材订阅模式重构估值逻辑</span
+                                >
+                            </h2>
+                            <p class="lead">
+                                围绕美埃科技在半导体洁净室领域的龙头地位、耗材飞轮、盈利结构变化与当前减持压制展开，尽量完整保留原报告中的核心数字、表格、判断与风险提示。
+                            </p>
+                            <div class="chips">
+                                <span class="chip">半导体洁净室</span
+                                ><span class="chip">FFU</span
+                                ><span class="chip">空气过滤器</span
+                                ><span class="chip">耗材飞轮</span
+                                ><span class="chip">估值重构</span
+                                ><span class="chip">解禁减持</span
+                                ><span class="chip">风险矩阵</span>
+                            </div>
+                            <div class="two-col mt">
+                                <div class="panel">
+                                    <div class="mini">作者 / 声明</div>
+                                    <h3>Allen Deng</h3>
+                                    <p>
+                                        基于上传的《美埃科技_研究跟踪报告_20260306》整理。内容为个人研究记录，仅供学习交流，不构成任何投资建议。
+                                    </p>
+                                </div>
+                                <div class="panel">
+                                    <div class="mini">受众与目标</div>
+                                    <h3>
+                                        适合产业链研究、基本面复盘与中文技术分享场景
+                                    </h3>
+                                    <p>
+                                        这份研究不急于把报告压缩成结论，而是尽量保留原始逻辑：公司为什么值得看、当前为什么受压、后续应该跟踪什么，以及哪些风险会否定原判断。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    id="slide-1"
+                    data-title="今天聊什么"
+                    data-subtitle="从公司本质到估值重构的四段路"
+                >
+                    <div class="slide-inner">
+                        <div class="slide-panel">
+                            <div class="kicker">总览</div>
+                            <h2 class="slide-title">
+                                今天聊什么：不急着先下结论
+                            </h2>
+                            <p class="lead">
+                                整份报告真正重要的，不只是“美埃科技是不是龙头”，而是它的商业模式是否可能从项目制设备生意，逐步转向更稳定的耗材复购逻辑。下面用四条主线组织。
+                            </p>
+                            <div class="three-col mt">
+                                <div class="card">
+                                    <div class="mini">01</div>
+                                    <h3>公司本质</h3>
+                                    <p>
+                                        美埃科技是国内半导体洁净室设备与耗材龙头，核心产品是
+                                        FFU
+                                        风机过滤单元与空气过滤器，报告将其定义为“设备让利锁定客户，耗材持续收租”的吉列模式。
+                                    </p>
+                                </div>
+                                <div class="card">
+                                    <div class="mini">02</div>
+                                    <h3>核心逻辑</h3>
+                                    <p>
+                                        洁净室是晶圆厂绕不过去的基础设施；FFU
+                                        装机量积累后，后续过滤器更换形成高频、稳定、强锁定的耗材收入飞轮。
+                                    </p>
+                                </div>
+                                <div class="card">
+                                    <div class="mini">03</div>
+                                    <h3>当前压制</h3>
+                                    <p>
+                                        报告认为股价压制主要来自解禁减持，而不是基本面恶化。减持结束公告、年报中耗材占比、技术企稳，是后续观察重点。
+                                    </p>
+                                </div>
+                                <div class="card">
+                                    <div class="mini">04</div>
+                                    <h3>验证路径</h3>
+                                    <p>
+                                        财务数据、稳态收入模型、持续跟踪指标、风险矩阵共同构成复盘路径：既看逻辑，也看证据；既看好处，也写出会让判断失效的变量。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    id="slide-2"
+                    data-title="公司本质"
+                    data-subtitle="它卖设备，也用耗材讲长期故事"
+                >
+                    <div class="slide-inner">
+                        <div class="slide-panel">
+                            <div class="kicker">一、公司本质</div>
+                            <h2 class="slide-title">
+                                公司本质：先把身份说清楚
+                            </h2>
+                            <div class="quote">
+                                美埃科技是国内半导体洁净室设备与耗材的绝对龙头，深耕洁净室领域20年以上，国内市场占有率约30%，位居行业第一。
+                            </div>
+                            <div class="two-col mt">
+                                <div class="table-wrap">
+                                    <table class="material-table">
+                                        <thead>
+                                            <tr>
+                                                <th>维度</th>
+                                                <th>内容</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>证券代码</td>
+                                                <td>688376（科创板）</td>
+                                            </tr>
+                                            <tr>
+                                                <td>核心产品</td>
+                                                <td>
+                                                    FFU风机过滤单元（设备）+
+                                                    空气过滤器（耗材）
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>商业模式本质</td>
+                                                <td>
+                                                    吉列模式：设备让利锁定客户，耗材持续收租
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>国内市占率</td>
+                                                <td>
+                                                    约30%，第二名再升科技仅0.35%，差距悬殊
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>主要客户</td>
+                                                <td>
+                                                    中芯国际、京东方、英特尔、SK海力士等头部fab
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>四大应用领域</td>
+                                                <td>
+                                                    电子半导体 / 医疗医药 / 环保
+                                                    / 节能减排
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>海外布局</td>
+                                                <td>
+                                                    马来西亚、新加坡、泰国、加拿大，跟随客户全球化
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>重要并购</td>
+                                                <td>
+                                                    2025年2月完成捷芯隆私有化，补全洁净室整体方案能力
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="panel">
+                                    <div class="mini">阅读提示</div>
+                                    <h3>这页不是简单贴“龙头”标签</h3>
+                                    <p>
+                                        它真正想表达的是：公司处在半导体洁净室这种刚需基础设施环节，既卖进入系统的一次性设备，也卖运行系统必须持续采购的过滤耗材。设备是入口，耗材才是长期关系。
+                                    </p>
+                                    <div class="note mt">
+                                        <h3>一个关键区分</h3>
+                                        <p>
+                                            如果只把它看成设备公司，估值会更像周期制造；如果后续耗材占比持续上升，市场可能重新用“工业消费品
+                                            / 订阅式耗材”的框架理解它。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    id="slide-3"
+                    data-title="核心逻辑 I"
+                    data-subtitle="必要环节与耗材收入飞轮"
+                >
+                    <div class="slide-inner">
+                        <div class="slide-panel">
+                            <div class="kicker">二、核心逻辑</div>
+                            <h2 class="slide-title">
+                                核心投资逻辑：先看必要性，再看飞轮
+                            </h2>
+                            <div class="grid-2 mt">
+                                <div class="note">
+                                    <h3>逻辑一：半导体产能扩张的必经之路</h3>
+                                    <p>
+                                        光刻机是最大瓶颈，但三年内无解，看不到投资机会。洁净室不是每一座晶圆厂的最大瓶颈，但是必要条件——无论制程先进还是成熟，无论国内还是东南亚，都必须有洁净室，都必须用FFU和过滤器。绝对绕不过去的环节。
+                                    </p>
+                                </div>
+                                <div class="note green">
+                                    <h3>逻辑二：装机量积累 → 耗材收入飞轮</h3>
+                                    <p>
+                                        一旦美埃的FFU装进洁净室，更换供应商意味着停产改造，客户几乎锁死。后续每隔1-6个月（初中效过滤器）或1-8年（高效过滤器）必须采购耗材，毛利率30-40%，远高于FFU设备的15-25%。装机量就是订阅用户数，持续积累，持续造血。
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="diagram mt">
+                                <div class="diagram-flow">
+                                    <div class="node">
+                                        <b>晶圆厂扩产</b
+                                        ><span
+                                            >产能建设启动，洁净室成为基础设施。</span
+                                        >
+                                    </div>
+                                    <div class="node">
+                                        <b>洁净室建设</b
+                                        ><span
+                                            >FFU 与过滤系统进入厂务系统。</span
+                                        >
+                                    </div>
+                                    <div class="node">
+                                        <b>设备装机</b
+                                        ><span
+                                            >一次性设备收入完成客户绑定。</span
+                                        >
+                                    </div>
+                                    <div class="node">
+                                        <b>耗材替换</b
+                                        ><span
+                                            >过滤器周期性更换，形成复购。</span
+                                        >
+                                    </div>
+                                    <div class="node">
+                                        <b>持续现金流</b
+                                        ><span>装机量转化为类订阅用户数。</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-wrap mt">
+                                <table class="material-table">
+                                    <thead>
+                                        <tr>
+                                            <th>耗材类型</th>
+                                            <th>替换周期</th>
+                                            <th>毛利率</th>
+                                            <th>现金流属性</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>初中效过滤器</td>
+                                            <td>1-6个月/次</td>
+                                            <td>≈40%</td>
+                                            <td>高频、稳定、类月费订阅</td>
+                                        </tr>
+                                        <tr>
+                                            <td>高效过滤器</td>
+                                            <td>1-8年/次</td>
+                                            <td>≈33%</td>
+                                            <td>低频、高价、强锁定</td>
+                                        </tr>
+                                        <tr>
+                                            <td>FFU风机过滤单元</td>
+                                            <td>设备，不替换</td>
+                                            <td>15-25%</td>
+                                            <td>一次性，战略让利获客</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    id="slide-4"
+                    data-title="核心逻辑 II"
+                    data-subtitle="毛利下滑的解释与市场错价"
+                >
+                    <div class="slide-inner">
+                        <div class="slide-panel">
+                            <div class="kicker">二、核心逻辑</div>
+                            <h2 class="slide-title">
+                                如果飞轮成立，财务表象就要换一种读法
+                            </h2>
+                            <div class="two-col mt">
+                                <div class="note blue">
+                                    <h3>
+                                        逻辑三：毛利下滑是战略选择，不是经营恶化
+                                    </h3>
+                                    <p>
+                                        过去数年毛利率随市占率上升持续下滑——这是主动让利扩大装机量的战略操作，不是竞争力下降的信号。2024年上半年毛利率同比提升6.9个百分点，耗材占比提升已开始在财务数据上体现。当耗材占比从当前30%提升至50%，商业模式将从项目制制造业切换为工业消费品逻辑，估值框架随之重构。
+                                    </p>
+                                </div>
+                                <div class="note violet">
+                                    <h3>逻辑四：增量尚未被市场定价</h3>
+                                    <p>
+                                        市场现在用2025年净利润大幅下滑（扣非0.80亿）来定价。但没有看到：国内在建晶圆厂266万片/月产能陆续投产，这批2022-2024年新建的fab正在进入满产运营期，初中效过滤器的替换需求正在集中释放。这条持续增长的耗材收入曲线尚未被定价。
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="diagram mt">
+                                <div class="diagram-flow four">
+                                    <div class="node">
+                                        <b>设备让利</b
+                                        ><span
+                                            >接受较低设备毛利，换取装机与客户绑定。</span
+                                        >
+                                    </div>
+                                    <div class="node">
+                                        <b>装机积累</b
+                                        ><span
+                                            >客户体系一旦进入，更换供应商的成本变高。</span
+                                        >
+                                    </div>
+                                    <div class="node">
+                                        <b>耗材上升</b
+                                        ><span
+                                            >重复采购带来更稳定、更高毛利收入。</span
+                                        >
+                                    </div>
+                                    <div class="node">
+                                        <b>估值重写</b
+                                        ><span
+                                            >从周期制造业框架，迁移到工业消费品逻辑。</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="quote mt">
+                                如果只盯当期利润，就可能把“让利抢装机”误读成“竞争力下降”；如果只盯眼前股价，就会错过装机转耗材、收入结构再平衡的过程。
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    id="slide-5"
+                    data-title="财务数据"
+                    data-subtitle="收入仍增，但利润被战略投入吞掉"
+                >
+                    <div class="slide-inner">
+                        <div class="slide-panel">
+                            <div class="kicker">三、财务数据</div>
+                            <h2 class="slide-title">
+                                财务数据：先承认利润下滑，再拆开看原因
+                            </h2>
+                            <div class="table-wrap mt">
+                                <table class="material-table">
+                                    <thead>
+                                        <tr>
+                                            <th>年度</th>
+                                            <th>营收（亿元）</th>
+                                            <th>扣非净利润（亿元）</th>
+                                            <th>同比变化</th>
+                                            <th>核心原因</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2022年</td>
+                                            <td>12.27</td>
+                                            <td>1.13</td>
+                                            <td>——</td>
+                                            <td>基准年</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2023年</td>
+                                            <td>15.05</td>
+                                            <td>1.51</td>
+                                            <td>+33.6%</td>
+                                            <td>半导体扩产高峰受益</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2024年</td>
+                                            <td>17.23</td>
+                                            <td>1.78</td>
+                                            <td>+17.9%</td>
+                                            <td>收入增长，耗材占比提升</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2025年（快报）</td>
+                                            <td>19.26</td>
+                                            <td>0.80</td>
+                                            <td>-54.97%</td>
+                                            <td>
+                                                折旧摊销高峰+三费扩张+股权激励
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="grid-2 mt">
+                                <div class="note">
+                                    <h3>原文解释</h3>
+                                    <p>
+                                        2025年净利润腰斩的三个原因均为主动战略投入：①新产能投产带来折旧摊销大幅增加；②海外扩张三费爆发；③股权激励费用确认。收入仍增长11.79%，需求端没有问题。
+                                    </p>
+                                </div>
+                                <div class="card">
+                                    <div class="mini">复盘视角</div>
+                                    <h3>利润下滑不是被回避的变量</h3>
+                                    <p>
+                                        这页的意义在于把“利润承压”与“需求端是否恶化”分开。原报告的判断是：收入仍在增长，问题更多来自产能、费用与激励相关投入。如果后续耗材占比和毛利结构改善，利润端才有修复基础。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    id="slide-6"
+                    data-title="稳态收入模型"
+                    data-subtitle="耗材占比变化怎样重写估值"
+                >
+                    <div class="slide-inner">
+                        <div class="slide-panel">
+                            <div class="kicker">四、稳态模型</div>
+                            <h2 class="slide-title">
+                                稳态收入模型：飞轮一旦转起来，估值框架就会变
+                            </h2>
+                            <div class="table-wrap mt">
+                                <table class="material-table">
+                                    <thead>
+                                        <tr>
+                                            <th>耗材占比情景</th>
+                                            <th>耗材收入</th>
+                                            <th>耗材毛利（35%）</th>
+                                            <th>设备毛利（20%）</th>
+                                            <th>综合毛利率</th>
+                                            <th>时间预估</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>当前 30%</td>
+                                            <td>5.8亿</td>
+                                            <td>2.0亿</td>
+                                            <td>2.7亿</td>
+                                            <td>≈24%</td>
+                                            <td>2025年现状</td>
+                                        </tr>
+                                        <tr>
+                                            <td>提升至 50%</td>
+                                            <td>9.6亿</td>
+                                            <td>3.4亿</td>
+                                            <td>1.9亿</td>
+                                            <td>≈27%</td>
+                                            <td>预计2027-2028年</td>
+                                        </tr>
+                                        <tr>
+                                            <td>提升至 60%</td>
+                                            <td>11.6亿</td>
+                                            <td>4.1亿</td>
+                                            <td>1.5亿</td>
+                                            <td>≈30%+</td>
+                                            <td>预计2029-2030年</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="two-col mt">
+                                <div class="diagram">
+                                    <div class="diagram-flow three">
+                                        <div class="node">
+                                            <b>当前 30%</b
+                                            ><span
+                                                >设备仍是收入重心，综合毛利率约24%。</span
+                                            >
+                                        </div>
+                                        <div class="node">
+                                            <b>提升至 50%</b
+                                            ><span
+                                                >耗材部分显著放大，商业模式切换开始被看见。</span
+                                            >
+                                        </div>
+                                        <div class="node">
+                                            <b>提升至 60%</b
+                                            ><span
+                                                >更接近工业消费品，稳定性与想象空间同步抬升。</span
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="quote">
+                                    当耗材占比突破50%，估值逻辑从周期制造业（20倍PE）切换至工业消费品订阅模式（35-40倍PE），股价弹性来自利润改善+估值重构的双重叠加。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    id="slide-7"
+                    data-title="当前最大压制"
+                    data-subtitle="真正压着股价的是解禁减持"
+                >
+                    <div class="slide-inner">
+                        <div class="slide-panel">
+                            <div class="kicker">五、减持压制</div>
+                            <h2 class="slide-title">
+                                当前最大压制：解禁减持，而不是一句“估值太贵”
+                            </h2>
+                            <div class="quote">
+                                这是当前股价从82.68跌至58.89（跌幅28%）的真实原因，比估值问题更直接。
+                            </div>
+                            <div class="two-col mt">
+                                <div class="table-wrap">
+                                    <table class="material-table">
+                                        <thead>
+                                            <tr>
+                                                <th>项目</th>
+                                                <th>详情</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>解禁时间</td>
+                                                <td>
+                                                    2025年11月18日（科创板上市满三年集中解禁）
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>解禁规模</td>
+                                                <td>
+                                                    约8,341万股，占总股本62.06%——超过六成同日解禁
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>主要减持方</td>
+                                                <td>
+                                                    中信证券投资有限公司及一致行动人（金石智娱、信石元影、青岛金石）
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>已披露减持计划</td>
+                                                <td>
+                                                    合计持股1.41亿股，计划减持上限约4,097万股（约占其持仓29%）
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>减持窗口期</td>
+                                                <td>
+                                                    2025年9月起三个月（第一轮）；2025年11月解禁后持续进行
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>盘面特征</td>
+                                                <td>
+                                                    早盘短暂拉高后午后持续阴跌，成交量温和——减持方均匀出货，不砸盘
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>减持结束信号</td>
+                                                <td>
+                                                    公告：减持计划已完成 或
+                                                    期满未完成——出现即为压制消除
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <div class="timeline">
+                                        <div class="timeline-card">
+                                            <small>第一步</small
+                                            ><strong>2025-09</strong>
+                                            <p>
+                                                第一轮减持窗口开启，市场提前消化未来抛压。
+                                            </p>
+                                        </div>
+                                        <div class="timeline-card">
+                                            <small>第二步</small
+                                            ><strong>2025-11-18</strong>
+                                            <p>
+                                                上市满三年集中解禁，约 8,341
+                                                万股进入可流通状态。
+                                            </p>
+                                        </div>
+                                        <div class="timeline-card">
+                                            <small>第三步</small
+                                            ><strong>盘面演绎</strong>
+                                            <p>
+                                                不是恐慌式砸盘，而是均匀流出，压制持续但不剧烈。
+                                            </p>
+                                        </div>
+                                        <div class="timeline-card">
+                                            <small>第四步</small
+                                            ><strong>真正信号</strong>
+                                            <p>
+                                                等待减持计划已完成或期满未完成的正式公告。
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="note gold mt">
+                                        <h3>原文提醒</h3>
+                                        <p>
+                                            ⚠️
+                                            减持结束前，技术面难以形成持续上涨。观察仓策略正确——等待减持结束公告出现后再考虑转为战略仓。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    id="slide-8"
+                    data-title="技术面现状"
+                    data-subtitle="请把它当成 2026-03-06 的时间切片"
+                >
+                    <div class="slide-inner">
+                        <div class="slide-panel">
+                            <div class="kicker">六、技术面</div>
+                            <h2 class="slide-title">
+                                技术面现状：它是时间切片，不是永恒结论
+                            </h2>
+                            <p class="lead">
+                                原始报告明确把技术面写在 2026-03-06
+                                这个日期之下，所以这页更适合理解当时为什么只适合观察仓，而不是把当时的价格位置直接外推到今天。
+                            </p>
+                            <div class="table-wrap mt">
+                                <table class="material-table">
+                                    <thead>
+                                        <tr>
+                                            <th>指标</th>
+                                            <th>数值</th>
+                                            <th>含义</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>收盘价</td>
+                                            <td>58.89元（-1.27%）</td>
+                                            <td>连续下行，弱势格局</td>
+                                        </tr>
+                                        <tr>
+                                            <td>BOLL下轨</td>
+                                            <td>58.32</td>
+                                            <td>
+                                                ⚠️
+                                                价格正贴着下轨运行，是强支撑也是破位警戒线
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>BOLL中轨</td>
+                                            <td>64.40</td>
+                                            <td>反弹第一目标位，距今约9.3%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>日线MA5</td>
+                                            <td>60.30</td>
+                                            <td>短期压力位</td>
+                                        </tr>
+                                        <tr>
+                                            <td>MACD</td>
+                                            <td>DIFF:-1.276 / MACD:-2.154</td>
+                                            <td>
+                                                绿柱仍在放大，短期动能偏空，尚无底部信号
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>成交额</td>
+                                            <td>5,926万 / 换手0.74%</td>
+                                            <td>
+                                                量能温和，非恐慌抛售，减持均匀流出
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>月线RSI</td>
+                                            <td>健康区间</td>
+                                            <td>
+                                                长期趋势完整，月线均线全面向上
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>下一支撑位</td>
+                                            <td>约53-55元</td>
+                                            <td>
+                                                如果58.32有效跌破，寻找左侧整理区间
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="grid-2 mt">
+                                <div class="card">
+                                    <div class="mini">如何理解</div>
+                                    <h3>技术面在这里扮演“节奏过滤器”</h3>
+                                    <p>
+                                        它不是用来否定长期逻辑，而是提示：即使基本面叙事成立，在减持未结束之前，股价也未必会配合提前启动。
+                                    </p>
+                                </div>
+                                <div class="card">
+                                    <div class="mini">为什么保留</div>
+                                    <h3>
+                                        研究不只关乎结论，也关乎当时的状态判断
+                                    </h3>
+                                    <p>
+                                        一份原始报告有价值的地方，往往在于它怎样决定“现在先不做什么”。这页记录的是那个克制的时点。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    id="slide-9"
+                    data-title="持续跟踪 I"
+                    data-subtitle="减持进展与基本面飞轮"
+                >
+                    <div class="slide-inner">
+                        <div class="slide-panel">
+                            <div class="kicker">七、跟踪指标</div>
+                            <h2 class="slide-title">
+                                持续跟踪指标：先盯压制何时消除，再盯飞轮是否加速
+                            </h2>
+                            <div class="two-col mt">
+                                <div>
+                                    <div class="note">
+                                        <h3>【最高优先级】减持进展跟踪</h3>
+                                        <p>
+                                            这一部分决定“什么时候别再猜了”，也是报告认为最优先的行动信号来源。
+                                        </p>
+                                    </div>
+                                    <div class="table-wrap mt">
+                                        <table class="material-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>跟踪项目</th>
+                                                    <th>关注内容</th>
+                                                    <th>触发动作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>中信证投减持公告</td>
+                                                    <td>
+                                                        每次减持完成公告，累计已减持多少股
+                                                    </td>
+                                                    <td>
+                                                        更新剩余减持量，判断压制还剩多久
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>减持计划到期公告</td>
+                                                    <td>
+                                                        公告：减持计划已完成 或
+                                                        期满未完成
+                                                    </td>
+                                                    <td>
+                                                        ⭐
+                                                        最强信号——压制消除，考虑加仓
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>大宗交易记录</td>
+                                                    <td>
+                                                        是否出现大宗交易折价成交
+                                                    </td>
+                                                    <td>
+                                                        大宗折价出货是加速减持信号，需谨慎
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="note green">
+                                        <h3>【基本面】耗材飞轮进展</h3>
+                                        <p>
+                                            如果减持是短期压制，那么耗材占比、订单与整合效率，才决定中期逻辑有没有被兑现。
+                                        </p>
+                                    </div>
+                                    <div class="table-wrap mt">
+                                        <table class="material-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>跟踪项目</th>
+                                                    <th>关注内容</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        2025年年报（预计4月）
+                                                    </td>
+                                                    <td>
+                                                        耗材收入占比是否提升至35%以上；分产品毛利率变化
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2026年中报</td>
+                                                    <td>
+                                                        折旧摊销压力是否边际改善；耗材占比是否继续提升
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>在手订单披露</td>
+                                                    <td>
+                                                        半导体客户新项目订单规模——对应未来2-3年装机量
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>东南亚客户进展</td>
+                                                    <td>
+                                                        马来西亚/泰国/新加坡fab扩产节奏，2025年快报提示有所放缓
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>捷芯隆整合进度</td>
+                                                    <td>
+                                                        并购完成后洁净室整体方案能力的订单转化效果
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    id="slide-10"
+                    data-title="持续跟踪 II"
+                    data-subtitle="催化剂不是口号，是需要验证的事件"
+                >
+                    <div class="slide-inner">
+                        <div class="slide-panel">
+                            <div class="kicker">七、跟踪指标</div>
+                            <h2 class="slide-title">
+                                催化剂：哪些事情真的可能推动估值重构
+                            </h2>
+                            <div class="two-col mt">
+                                <div class="table-wrap">
+                                    <table class="material-table">
+                                        <thead>
+                                            <tr>
+                                                <th>催化剂</th>
+                                                <th>预计时间</th>
+                                                <th>影响</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>减持压制消除</td>
+                                                <td>减持完成公告出现后</td>
+                                                <td>
+                                                    ⭐⭐⭐
+                                                    最直接，压制一旦消除股价有修复空间
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>耗材占比突破35%</td>
+                                                <td>2025年报或2026年中报</td>
+                                                <td>
+                                                    ⭐⭐⭐
+                                                    验证商业模式切换正在发生
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>国内晶圆厂扩产加速</td>
+                                                <td>政策驱动，持续进行中</td>
+                                                <td>⭐⭐ 装机量加速积累</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    AI算力投资带动HBM/CoWoS扩产
+                                                </td>
+                                                <td>2026年持续</td>
+                                                <td>
+                                                    ⭐⭐
+                                                    高端制程洁净室需求提升，利好单价
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>医疗医药洁净室新订单</td>
+                                                <td>持续关注</td>
+                                                <td>⭐ 第二增长曲线验证</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <div class="card">
+                                        <div class="mini">研究者视角</div>
+                                        <h3>
+                                            催化剂不是“发生了就涨”，而是“发生后叙事是否更容易被相信”
+                                        </h3>
+                                        <p>
+                                            减持结束解决的是筹码约束；耗材占比提升解决的是商业模式验证；扩产和
+                                            AI
+                                            算力投资解决的是需求端持续性。三类催化剂分别作用在市场、财务与产业三个层面。
+                                        </p>
+                                    </div>
+                                    <div class="note blue mt">
+                                        <h3>如果只保留一条观察主线</h3>
+                                        <p>
+                                            先等压制消失，再看耗材占比，再看利润和估值能不能一起发生变化。顺序错了，可能会把好逻辑做在不好的时点里。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="diagram mt">
+                                <div class="diagram-flow five">
+                                    <div class="node">
+                                        <b>输入</b
+                                        ><span
+                                            >产能扩张、客户装机、减持披露、财报。</span
+                                        >
+                                    </div>
+                                    <div class="node">
+                                        <b>过程</b
+                                        ><span>连接设备装机与耗材替换。</span>
+                                    </div>
+                                    <div class="node">
+                                        <b>工具</b
+                                        ><span
+                                            >公告、报表、订单、盘面观察。</span
+                                        >
+                                    </div>
+                                    <div class="node">
+                                        <b>产出</b
+                                        ><span
+                                            >利润改善与估值切换概率判断。</span
+                                        >
+                                    </div>
+                                    <div class="node">
+                                        <b>反馈</b
+                                        ><span
+                                            >年报、中报与减持完成公告复核。</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    id="slide-11"
+                    data-title="风险矩阵"
+                    data-subtitle="真正会让报告改写的变量"
+                >
+                    <div class="slide-inner">
+                        <div class="slide-panel">
+                            <div class="kicker">八、风险矩阵</div>
+                            <h2 class="slide-title">
+                                风险矩阵：哪些事情会让原有判断失效
+                            </h2>
+                            <div class="table-wrap mt">
+                                <table class="material-table">
+                                    <thead>
+                                        <tr>
+                                            <th>风险项</th>
+                                            <th>具体内容</th>
+                                            <th>概率</th>
+                                            <th>影响</th>
+                                            <th>应对</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>解禁减持持续</td>
+                                            <td>
+                                                中信证投减持尚未完成，股价持续承压
+                                            </td>
+                                            <td>高</td>
+                                            <td>中</td>
+                                            <td>等待减持完成公告再加仓</td>
+                                        </tr>
+                                        <tr>
+                                            <td>58.32跌破</td>
+                                            <td>
+                                                BOLL下轨失守，技术破位加速下行
+                                            </td>
+                                            <td>中</td>
+                                            <td>中</td>
+                                            <td>下一支撑53-55元，仓位控制</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2025年报超预期差</td>
+                                            <td>
+                                                耗材占比未提升，毛利率继续恶化
+                                            </td>
+                                            <td>低</td>
+                                            <td>高</td>
+                                            <td>年报是重要验证节点</td>
+                                        </tr>
+                                        <tr>
+                                            <td>东南亚扩产不及预期</td>
+                                            <td>
+                                                关税博弈导致海外客户资本开支继续放缓
+                                            </td>
+                                            <td>中</td>
+                                            <td>中</td>
+                                            <td>关注海外订单披露</td>
+                                        </tr>
+                                        <tr>
+                                            <td>国内半导体周期下行</td>
+                                            <td>
+                                                晶圆厂开工率下降，耗材替换需求减少
+                                            </td>
+                                            <td>低</td>
+                                            <td>高</td>
+                                            <td>核心风险，需持续监控</td>
+                                        </tr>
+                                        <tr>
+                                            <td>竞争加剧</td>
+                                            <td>
+                                                中低端市场价格战，高端市场新进入者
+                                            </td>
+                                            <td>低</td>
+                                            <td>中</td>
+                                            <td>关注毛利率变化趋势</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="grid-2 mt">
+                                <div class="card">
+                                    <div class="mini">风险的层次</div>
+                                    <h3>
+                                        有些风险是节奏风险，有些风险是逻辑风险
+                                    </h3>
+                                    <p>
+                                        减持持续、技术位失守，更像节奏干扰；而耗材占比不升、半导体周期下行、竞争加剧，则会碰到商业模式是否真的成立这个更深层次。
+                                    </p>
+                                </div>
+                                <div class="card">
+                                    <div class="mini">为什么做矩阵</div>
+                                    <h3>
+                                        研究不能只列好消息，也要写出什么会否定自己
+                                    </h3>
+                                    <p>
+                                        一份能复盘的报告，必须允许后来人检查：风险是否发生、当初是否提前写过、以及一旦发生，动作会不会失真。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    id="slide-12"
+                    data-title="操作记录"
+                    data-subtitle="交易层面的克制表达"
+                >
+                    <div class="slide-inner">
+                        <div class="slide-panel">
+                            <div class="kicker">九、操作记录</div>
+                            <h2 class="slide-title">
+                                操作记录与一句话判断：先留一份动作备忘
+                            </h2>
+                            <div class="table-wrap mt">
+                                <table class="material-table">
+                                    <thead>
+                                        <tr>
+                                            <th>日期</th>
+                                            <th>操作</th>
+                                            <th>价格区间</th>
+                                            <th>仓位</th>
+                                            <th>备注</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2026-03-06</td>
+                                            <td>建立观察仓（分批买入）</td>
+                                            <td>约59.3 / 59.1 / 58.9</td>
+                                            <td>观察仓</td>
+                                            <td>在BOLL下轨附近分三笔承接</td>
+                                        </tr>
+                                        <tr>
+                                            <td>待定</td>
+                                            <td>转为战略仓</td>
+                                            <td>——</td>
+                                            <td>——</td>
+                                            <td>
+                                                触发条件：减持压制消除+技术企稳
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="quote mt">
+                                核心判断一句话：好公司、好赛道、逻辑清晰。当前压制来自解禁减持，不是基本面恶化。等减持结束+技术企稳双重信号出现，观察仓转战略仓，持有至耗材占比突破50%的估值重构时刻。
+                            </div>
+                            <div class="note gold mt">
+                                <h3>免责声明</h3>
+                                <p>
+                                    本报告为个人研究记录，仅供参考，不构成任何投资建议。投资有风险，决策需谨慎。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide center"
+                    id="slide-13"
+                    data-title="结尾"
+                    data-subtitle="核心总结、个人观点、建议与 Thanks"
+                >
+                    <div class="slide-inner">
+                        <div class="slide-panel">
+                            <div class="kicker">结尾</div>
+                            <h2 class="title">
+                                最后留三句话，作为这份研究的收束
+                            </h2>
+                            <div class="closing-grid mt">
+                                <div class="panel">
+                                    <div class="mini">核心总结</div>
+                                    <h3>
+                                        这不是单纯设备股的故事，而是装机如何转化为耗材订阅的故事
+                                    </h3>
+                                    <p>
+                                        报告最有价值的地方，不在“龙头”标签，而在它把设备装机、客户锁定、过滤器替换、利润修复与估值切换放进同一条链条里解释。
+                                    </p>
+                                </div>
+                                <div class="panel">
+                                    <div class="mini">个人观点</div>
+                                    <h3>
+                                        困难不在看懂逻辑，而在等到信号一起出现
+                                    </h3>
+                                    <p>
+                                        好公司并不自动等于好买点。压制未去、结构未变、利润未修复时，过早把长期叙事当成立即兑现，容易让研究失去节奏感。
+                                    </p>
+                                </div>
+                                <div class="panel">
+                                    <div class="mini">给听众的建议</div>
+                                    <h3>把这份研究当成一份可复盘模板</h3>
+                                    <p>
+                                        写研究时同时记录：当下数据、长期假设、风险矩阵、等待条件，以及什么公告会让你改变动作。这样后续复盘时，才能知道是逻辑错了，还是时点不对。
+                                    </p>
+                                </div>
+                                <div class="panel">
+                                    <div class="mini">Q&A</div>
+                                    <h3>谢谢。欢迎继续追问这四件事</h3>
+                                    <p>
+                                        耗材占比何时真正抬升？减持压制何时真正结束？整合效果能否转成订单？利润端何时开始反映结构变化？
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="tiny mt">
+                                本稿保留原始研究表达，仅做结构整理与信息分层。请把它当成研究记录，不把它当成建议书。
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+        <script>
+            (function () {
+                const slides = Array.from(document.querySelectorAll(".slide"));
+                const navList = document.getElementById("navList");
+                const currentPageEl = document.getElementById("currentPage");
+                const totalPageEl = document.getElementById("totalPage");
+                const progressBar = document.getElementById("progressBar");
+                let current = 0,
+                    navItems = [],
+                    observer = null;
+                const total = slides.length;
+                totalPageEl.textContent = String(total).padStart(2, "0");
+                function isMobile() {
+                    return window.matchMedia("(max-width: 960px)").matches;
+                }
+                function buildNav() {
+                    navList.innerHTML = "";
+                    slides.forEach((slide, index) => {
+                        const item = document.createElement("button");
+                        item.className = "nav-item";
+                        item.type = "button";
+                        item.setAttribute(
+                            "aria-label",
+                            `跳转到第 ${index + 1} 页：${slide.dataset.title || ""}`,
+                        );
+                        item.innerHTML = `<span class="nav-num">${String(index).padStart(2, "0")}</span><span class="nav-copy"><strong>${slide.dataset.title || `第 ${index + 1} 页`}</strong><small>${slide.dataset.subtitle || ""}</small></span>`;
+                        item.addEventListener("click", () => {
+                            if (isMobile()) {
+                                current = index;
+                                updateUI();
+                                slides[index].scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start",
+                                });
+                            } else setActive(index, true);
+                        });
+                        navList.appendChild(item);
+                    });
+                    navItems = Array.from(
+                        navList.querySelectorAll(".nav-item"),
+                    );
+                }
+                function setActive(index, animateScroll) {
+                    current = Math.max(0, Math.min(index, total - 1));
+                    slides.forEach((slide, i) => {
+                        slide.classList.toggle("active", i === current);
+                        if (i === current && animateScroll) slide.scrollTop = 0;
+                    });
+                    updateUI();
+                }
+                function updateUI() {
+                    currentPageEl.textContent = String(current + 1).padStart(
+                        2,
+                        "0",
+                    );
+                    progressBar.style.width = `${((current + 1) / total) * 100}%`;
+                    navItems.forEach((item, i) => {
+                        const active = i === current;
+                        item.classList.toggle("active", active);
+                        item.setAttribute(
+                            "aria-current",
+                            active ? "true" : "false",
+                        );
+                    });
+                }
+                function go(delta) {
+                    if (isMobile()) {
+                        const next = Math.max(
+                            0,
+                            Math.min(current + delta, total - 1),
+                        );
+                        current = next;
+                        updateUI();
+                        slides[next].scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                        });
+                    } else setActive(current + delta, true);
+                }
+                document.addEventListener("keydown", (event) => {
+                    const t = event.target;
+                    if (
+                        t &&
+                        (["INPUT", "TEXTAREA", "SELECT"].includes(t.tagName) ||
+                            t.isContentEditable)
+                    )
+                        return;
+                    if (
+                        ["ArrowRight", "PageDown", " ", "Spacebar"].includes(
+                            event.key,
+                        )
+                    ) {
+                        event.preventDefault();
+                        go(1);
+                    } else if (["ArrowLeft", "PageUp"].includes(event.key)) {
+                        event.preventDefault();
+                        go(-1);
+                    } else if (event.key === "Home") {
+                        event.preventDefault();
+                        if (isMobile())
+                            slides[0].scrollIntoView({
+                                behavior: "smooth",
+                                block: "start",
+                            });
+                        setActive(0, true);
+                    } else if (event.key === "End") {
+                        event.preventDefault();
+                        if (isMobile())
+                            slides[total - 1].scrollIntoView({
+                                behavior: "smooth",
+                                block: "start",
+                            });
+                        setActive(total - 1, true);
+                    }
+                });
+                function setupObserver() {
+                    if (observer) observer.disconnect();
+                    if (!isMobile()) {
+                        slides.forEach((slide, i) =>
+                            slide.classList.toggle("active", i === current),
+                        );
+                        updateUI();
+                        return;
+                    }
+                    slides.forEach((slide) => slide.classList.add("active"));
+                    observer = new IntersectionObserver(
+                        (entries) => {
+                            const visible = entries
+                                .filter((e) => e.isIntersecting)
+                                .sort(
+                                    (a, b) =>
+                                        b.intersectionRatio -
+                                        a.intersectionRatio,
+                                );
+                            if (!visible.length) return;
+                            const idx = slides.indexOf(visible[0].target);
+                            if (idx !== -1) {
+                                current = idx;
+                                updateUI();
+                            }
+                        },
+                        {
+                            threshold: [0.25, 0.45, 0.65],
+                            rootMargin: "-10% 0px -45% 0px",
+                        },
+                    );
+                    slides.forEach((slide) => observer.observe(slide));
+                    updateUI();
+                }
+                let timer = null;
+                window.addEventListener("resize", () => {
+                    clearTimeout(timer);
+                    timer = setTimeout(() => {
+                        setupObserver();
+                        if (!isMobile()) setActive(current, false);
+                    }, 120);
+                });
+                buildNav();
+                updateUI();
+                setupObserver();
+            })();
+        </script>
+    </body>
+</html>
