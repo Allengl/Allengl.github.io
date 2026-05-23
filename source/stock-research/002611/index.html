@@ -3,21 +3,23 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>华辰装备深度研究报告</title>
+        <title>东方精工深度研究报告 · 原文未删减 HTML Slides</title>
         <style>
             :root {
-                --paper: #f5efe3;
-                --paper-2: #fbf7ef;
-                --ink: #2c2a25;
-                --muted: #7d7468;
-                --line: #ddd0bd;
-                --card: rgba(255, 255, 255, 0.62);
-                --accent: #9b4d3f;
-                --green: #355e4a;
-                --blue: #607989;
-                --gold: #b18a3b;
-                --shadow: 0 22px 70px rgba(78, 62, 43, 0.14);
-                --radius: 26px;
+                --paper: #f5efe4;
+                --paper-2: #fbf8f0;
+                --ink: #26312d;
+                --muted: #6f756f;
+                --line: #ded3bf;
+                --coral: #b96a5c;
+                --green: #2f5d50;
+                --blue: #587083;
+                --gold: #a18443;
+                --lav: #8b7aa7;
+                --shadow: 0 22px 70px rgba(75, 55, 31, 0.14);
+                --radius: 24px;
+                --deck-w: min(1720px, calc(100vw - 160px));
+                --deck-h: min(1050px, calc(100vh - 150px));
             }
             * {
                 box-sizing: border-box;
@@ -26,507 +28,562 @@
             body {
                 height: 100%;
                 margin: 0;
-                color: var(--ink);
-                font-family:
-                    "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC",
-                    system-ui, sans-serif;
-                background: var(--paper);
             }
             body {
-                overflow: hidden;
-            }
-            body::before {
-                content: "";
-                position: fixed;
-                inset: 0;
-                pointer-events: none;
-                opacity: 0.55;
+                color: var(--ink);
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "PingFang SC",
+                    "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+                background: var(--paper);
                 background-image:
                     linear-gradient(
-                        rgba(121, 100, 70, 0.08) 1px,
+                        rgba(118, 102, 77, 0.1) 1px,
                         transparent 1px
                     ),
                     linear-gradient(
                         90deg,
-                        rgba(121, 100, 70, 0.08) 1px,
+                        rgba(118, 102, 77, 0.1) 1px,
                         transparent 1px
-                    );
-                background-size: 22px 22px;
-            }
-            body::after {
-                content: "";
-                position: fixed;
-                inset: 0;
-                pointer-events: none;
-                background:
-                    radial-gradient(
-                        circle at 20% 10%,
-                        rgba(177, 138, 59, 0.14),
-                        transparent 32%
                     ),
                     radial-gradient(
-                        circle at 80% 20%,
-                        rgba(96, 121, 137, 0.12),
-                        transparent 28%
+                        circle at 22% 10%,
+                        rgba(255, 255, 255, 0.8),
+                        transparent 34%
                     );
-                mix-blend-mode: multiply;
+                background-size:
+                    22px 22px,
+                    22px 22px,
+                    100% 100%;
+                line-height: 1.72;
             }
             .deck-frame {
-                position: relative;
-                width: min(1800px, calc(100vw - 140px));
-                height: min(1080px, calc(100vh - 120px));
+                width: var(--deck-w);
+                height: var(--deck-h);
                 min-height: 720px;
-                margin: 60px auto;
+                margin: 75px auto;
                 display: grid;
-                grid-template-columns: 382px minmax(0, 1fr);
-                gap: 0;
-                z-index: 1;
-                border: 1px solid rgba(221, 208, 189, 0.68);
-                border-radius: var(--radius);
-                box-shadow: var(--shadow);
-                overflow: hidden;
-                background: rgba(250, 246, 237, 0.42);
+                grid-template-columns: 360px minmax(0, 1fr);
+                gap: 28px;
+                overflow: visible;
+            }
+            @media (max-height: 980px) {
+                .deck-frame {
+                    margin: 4vh auto;
+                    height: 92vh;
+                    min-height: 0;
+                }
             }
             .sidebar {
-                background: rgba(250, 246, 237, 0.78);
-                border: 0;
-                border-right: 1px solid var(--line);
-                border-radius: 0;
-                box-shadow: none;
-                padding: 28px 18px 24px;
+                height: 100%;
+                min-height: 0;
+                background: rgba(255, 252, 244, 0.72);
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                padding: 26px;
                 display: flex;
                 flex-direction: column;
-                min-height: 0;
-                overflow: hidden;
                 backdrop-filter: blur(8px);
+                overflow: hidden;
             }
             .brand {
                 font-family: Georgia, "Times New Roman", serif;
-                letter-spacing: 0.04em;
-                color: var(--accent);
+                color: var(--green);
                 font-size: 13px;
+                letter-spacing: 0.12em;
                 text-transform: uppercase;
             }
-            .side-title {
-                font-family: Georgia, "Songti SC", serif;
-                font-size: 26px;
-                line-height: 1.15;
-                margin: 10px 0 10px;
+            .sidebar h1 {
+                font-family: Georgia, "Noto Serif SC", "Songti SC", serif;
+                font-size: 29px;
+                line-height: 1.18;
+                margin: 12px 0 10px;
+                font-weight: 600;
             }
-            .side-desc {
-                font-size: 13px;
+            .sidebar .summary {
+                font-size: 14px;
                 color: var(--muted);
-                line-height: 1.7;
-                margin: 0 0 14px;
-            }
-            .meta-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
-                margin: 12px 0 16px;
-            }
-            .meta {
-                border: 1px solid var(--line);
-                background: rgba(255, 255, 255, 0.45);
-                border-radius: 14px;
-                padding: 8px;
-            }
-            .meta b {
-                display: block;
-                font-size: 16px;
-                color: var(--green);
-                font-family: Georgia, serif;
-            }
-            .meta span {
-                font-size: 11px;
-                color: var(--muted);
+                margin: 0 0 18px;
             }
             .nav-list {
-                overflow-y: auto;
-                overflow-x: hidden;
-                padding-right: 6px;
-                flex: 1;
+                overflow: auto;
+                padding-right: 4px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
                 min-height: 0;
-                overscroll-behavior: contain;
             }
             .nav-item {
-                width: 100%;
-                border: 0;
+                appearance: none;
+                border: 1px solid transparent;
                 background: transparent;
                 text-align: left;
+                border-radius: 16px;
+                padding: 10px 10px;
                 display: grid;
                 grid-template-columns: 38px 1fr;
-                gap: 10px;
-                padding: 10px 8px;
-                border-radius: 15px;
+                gap: 8px;
+                color: var(--muted);
                 cursor: pointer;
-                color: var(--ink);
-                margin-bottom: 4px;
+                transition: 0.22s ease;
+                font: inherit;
             }
             .nav-item:hover {
-                background: rgba(255, 255, 255, 0.55);
+                background: rgba(255, 255, 255, 0.58);
+                border-color: var(--line);
+                color: var(--ink);
             }
             .nav-item.active {
-                background: rgba(155, 77, 63, 0.09);
-                box-shadow: inset 0 0 0 1px rgba(155, 77, 63, 0.2);
+                background: rgba(255, 255, 255, 0.86);
+                border-color: #cbbda5;
+                color: var(--ink);
+                box-shadow: 0 8px 24px rgba(69, 49, 20, 0.08);
             }
             .nav-num {
                 font-family: Georgia, serif;
-                color: var(--accent);
-                font-size: 13px;
+                color: var(--coral);
+                font-size: 15px;
                 padding-top: 1px;
             }
-            .nav-item strong {
+            .nav-item b {
                 display: block;
-                font-size: 13px;
-                line-height: 1.35;
+                font-size: 14px;
+                line-height: 1.25;
+                font-weight: 650;
             }
             .nav-item em {
                 display: block;
-                margin-top: 4px;
                 font-style: normal;
-                font-size: 11px;
+                font-size: 12px;
+                line-height: 1.35;
+                margin-top: 4px;
                 color: var(--muted);
-                line-height: 1.25;
             }
-            .sidebar-footer {
-                padding-top: 14px;
+            .side-bottom {
+                margin-top: 18px;
                 border-top: 1px solid var(--line);
-                margin-top: 14px;
+                padding-top: 16px;
+            }
+            .page-count {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-family: Georgia, serif;
+                color: var(--muted);
+                font-size: 14px;
+                margin-bottom: 10px;
             }
             .progress-bar {
-                height: 6px;
-                background: rgba(95, 82, 62, 0.12);
-                border-radius: 99px;
+                height: 8px;
+                background: #e7ddcc;
+                border-radius: 999px;
                 overflow: hidden;
+                border: 1px solid #dacdb8;
             }
             .progress-bar span {
                 display: block;
                 height: 100%;
-                width: 0%;
-                background: linear-gradient(90deg, var(--accent), var(--gold));
-                border-radius: 99px;
+                width: 0;
+                background: linear-gradient(90deg, var(--green), var(--gold));
                 transition: width 0.25s ease;
             }
-            .pager {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                color: var(--muted);
+            .copyright {
                 font-size: 12px;
-                margin-top: 10px;
+                color: var(--muted);
+                margin-top: 12px;
             }
             .stage {
                 position: relative;
+                height: 100%;
                 min-width: 0;
-                min-height: 0;
+                background: rgba(255, 252, 245, 0.62);
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
                 overflow: hidden;
-                background: rgba(250, 246, 237, 0.5);
-                border: 0;
-                border-radius: 0;
-                box-shadow: none;
+            }
+            .stage:before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background:
+                    radial-gradient(
+                        circle at 80% 10%,
+                        rgba(185, 106, 92, 0.09),
+                        transparent 36%
+                    ),
+                    linear-gradient(
+                        120deg,
+                        rgba(255, 255, 255, 0.55),
+                        rgba(255, 255, 255, 0)
+                    );
+                pointer-events: none;
             }
             .slide {
                 position: absolute;
                 inset: 0;
-                padding: 28px 24px;
-                height: 100%;
-                opacity: 0;
-                transform: translateY(14px);
-                pointer-events: none;
-                transition:
-                    opacity 0.32s ease,
-                    transform 0.32s ease;
-                overflow: hidden;
+                padding: 56px 72px;
+                display: none;
+                overflow: auto;
+                scroll-padding-top: 56px;
             }
             .slide.active {
-                opacity: 1;
-                transform: translateY(0);
-                pointer-events: auto;
+                display: flex;
+                animation: rise 0.34s ease both;
+            }
+            .slide.center {
+                align-items: flex-start;
+                justify-content: center;
+            }
+            .slide.top {
+                align-items: flex-start;
+                justify-content: center;
+            }
+            @keyframes rise {
+                from {
+                    opacity: 0;
+                    transform: translateY(12px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             }
             .slide-inner {
-                height: 100%;
-                max-height: 100%;
-                background: rgba(255, 255, 255, 0.56);
-                border: 1px solid rgba(221, 208, 189, 0.72);
-                border-radius: 18px;
-                padding: 34px 40px;
-                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
-                display: flex;
-                flex-direction: column;
-                min-height: 0;
-                overflow: hidden;
+                width: 100%;
+                max-width: 1220px;
+                margin: 0 auto;
+                padding-bottom: 28px;
             }
             .kicker {
-                font-size: 12px;
-                letter-spacing: 0.12em;
+                font-size: 13px;
+                letter-spacing: 0.14em;
+                color: var(--green);
                 text-transform: uppercase;
-                color: var(--accent);
                 margin-bottom: 10px;
+                font-weight: 700;
             }
             .title,
             .slide-title {
-                font-family: Georgia, "Songti SC", "Noto Serif CJK SC", serif;
-                letter-spacing: -0.03em;
-                color: #26231f;
+                font-family: Georgia, "Noto Serif SC", "Songti SC", serif;
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                color: #1f2b27;
+            }
+            .title {
+                font-size: clamp(44px, 4.1vw, 72px);
+                line-height: 1.08;
+                margin: 10px 0 18px;
             }
             .slide-title {
-                font-size: 44px;
-                line-height: 1.12;
-                margin: 0 0 18px;
-                max-width: 1060px;
+                font-size: clamp(34px, 3vw, 52px);
+                line-height: 1.14;
+                margin: 0 0 14px;
             }
             .lead {
-                font-size: 18px;
-                color: #514b43;
-                line-height: 1.85;
+                font-size: 17px;
+                color: #515950;
+                margin: 0 0 22px;
+                max-width: 980px;
             }
-            .content-scroll {
-                flex: 1 1 auto;
-                min-height: 0;
-                max-height: 100%;
-                overflow-y: auto;
-                overflow-x: hidden;
-                padding-right: 16px;
-                scroll-behavior: smooth;
-                overscroll-behavior: contain;
+            .lead.xl {
+                font-size: clamp(18px, 1.7vw, 22px);
+                color: #3d4842;
             }
-            .content-scroll::-webkit-scrollbar,
-            .nav-list::-webkit-scrollbar {
-                width: 8px;
+            .meta-line {
+                font-size: 14px;
+                color: var(--muted);
+                letter-spacing: 0.08em;
             }
-            .content-scroll::-webkit-scrollbar-thumb,
-            .nav-list::-webkit-scrollbar-thumb {
-                background: rgba(94, 78, 56, 0.23);
-                border-radius: 99px;
+            .chips {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 22px;
             }
-            .source-heading {
-                font-family: Georgia, "Songti SC", serif;
-                font-size: 24px;
-                margin: 22px 0 14px;
-                color: var(--green);
-                line-height: 1.32;
+            .chip {
+                display: inline-flex;
+                align-items: center;
+                border: 1px solid #d8cbb7;
+                background: rgba(255, 255, 255, 0.58);
+                border-radius: 999px;
+                padding: 7px 12px;
+                color: #53615a;
+                font-size: 13px;
             }
-            .source-heading:first-child {
-                margin-top: 0;
+            .three-col {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 18px;
             }
-            .source-paragraph {
-                font-size: 16px;
-                line-height: 2.05;
-                margin: 0 0 16px;
-                color: #34302a;
-                text-align: justify;
+            .two-col {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
             }
-            .source-paragraph.alert {
-                background: rgba(177, 138, 59, 0.1);
-                border-left: 4px solid var(--gold);
-                border-radius: 12px;
-                padding: 12px 14px;
-            }
+            .card,
+            .panel,
             .note,
-            .source-callout {
-                background: rgba(255, 255, 255, 0.68);
+            .quote {
+                background: rgba(255, 255, 255, 0.62);
                 border: 1px solid var(--line);
-                border-left: 4px solid var(--accent);
-                border-radius: 18px;
-                padding: 16px 18px;
-                margin: 14px 0 18px;
+                border-radius: 20px;
+                box-shadow: 0 10px 28px rgba(67, 50, 27, 0.08);
+            }
+            .card {
+                padding: 22px;
+            }
+            .card h3 {
+                font-family: Georgia, "Noto Serif SC", serif;
+                font-size: 23px;
+                margin: 6px 0 10px;
+            }
+            .card p {
+                margin: 0;
+                color: #4f5a54;
+                font-size: 15px;
+            }
+            .num {
+                font-family: Georgia, serif;
+                color: var(--coral);
+                font-size: 24px;
+            }
+            .panel {
+                padding: 24px;
+                font-size: 17px;
+            }
+            .panel.emphasis {
+                background: rgba(47, 93, 80, 0.08);
+                border-color: rgba(47, 93, 80, 0.25);
+                font-family: Georgia, "Noto Serif SC", serif;
+                font-size: 28px;
+                color: var(--green);
+            }
+            .note {
+                padding: 18px 20px;
+                color: #49534e;
+                font-size: 15px;
+                margin-top: 18px;
+            }
+            .note.warn {
+                border-color: rgba(185, 106, 92, 0.35);
+                background: rgba(185, 106, 92, 0.06);
+            }
+            .quote {
+                padding: 24px 28px;
+                font-family: Georgia, "Noto Serif SC", serif;
+                font-size: 20px;
+                line-height: 1.78;
+                color: #26332d;
+                border-left: 5px solid var(--gold);
+            }
+            .quote.warn {
+                border-left-color: var(--coral);
+                font-family: inherit;
                 font-size: 16px;
-                line-height: 1.95;
-                color: #332f2a;
-                white-space: pre-wrap;
+            }
+            .diagram,
+            .timeline {
+                display: grid;
+                gap: 12px;
+                margin-top: 20px;
+            }
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+            .node {
+                display: grid;
+                grid-template-columns: 120px 1fr;
+                gap: 14px;
+                align-items: start;
+                padding: 16px 18px;
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                background: rgba(255, 255, 255, 0.58);
+            }
+            .node b {
+                font-family: Georgia, "Noto Serif SC", serif;
+                color: var(--green);
+            }
+            .node span {
+                color: #404b45;
             }
             .table-wrap {
                 overflow: auto;
-                max-width: 100%;
-                margin: 16px 0 24px;
                 border: 1px solid var(--line);
                 border-radius: 18px;
-                background: rgba(255, 255, 255, 0.58);
-                overscroll-behavior: contain;
+                background: rgba(255, 255, 255, 0.52);
+                box-shadow: 0 10px 26px rgba(67, 50, 27, 0.07);
+            }
+            .table-wrap.medium {
+                max-height: clamp(420px, 58vh, 650px);
+            }
+            .table-wrap.large {
+                max-height: clamp(460px, 62vh, 720px);
             }
             .material-table {
-                border-collapse: collapse;
                 width: 100%;
+                border-collapse: collapse;
+                font-size: 13.5px;
+                line-height: 1.48;
                 min-width: 760px;
-                font-size: 14px;
-                line-height: 1.65;
             }
             .material-table th {
                 position: sticky;
                 top: 0;
-                z-index: 1;
+                background: #294b5e;
+                color: #fff;
+                font-weight: 650;
                 text-align: left;
-                background: rgba(245, 239, 227, 0.96);
-                color: #3c352d;
-                font-weight: 700;
-                border-bottom: 1px solid var(--line);
-                padding: 12px 14px;
-                white-space: normal;
+                padding: 9px 11px;
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                z-index: 1;
             }
             .material-table td {
                 vertical-align: top;
-                border-bottom: 1px solid rgba(221, 208, 189, 0.72);
-                border-right: 1px solid rgba(221, 208, 189, 0.46);
-                padding: 12px 14px;
-                color: #38332d;
-                min-width: 120px;
+                padding: 8px 11px;
+                border: 1px solid #ded5c6;
+                background: rgba(255, 255, 255, 0.58);
             }
-            .material-table tr:last-child td {
-                border-bottom: 0;
+            .material-table tr:nth-child(even) td {
+                background: rgba(250, 246, 237, 0.72);
             }
-            .chips {
-                display: flex;
-                gap: 8px;
-                flex-wrap: wrap;
-                margin-top: 10px;
+            .cover-block {
+                max-width: 940px;
+                padding-top: 6px;
             }
-            .chip {
-                border: 1px solid var(--line);
-                background: rgba(255, 255, 255, 0.52);
-                border-radius: 99px;
-                padding: 6px 10px;
-                color: var(--muted);
-                font-size: 12px;
+            .cover-block .note {
+                display: inline-block;
+                margin-top: 4px;
             }
-            .toolbar {
+            .footer-hint {
                 position: absolute;
                 right: 22px;
-                top: 18px;
-                z-index: 5;
-                display: flex;
-                gap: 8px;
-            }
-            .toolbtn {
-                border: 1px solid var(--line);
-                background: rgba(255, 255, 255, 0.62);
+                bottom: 14px;
                 color: var(--muted);
-                border-radius: 999px;
-                padding: 8px 12px;
-                cursor: pointer;
                 font-size: 12px;
             }
-            .toolbtn:hover {
-                color: var(--ink);
-                background: rgba(255, 255, 255, 0.82);
+            .stage,
+            .slide {
+                overscroll-behavior: contain;
             }
-            mark {
-                background: rgba(177, 138, 59, 0.24);
-                color: inherit;
-                padding: 0 2px;
-                border-radius: 4px;
-            }
-            .searchbox {
-                width: 100%;
-                border: 1px solid var(--line);
-                background: rgba(255, 255, 255, 0.55);
-                border-radius: 14px;
-                padding: 10px 12px;
-                outline: none;
-                margin: 0 0 12px;
-                color: var(--ink);
-            }
-
-            @media (max-width: 1280px) and (min-width: 981px) {
+            @media (max-height: 760px) {
                 .deck-frame {
-                    width: calc(100vw - 48px);
-                    height: calc(100vh - 48px);
-                    margin: 24px auto;
-                    grid-template-columns: 330px minmax(0, 1fr);
+                    height: 96vh;
+                    margin: 2vh auto;
                 }
                 .slide {
-                    padding: 22px;
+                    padding: 28px 40px;
+                }
+                .sidebar {
+                    padding: 20px;
+                }
+                .sidebar h1 {
+                    font-size: 25px;
+                }
+                .nav-item {
+                    padding: 8px 10px;
+                }
+                .table-wrap.medium {
+                    max-height: 440px;
+                }
+                .table-wrap.large {
+                    max-height: 480px;
+                }
+            }
+            @media (max-width: 1280px) {
+                :root {
+                    --deck-w: 96vw;
+                    --deck-h: 94vh;
+                }
+                .deck-frame {
+                    grid-template-columns: 330px minmax(0, 1fr);
+                    gap: 22px;
+                    margin: 3vh auto;
+                }
+                .slide {
+                    padding: 38px 46px;
                 }
                 .slide-inner {
-                    padding: 28px 30px;
+                    max-width: 1040px;
+                }
+                .title {
+                    font-size: clamp(42px, 4.4vw, 58px);
                 }
                 .slide-title {
-                    font-size: 36px;
+                    font-size: clamp(32px, 3.4vw, 44px);
                 }
             }
             @media (max-width: 980px) {
-                body {
-                    overflow: auto;
-                }
                 .deck-frame {
-                    display: block;
                     height: auto;
                     min-height: 0;
                     margin: 0;
-                    width: 100vw;
-                    border-radius: 0;
-                    border: 0;
-                    box-shadow: none;
+                    width: 100%;
+                    display: block;
                 }
                 .sidebar {
                     position: sticky;
                     top: 0;
-                    z-index: 10;
+                    z-index: 5;
                     border-radius: 0;
-                    max-height: 46vh;
-                    border-right: 0;
-                    border-bottom: 1px solid var(--line);
+                    max-height: 42vh;
                 }
                 .stage {
                     border-radius: 0;
-                    min-height: 72vh;
+                    min-height: 58vh;
+                    height: auto;
                 }
                 .slide {
                     position: relative;
+                    display: flex !important;
+                    min-height: auto;
+                    padding: 30px 20px;
+                    border-bottom: 1px solid var(--line);
+                }
+                .slide:not(.active) {
+                    animation: none;
+                    opacity: 1;
+                }
+                .nav-list {
                     display: none;
-                    padding: 18px;
-                    min-height: 72vh;
                 }
-                .slide.active {
-                    display: block;
+                .three-col,
+                .two-col {
+                    grid-template-columns: 1fr;
                 }
-                .slide-inner {
-                    padding: 22px 18px;
+                .title {
+                    font-size: 40px;
                 }
                 .slide-title {
-                    font-size: 28px;
+                    font-size: 32px;
                 }
-                .source-paragraph {
-                    font-size: 15px;
-                    line-height: 1.9;
+                .deck-frame .stage {
+                    overflow: visible;
                 }
             }
             @media print {
                 body {
-                    background: #fff;
-                }
-                body::before,
-                body::after,
-                .sidebar,
-                .toolbar {
-                    display: none !important;
+                    background: white;
                 }
                 .deck-frame {
                     display: block;
-                    width: auto;
+                    width: 100%;
                     height: auto;
                     margin: 0;
                 }
+                .sidebar {
+                    display: none;
+                }
                 .stage {
                     box-shadow: none;
-                    border: 0;
-                    overflow: visible;
+                    border: none;
                 }
                 .slide {
+                    display: flex !important;
                     position: relative;
-                    opacity: 1 !important;
-                    transform: none !important;
                     page-break-after: always;
-                    padding: 0;
-                    display: block;
-                }
-                .slide-inner {
-                    box-shadow: none;
-                    border: 0;
-                    min-height: auto;
-                }
-                .content-scroll {
-                    overflow: visible;
+                    min-height: 100vh;
                 }
             }
         </style>
@@ -534,2083 +591,1169 @@
     <body>
         <div class="deck-frame">
             <aside class="sidebar">
-                <div class="brand">Allen's Research Notes #300809</div>
-                <div class="side-title">华辰装备<br />深度研究报告</div>
-                <p class="side-desc">
-                    原始报告文字未删减阅读版。保留全文段落、表格与重点判断；右侧分章阅读，左侧快速定位。
+                <div class="brand">Allen's Talk #002611</div>
+                <h1>东方精工深度研究报告</h1>
+                <p class="summary">
+                    原始报告文字未删减版本。左侧目录切换章节，右侧逐页演示；长表格保留完整内容并可滚动查看。
                 </p>
-                <input
-                    id="search"
-                    class="searchbox"
-                    placeholder="搜索全文，例如：碳化硅、扣非、减持"
-                />
-                <div class="meta-grid">
-                    <div class="meta"><b>27</b><span>阅读章节</span></div>
-                    <div class="meta"><b>21</b><span>原文表格</span></div>
-                    <div class="meta"><b>64</b><span>段落/重点块</span></div>
-                    <div class="meta"><b>10935</b><span>文本字符</span></div>
-                </div>
                 <nav class="nav-list" id="navList">
                     <button class="nav-item" data-index="0">
                         <span class="nav-num">00</span
                         ><span
-                            ><strong>华辰装备（300809）</strong
-                            ><em>6 个原文块</em></span
+                            ><b>开场页</b
+                            ><em
+                                >报告原文完整保留，转换为可交互网页 slides</em
+                            ></span
                         ></button
                     ><button class="nav-item" data-index="1">
                         <span class="nav-num">01</span
                         ><span
-                            ><strong>一、公司本质</strong
-                            ><em>3 个原文块 · 1 张表</em></span
+                            ><b>今天聊什么</b
+                            ><em
+                                >用“确定性现金—产业链闭环—穿透估值—风险跟踪”的路径读完报告</em
+                            ></span
                         ></button
                     ><button class="nav-item" data-index="2">
                         <span class="nav-num">02</span
                         ><span
-                            ><strong
-                                >二、六条增长逻辑线——全部落地，非纯预期</strong
-                            ><em>3 个原文块 · 1 张表</em></span
+                            ><b>一、研究历程——为什么这份报告与众不同</b
+                            ><em>为什么这份报告与众不同</em></span
                         ></button
                     ><button class="nav-item" data-index="3">
                         <span class="nav-num">03</span
                         ><span
-                            ><strong
-                                >逻辑一：国产EUV光刻机供应链——国家级技术背书，完全未被市场发现</strong
-                            ><em>5 个原文块</em></span
+                            ><b>二、公司基本面</b
+                            ><em>公司当前主业、财务与股权投资基础盘</em></span
                         ></button
                     ><button class="nav-item" data-index="4">
                         <span class="nav-num">04</span
                         ><span
-                            ><strong
-                                >逻辑二：国内唯一能量产内螺纹磨床——行星滚柱丝杠国产化的必经之路</strong
-                            ><em>5 个原文块 · 1 张表</em></span
+                            ><b>三、Fosber出售——最确定的价值释放事件</b
+                            ><em>最确定的价值释放事件</em></span
                         ></button
                     ><button class="nav-item" data-index="5">
                         <span class="nav-num">05</span
                         ><span
-                            ><strong
-                                >逻辑三A：长光华辰合资公司——技术转化已完成，不是意向而是运转中的机器</strong
-                            ><em>4 个原文块 · 1 张表</em></span
+                            ><b>重大资产重组认定的意义</b
+                            ><em>审批、披露与股东大会的信号价值</em></span
                         ></button
                     ><button class="nav-item" data-index="6">
                         <span class="nav-num">06</span
                         ><span
-                            ><strong
-                                >逻辑三B：碳化硅衬底超精密磨床——订单概率90%+，时间窗口已前移至2026年Q1-</strong
-                            ><em>2 个原文块</em></span
+                            ><b>四、完整投资版图——15张Pre-IPO门票</b
+                            ><em
+                                >参股公司 30 家，已知约 20
+                                家；下表保留原始字段</em
+                            ></span
                         ></button
                     ><button class="nav-item" data-index="7">
                         <span class="nav-num">07</span
                         ><span
-                            ><strong>第一层：硬证据——市场与竞争格局</strong
-                            ><em>2 个原文块 · 1 张表</em></span
+                            ><b>完整投资版图（续）</b
+                            ><em>后半部分标的与 Fosber 出售现金保留</em></span
                         ></button
                     ><button class="nav-item" data-index="8">
                         <span class="nav-num">08</span
                         ><span
-                            ><strong
-                                >第二层：硬证据——招标技术规格精准对位（概率升级的核心依据）</strong
-                            ><em>2 个原文块 · 1 张表</em></span
+                            ><b>五、最重要的发现——人形机器人完整产业链闭环</b
+                            ><em>报告认为这是全文最重要的发现</em></span
                         ></button
                     ><button class="nav-item" data-index="9">
                         <span class="nav-num">09</span
                         ><span
-                            ><strong
-                                >第三层：执行层信号——行政与财务数据（第三方来源，权重高于招聘推断）</strong
-                            ><em>2 个原文块 · 1 张表</em></span
+                            ><b>为什么这个产业链闭环如此重要</b
+                            ><em>从财务投资转向产业协同的关键论述</em></span
                         ></button
                     ><button class="nav-item" data-index="10">
                         <span class="nav-num">10</span
                         ><span
-                            ><strong
-                                >第四层：执行层信号——招聘行为（强烈信号，非直接证据，权重低于行政数据）</strong
-                            ><em>3 个原文块 · 1 张表</em></span
+                            ><b>六、穿透估值——市场显著低估</b
+                            ><em
+                                >市场显著低估：报告采用穿透估值，而不是传统营收
+                                / PE</em
+                            ></span
                         ></button
                     ><button class="nav-item" data-index="11">
                         <span class="nav-num">11</span
                         ><span
-                            ><strong
-                                >逻辑三C：EUV光刻机供应链——战略估值溢价，非短期业绩弹性</strong
-                            ><em>4 个原文块 · 1 张表</em></span
+                            ><b>估值结论</b
+                            ><em>保守估算与未计入的上行期权</em></span
                         ></button
                     ><button class="nav-item" data-index="12">
                         <span class="nav-num">12</span
                         ><span
-                            ><strong
-                                >逻辑四：人形机器人减速器——亚微米随动磨床覆盖RV和谐波双技术路线</strong
-                            ><em>2 个原文块</em></span
+                            ><b>七、对市场悲观观点的正面回应</b
+                            ><em>把悲观观点放回正确的估值框架中</em></span
                         ></button
                     ><button class="nav-item" data-index="13">
                         <span class="nav-num">13</span
                         ><span
-                            ><strong
-                                >逻辑五：精密数控直线导轨磨床——工业母机+航空航天+精密仪器多领域覆盖</strong
-                            ><em>2 个原文块</em></span
+                            ><b>真正需要警惕的风险</b
+                            ><em
+                                >报告强调：市场没有充分讨论的部分反而更应该核实</em
+                            ></span
                         ></button
                     ><button class="nav-item" data-index="14">
                         <span class="nav-num">14</span
                         ><span
-                            ><strong
-                                >逻辑六：数控轧辊磨床现金牛——全球前三，国内高端市占率28-40%，20年积累</strong
-                            ><em>2 个原文块</em></span
+                            ><b>八、催化剂时间线</b
+                            ><em>哪些事件会触发市场重新定价</em></span
                         ></button
                     ><button class="nav-item" data-index="15">
                         <span class="nav-num">15</span
                         ><span
-                            ><strong
-                                >三、竞争格局——财务对比与技术维度分析</strong
-                            ><em>1 个原文块</em></span
+                            ><b>九、风险矩阵</b
+                            ><em>把“看多逻辑”放进风险矩阵里检验</em></span
                         ></button
                     ><button class="nav-item" data-index="16">
                         <span class="nav-num">16</span
                         ><span
-                            ><strong
-                                >3.1
-                                核心竞争对手财务对比——毛利率与扣非净利润</strong
-                            ><em>4 个原文块 · 1 张表</em></span
+                            ><b>十、持续跟踪的核心指标</b
+                            ><em
+                                >后续不是只看股价，而是持续验证关键事实</em
+                            ></span
                         ></button
                     ><button class="nav-item" data-index="17">
                         <span class="nav-num">17</span
                         ><span
-                            ><strong
-                                >3.2
-                                技术维度扩展对比——环宇数控、国盛智科、创世纪</strong
-                            ><em>4 个原文块 · 1 张表</em></span
+                            ><b>十一、综合评级与投资建议</b
+                            ><em>报告最终评级与持有维度</em></span
                         ></button
                     ><button class="nav-item" data-index="18">
                         <span class="nav-num">18</span
                         ><span
-                            ><strong>四、财务数据与业绩预测</strong
-                            ><em>3 个原文块 · 1 张表</em></span
-                        ></button
-                    ><button class="nav-item" data-index="19">
-                        <span class="nav-num">19</span
-                        ><span
-                            ><strong>机构预测与估值</strong
-                            ><em>3 个原文块 · 1 张表</em></span
-                        ></button
-                    ><button class="nav-item" data-index="20">
-                        <span class="nav-num">20</span
-                        ><span
-                            ><strong>五、筹码结构与股东动态</strong
-                            ><em>2 个原文块 · 1 张表</em></span
-                        ></button
-                    ><button class="nav-item" data-index="21">
-                        <span class="nav-num">21</span
-                        ><span
-                            ><strong
-                                >六、当前压制——实控人减持，有限期，已知</strong
-                            ><em>4 个原文块 · 1 张表</em></span
-                        ></button
-                    ><button class="nav-item" data-index="22">
-                        <span class="nav-num">22</span
-                        ><span
-                            ><strong>七、催化剂时间线与跟踪指标</strong
-                            ><em>6 个原文块 · 2 张表</em></span
-                        ></button
-                    ><button class="nav-item" data-index="23">
-                        <span class="nav-num">23</span
-                        ><span
-                            ><strong>八、风险矩阵</strong
-                            ><em>2 个原文块 · 1 张表</em></span
-                        ></button
-                    ><button class="nav-item" data-index="24">
-                        <span class="nav-num">24</span
-                        ><span
-                            ><strong
-                                >九、技术面分析——底部特征积累，进攻型建仓的价格依据</strong
-                            ><em>3 个原文块 · 1 张表</em></span
-                        ></button
-                    ><button class="nav-item" data-index="25">
-                        <span class="nav-num">25</span
-                        ><span
-                            ><strong>十、进攻型建仓框架</strong
-                            ><em>4 个原文块 · 2 张表</em></span
-                        ></button
-                    ><button class="nav-item" data-index="26">
-                        <span class="nav-num">26</span
-                        ><span
-                            ><strong>免责声明</strong><em>2 个原文块</em></span
+                            ><b>⚠️ 重要声明</b
+                            ><em>请保留在所有传播与阅读场景中</em></span
                         >
                     </button>
                 </nav>
-                <div class="sidebar-footer">
-                    <div class="progress-bar"><span id="progress"></span></div>
-                    <div class="pager">
-                        <span id="pageNow">01</span
-                        ><span id="pageTotal">/27</span>
+                <div class="side-bottom">
+                    <div class="page-count">
+                        <span id="pageNow">00</span
+                        ><span id="pageTotal">19</span>
                     </div>
-                    <div class="chips">
-                        <span class="chip">未删减</span
-                        ><span class="chip">原文顺序</span
-                        ><span class="chip">键盘翻页</span>
+                    <div class="progress-bar"><span id="progress"></span></div>
+                    <div class="copyright">
+                        © 2026 · 仅供研究复盘，不构成投资建议
                     </div>
                 </div>
             </aside>
             <main class="stage" id="stage">
-                <div class="toolbar">
-                    <button class="toolbtn" id="prevBtn">上一页</button
-                    ><button class="toolbtn" id="nextBtn">下一页</button
-                    ><button class="toolbtn" onclick="window.print()">
-                        打印/PDF
-                    </button>
-                </div>
-
-                <section
-                    class="slide active"
-                    id="slide-0"
-                    data-title="华辰装备（300809）"
-                >
+                <section class="slide center" data-title="开场页">
                     <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 01 / 27</div>
-                        <h1 class="slide-title">华辰装备（300809）</h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="0">
-                                华辰装备（300809）
-                            </h2>
-                            <h2 class="source-heading" data-block="1">
-                                深度研究报告
-                            </h2>
-                            <div class="note source-callout" data-block="2">
-                                磨削当下 · 光铸未来 ·
-                                国内唯一能量产内螺纹磨床的企业
+                        <div class="kicker">东方精工研究</div>
+                        <h2 class="slide-title">开场页</h2>
+                        <p class="lead">
+                            报告原文完整保留，转换为可交互网页 slides
+                        </p>
+                        <div class="cover-block">
+                            <div class="meta-line">
+                                2026 年 3 月 4 日 · 深度研究报告·最终版
                             </div>
-                            <p class="source-paragraph" data-block="3">
-                                研究日期：2026年3月7日
+                            <h1 class="title">
+                                东方精工（002611）深度研究报告
+                            </h1>
+                            <p class="lead xl">
+                                参股公司 30 家 · 人形机器人完整产业链 · Pre-IPO
+                                门票 15 张+
                             </p>
-                            <p class="source-paragraph" data-block="4">
-                                股票代码：300809（创业板） | 当前价格：35.20元
+                            <p class="note">
+                                特殊机会 · 不对称风险收益结构 · 2-3
+                                年战略持有<br />仅供参考，不构成投资建议
                             </p>
-                            <div class="note source-callout" data-block="5">
-                                核心判断：华辰装备是国内精密磨削装备的稀缺标的。现金牛主业（轧辊磨床全球前三）托底，六条增长逻辑线全部落地有官方文件支撑。三条逻辑构成当前35元的支撑：①轧辊磨床现金牛（底部25-28元）②人形机器人丝杠磨床100台在手订单（支撑35元合理）③碳化硅超精密磨床首单概率90%以上、时间窗口已前移至2026年Q1-Q2（超出当前估值的增量）。EUV光刻机供应链是压在以上三条之上的免费战略期权——不定价，但不消失。减持窗口4月19日到期，年报净利润预增193%-242%即将披露，半年零调研认知差极大——布局窗口正在开启。
+                            <div class="chips">
+                                <span class="chip">002611</span
+                                ><span class="chip">Fosber 出售</span
+                                ><span class="chip">人形机器人</span
+                                ><span class="chip">Pre-IPO</span
+                                ><span class="chip">穿透估值</span
+                                ><span class="chip">风险矩阵</span>
                             </div>
                         </div>
                     </div>
                 </section>
-                <section class="slide" id="slide-1" data-title="一、公司本质">
+                <section class="slide top" data-title="今天聊什么">
                     <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 02 / 27</div>
-                        <h1 class="slide-title">一、公司本质</h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="6">
-                                一、公司本质
-                            </h2>
-                            <p class="source-paragraph" data-block="7">
-                                华辰装备成立于2007年，是国内高端精密磨削装备的领先企业，深耕行业近20年。以「磨床」为核心，构建了四大产品线：数控轧辊磨床、亚微米级高端复合磨削系列、精密螺纹磨床（内/外）、精密数控直线导轨磨床。2024年被认定为专精特新小巨人，与清华大学共建智能磨削技术联合研究中心。
-                            </p>
-                            <div class="table-wrap" data-block="8">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>基本信息</th>
-                                            <th>内容</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>股票代码</td>
-                                            <td>300809（创业板）</td>
-                                        </tr>
-                                        <tr>
-                                            <td>当前价格</td>
-                                            <td>35.20元（2026-03-07）</td>
-                                        </tr>
-                                        <tr>
-                                            <td>市值</td>
-                                            <td>约53亿元</td>
-                                        </tr>
-                                        <tr>
-                                            <td>核心主业</td>
-                                            <td>
-                                                高端精密数控磨削装备研发、制造与服务
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>国内高端轧辊磨床市占率</td>
-                                            <td>
-                                                约28-40%（不同口径），全球前三
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>主要客户</td>
-                                            <td>
-                                                宝武集团、鞍钢集团、首钢集团等200余家钢铁企业
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>荣誉认定</td>
-                                            <td>
-                                                专精特新小巨人、清华大学联合研究中心
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>机构覆盖</td>
-                                            <td>
-                                                华创证券（强推）、东吴证券（增持）
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>机构调研</td>
-                                            <td>
-                                                ⚠️
-                                                最近半年零调研记录——认知差极大
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="kicker">阅读地图</div>
+                        <h2 class="slide-title">今天聊什么</h2>
+                        <p class="lead">
+                            用“确定性现金—产业链闭环—穿透估值—风险跟踪”的路径读完报告
+                        </p>
+                        <div class="three-col">
+                            <div class="card">
+                                <span class="num">01</span>
+                                <h3>先看确定性现金</h3>
+                                <p>
+                                    Fosber
+                                    出售是报告中最确定的价值释放事件：安永备考报表确认净到手约
+                                    60.28 亿元。
+                                </p>
+                            </div>
+                            <div class="card">
+                                <span class="num">02</span>
+                                <h3>再看产业链闭环</h3>
+                                <p>
+                                    从大脑、感知、控制、执行到整机，报告认为东方精工已形成完整的人形机器人产业链卡位。
+                                </p>
+                            </div>
+                            <div class="card">
+                                <span class="num">03</span>
+                                <h3>最后看重估逻辑</h3>
+                                <p>
+                                    报告的核心分歧不是传统
+                                    PE，而是市场是否愿意把它从制造公司重新理解为科技投资控股平台。
+                                </p>
+                            </div>
+                        </div>
+                        <p class="note">
+                            本页为阅读导览；后续各页保留报告原始文字、表格与风险声明。
+                        </p>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    data-title="一、研究历程——为什么这份报告与众不同"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">01 研究历程</div>
+                        <h2 class="slide-title">
+                            一、研究历程——为什么这份报告与众不同
+                        </h2>
+                        <p class="lead">为什么这份报告与众不同</p>
+                        <p class="lead">
+                            本报告是今日一整天深度对话研究的最终成果，历经十余轮信息迭代、逐层穿透，从表面的&#x27;瓦楞纸板设备公司&#x27;一直剥开到&#x27;手持15张以上Pre-IPO门票的人形机器人产业链控股平台&#x27;。这个穿透过程本身，就是东方精工最重要的投资价值所在。
+                        </p>
+                        <div class="timeline">
+                            <div class="node">
+                                <b>第一层</b
+                                ><span
+                                    >瓦楞纸板设备，47倍PE，大多数人止步于此</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>第二层</b
+                                ><span
+                                    >Fosber出售：净到手60.28亿现金（安永备考报表确认），十年9倍增值，相当于市值30%</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>第三层</b
+                                ><span
+                                    >买方博枫（AUM超1万亿美元西方资本），六国审批政治阻力极小</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>第四层</b
+                                ><span
+                                    >百胜动力+英伟达供应链+东方元启（持股80%）整机制造</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>第五层</b
+                                ><span
+                                    >参股30家公司——人形机器人完整产业链+核聚变+低空经济+自动驾驶</span
+                                >
                             </div>
                         </div>
                     </div>
                 </section>
-                <section
-                    class="slide"
-                    id="slide-2"
-                    data-title="二、六条增长逻辑线——全部落地，非纯预期"
-                >
+                <section class="slide top" data-title="二、公司基本面">
                     <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 03 / 27</div>
-                        <h1 class="slide-title">
-                            二、六条增长逻辑线——全部落地，非纯预期
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="9">
-                                二、六条增长逻辑线——全部落地，非纯预期
-                            </h2>
-                            <p class="source-paragraph" data-block="10">
-                                华辰装备最大的投资价值在于：六条增长逻辑线全部已有官方文件、投资者关系记录或在手订单支撑，没有一条是纯粹的市场预期。壁垒由高到低排列如下：
-                            </p>
-                            <div class="table-wrap" data-block="11">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>排序</th>
-                                            <th>赛道</th>
-                                            <th>核心壁垒</th>
-                                            <th>验证状态</th>
-                                            <th>市场是否定价</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>国产EUV光刻机供应链</td>
-                                            <td>
-                                                长春光机所唯一采购方，国家02专项核心机构
-                                            </td>
-                                            <td>
-                                                ✅ 2025年8月中标公告，董秘确认
-                                            </td>
-                                            <td>❌ 完全未定价</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>内螺纹磨床——行星滚柱丝杠</td>
-                                            <td>
-                                                国内唯一能量产，全球仅德日少数厂商能做
-                                            </td>
-                                            <td>
-                                                ✅
-                                                福立旺100台在手订单（含内螺纹磨床）
-                                            </td>
-                                            <td>❌ 完全未定价</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>半导体碳化硅超精密磨床</td>
-                                            <td>
-                                                首台已交付客户验证，合资公司长光华辰设立
-                                            </td>
-                                            <td>✅ 公告确认，合资公司已设立</td>
-                                            <td>❌ 未定价</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>人形机器人RV/谐波减速器</td>
-                                            <td>
-                                                亚微米随动磨床，用于减速器核心零件精密磨削
-                                            </td>
-                                            <td>✅ 财联社2024年7月官方确认</td>
-                                            <td>⚠️ 部分定价</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>人形机器人外螺纹/外圆磨床</td>
-                                            <td>
-                                                PO级最高精度，100台在手订单（福立旺）
-                                            </td>
-                                            <td>✅ 合同签署，机构研报确认</td>
-                                            <td>⚠️ 部分定价（被当概念股）</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>钢铁轧辊磨床（现金牛）</td>
-                                            <td>
-                                                全球前三，国内高端市占率28-40%，20年深耕
-                                            </td>
-                                            <td>✅ 持续运营，200+客户</td>
-                                            <td>✅ 已定价</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="kicker">02 公司基本面</div>
+                        <h2 class="slide-title">二、公司基本面</h2>
+                        <p class="lead">公司当前主业、财务与股权投资基础盘</p>
+                        <div class="table-wrap medium">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>证券代码</th>
+                                        <th>002611（深交所主板）</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>成立时间</td>
+                                        <td>1996年12月9日</td>
+                                    </tr>
+                                    <tr>
+                                        <td>实际控制人</td>
+                                        <td>唐灼林、唐灼棉</td>
+                                    </tr>
+                                    <tr>
+                                        <td>注册资本</td>
+                                        <td>121728.634万元人民币</td>
+                                    </tr>
+                                    <tr>
+                                        <td>员工人数</td>
+                                        <td>2259人</td>
+                                    </tr>
+                                    <tr>
+                                        <td>主营业务（现）</td>
+                                        <td>
+                                            智能包装装备（Fosber，出售中）、水上动力设备（百胜动力）
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>主营业务（未来）</td>
+                                        <td>
+                                            水上动力设备+人工智能机器人+新质生产力战略投资
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024年营收</td>
+                                        <td>47.78亿元（+0.68%）</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024年净利润</td>
+                                        <td>5.01亿元（+15.54%）</td>
+                                    </tr>
+                                    <tr>
+                                        <td>资产负债率</td>
+                                        <td>30.61%（持续下降，财务稳健）</td>
+                                    </tr>
+                                    <tr>
+                                        <td>当前市值</td>
+                                        <td>约200亿元人民币</td>
+                                    </tr>
+                                    <tr>
+                                        <td>参股公司</td>
+                                        <td>
+                                            30家（已披露约20家，仍有约10家未完整公开）
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </section>
                 <section
-                    class="slide"
-                    id="slide-3"
-                    data-title="逻辑一：国产EUV光刻机供应链——国家级技术背书，完全未被市场发现"
+                    class="slide top"
+                    data-title="三、Fosber出售——最确定的价值释放事件"
                 >
                     <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 04 / 27</div>
-                        <h1 class="slide-title">
-                            逻辑一：国产EUV光刻机供应链——国家级技术背书，完全未被市场发现
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="12">
-                                逻辑一：国产EUV光刻机供应链——国家级技术背书，完全未被市场发现
-                            </h2>
-                            <p class="source-paragraph" data-block="13">
-                                2025年8月，华辰装备中标中国科学院长春光学精密机械与物理研究所「亚微米数控磨抛加工中心采购项目」——这是整个研究框架里壁垒最高、认知差最大的一条逻辑。
-                            </p>
-                            <p class="source-paragraph" data-block="14">
-                                长春光机所的真实身份：中国EUV光刻机研发的国家级核心机构。自上世纪90年代起专注EUV/X射线成像技术研究，2002年研制国内第一套EUV光刻原理装置，承担02专项「极紫外光刻关键技术研究」，成员包含中科院多个顶级研究所+北理工、哈工大、华中科技大学。2017年该项目顺利通过国家验收。
-                            </p>
-                            <p class="source-paragraph" data-block="15">
-                                EUV光刻机的核心光学元件——超光滑反射镜、多层膜光学系统——需要亚微米甚至纳米级精度的超精密磨抛加工。华辰装备中标的正是这台母机。长春光机所的采购标准极为严格，能中标意味着华辰的精度已达到国家顶级光学工程的验证标准。
-                            </p>
-                            <div class="note source-callout" data-block="16">
-                                关键推论：全球能做EUV光学元件超精密磨抛加工的设备供应商屈指可数，主要是德国和日本厂商。华辰中标长春光机所，是中国EUV光刻机自主可控供应链建立的重要一环。这条逻辑在A股市场里完全没有被定价——市场只知道华辰是「人形机器人概念股」。
-                            </div>
+                        <div class="kicker">03 Fosber 出售</div>
+                        <h2 class="slide-title">
+                            三、Fosber出售——最确定的价值释放事件
+                        </h2>
+                        <p class="lead">最确定的价值释放事件</p>
+                        <div class="table-wrap medium">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>交易规模</th>
+                                        <th>
+                                            基础对价7.74亿欧元，扣除狄伦拿贷款偿还5,554万后，安永备考报表确认净到手约60.28亿人民币；或有对价最高额外2,500万欧元
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>买方</td>
+                                        <td>
+                                            ForesightUSBidCo,Inc.（美国）+ForesightItalyBidCoS.p.A.（意大利）——博枫集团专项SPV
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>卖出资产</td>
+                                        <td>
+                                            广东佛斯伯100%+狄伦拿（广东）100%+FosberS.p.A.100%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>十年回报</td>
+                                        <td>
+                                            2014/2017年合计约7400万欧元收购，此次出售7.74亿欧元，增值约9倍
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>每股现金</td>
+                                        <td>
+                                            约5.18元/股（基于12.17亿总股本）
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>审批状态</td>
+                                        <td>
+                                            董事会已通过；尚需股东大会审议+六国监管机构审批
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>审批风险判断</td>
+                                        <td>
+                                            买方为西方资本，方向为中国卖给西方，政治阻力极小；时间风险大于通过风险
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>最新进展</td>
+                                        <td>
+                                            2026年2月26日公告：标的经营正常，各项工作有序推进
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="重大资产重组认定的意义">
+                    <div class="slide-inner">
+                        <div class="kicker">03 程序节点</div>
+                        <h2 class="slide-title">重大资产重组认定的意义</h2>
+                        <p class="lead">审批、披露与股东大会的信号价值</p>
+                        <div class="quote">📋 重大资产重组认定的意义</div>
+                        <div class="note">
+                            2月26日公告明确&#x27;预计构成重大资产重组&#x27;——这比早期的&#x27;不构成重大资产重组&#x27;表述升级。<br />构成重大资产重组意味着：审批标准更高、信息披露更完整、股东大会程序更规范。<br />管理层选择等外部审批有实质进展后再召开股东大会——说明对审批通过有相当把握。<br />股东大会召开时间将是交割进程的最重要信号节点，一旦公告召开日期，市场将大幅提前定价。
                         </div>
                     </div>
                 </section>
                 <section
-                    class="slide"
-                    id="slide-4"
-                    data-title="逻辑二：国内唯一能量产内螺纹磨床——行星滚柱丝杠国产化的必经之路"
+                    class="slide top"
+                    data-title="四、完整投资版图——15张Pre-IPO门票"
                 >
                     <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 05 / 27</div>
-                        <h1 class="slide-title">
-                            逻辑二：国内唯一能量产内螺纹磨床——行星滚柱丝杠国产化的必经之路
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="17">
-                                逻辑二：国内唯一能量产内螺纹磨床——行星滚柱丝杠国产化的必经之路
-                            </h2>
-                            <p class="source-paragraph" data-block="18">
-                                行星滚柱丝杠是人形机器人关节传动的核心零部件，比普通滚珠丝杠精度更高、承载更强，特斯拉Optimus已大量使用。国产行星滚柱丝杠要量产，必须解决内螺旋槽的超精密磨削——这是整个加工链条里难度最高的工序。
-                            </p>
-                            <p class="source-paragraph" data-block="19">
-                                内螺纹磨床的技术壁垒：全球仅德国、日本少数厂商能够量产，国内此前完全空白。华辰装备是目前国内唯一能够量产内螺纹磨床的企业。华西证券测算：人形机器人量产百万台，单台14根行星滚柱丝杠+30根微型丝杠，对应丝杠磨床设备市场规模127-144亿元——国内磨床市场当前总量约80亿元，这个增量相当于再造一个行业。
-                            </p>
-                            <div class="table-wrap" data-block="20">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>丝杠类型</th>
-                                            <th>应用</th>
-                                            <th>加工难度</th>
-                                            <th>磨床单价</th>
-                                            <th>华辰地位</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>行星滚柱丝杠（内螺纹）</td>
-                                            <td>人形机器人关节（高端）</td>
-                                            <td>最高——内螺旋槽加工</td>
-                                            <td>超200万元/台</td>
-                                            <td>国内唯一能量产</td>
-                                        </tr>
-                                        <tr>
-                                            <td>行星滚柱丝杠（外螺纹）</td>
-                                            <td>人形机器人关节（高端）</td>
-                                            <td>高——PO级精度</td>
-                                            <td>约150-200万元/台</td>
-                                            <td>国内领先，100台在手订单</td>
-                                        </tr>
-                                        <tr>
-                                            <td>普通滚珠丝杠</td>
-                                            <td>工业机器人、工业母机</td>
-                                            <td>中等</td>
-                                            <td>数十万元/台</td>
-                                            <td>国内多家竞争</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <p class="source-paragraph" data-block="21">
-                                2025年3月，华辰与福立旺签署100台磨床销售合同，涉及精密内螺纹磨床、高速外螺纹磨床及高速外圆磨床，主要用于行星滚柱丝杠零件加工——从打样验证正式进入批量订单阶段。
-                            </p>
+                        <div class="kicker">04 投资版图 · 上</div>
+                        <h2 class="slide-title">
+                            四、完整投资版图——15张Pre-IPO门票
+                        </h2>
+                        <p class="lead">
+                            参股公司 30 家，已知约 20 家；下表保留原始字段
+                        </p>
+                        <p class="lead">
+                            经过全天十余轮信息迭代，东方精工的完整股权投资版图已基本确认。参股公司30家，已知约20家，仍有约10家未完整披露。以下为截至2026年3月4日可确认的完整持仓。
+                        </p>
+                        <div class="table-wrap large">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>投资标的</th>
+                                        <th>赛道</th>
+                                        <th>持股比例</th>
+                                        <th>战略价值</th>
+                                        <th>权益价值估算</th>
+                                        <th>Pre-IPO潜力</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>若愚科技</td>
+                                        <td>AI大模型/具身智能大脑</td>
+                                        <td>23.31%</td>
+                                        <td>★★★★★</td>
+                                        <td>≈93亿元</td>
+                                        <td>
+                                            科创板申报中；当前仍处亏损投入期
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>航天新力</td>
+                                        <td>可控核聚变关键结构材料</td>
+                                        <td>
+                                            19.89%<br />（2021年3.86%→2025年增持）
+                                        </td>
+                                        <td>★★★★★</td>
+                                        <td>≈21-36亿元</td>
+                                        <td>
+                                            ITER+BEST全部订单，2025年9月已发运
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>嘉腾机器人</td>
+                                        <td>AGV工业机器人</td>
+                                        <td>19.84%</td>
+                                        <td>★★★★</td>
+                                        <td>≈10-20亿元</td>
+                                        <td>✅ 唯一已盈利的机器人被投企业</td>
+                                    </tr>
+                                    <tr>
+                                        <td>南京前知智能</td>
+                                        <td>具身智能感知</td>
+                                        <td>15%+5.67%</td>
+                                        <td>★★★★</td>
+                                        <td>早期，难估值</td>
+                                        <td>
+                                            持续亏损中（年亏约1,750-2,250万）
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>深圳和聚智控</td>
+                                        <td>机器人运动控制</td>
+                                        <td>15%</td>
+                                        <td>★★★★</td>
+                                        <td>早期，难估值</td>
+                                        <td>控制器稀缺标的</td>
+                                    </tr>
+                                    <tr>
+                                        <td>乐聚机器人</td>
+                                        <td>人形机器人整机</td>
+                                        <td>6.84%</td>
+                                        <td>★★★★★</td>
+                                        <td>≈8.2亿元</td>
+                                        <td>2026年量产在即</td>
+                                    </tr>
+                                    <tr>
+                                        <td>珠海三锐精工</td>
+                                        <td>精密制造零部件</td>
+                                        <td>10%</td>
+                                        <td>★★★</td>
+                                        <td>早期，难估值</td>
+                                        <td>装备制造协同</td>
+                                    </tr>
+                                    <tr>
+                                        <td>灵心巧手（北京）</td>
+                                        <td>云端智能灵巧手平台</td>
+                                        <td>待披露</td>
+                                        <td>★★★★★</td>
+                                        <td>早期期权</td>
+                                        <td>灵巧手软件平台</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="完整投资版图（续）">
+                    <div class="slide-inner">
+                        <div class="kicker">04 投资版图 · 下</div>
+                        <h2 class="slide-title">完整投资版图（续）</h2>
+                        <p class="lead">后半部分标的与 Fosber 出售现金保留</p>
+                        <div class="table-wrap large">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>投资标的</th>
+                                        <th>赛道</th>
+                                        <th>持股比例</th>
+                                        <th>战略价值</th>
+                                        <th>权益价值估算</th>
+                                        <th>Pre-IPO潜力</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>杭州黑漫科技</td>
+                                        <td>防水灵巧手硬件</td>
+                                        <td>5%</td>
+                                        <td>★★★★★</td>
+                                        <td>早期期权</td>
+                                        <td>与乐聚联合投资</td>
+                                    </tr>
+                                    <tr>
+                                        <td>北京辉羲智能</td>
+                                        <td>自动驾驶/智能驾驶</td>
+                                        <td>待披露</td>
+                                        <td>★★★★</td>
+                                        <td>早期期权</td>
+                                        <td>新增标的</td>
+                                    </tr>
+                                    <tr>
+                                        <td>拓元智慧</td>
+                                        <td>智慧城市/数字孪生</td>
+                                        <td>待披露</td>
+                                        <td>★★★</td>
+                                        <td>早期期权</td>
+                                        <td>新增标的</td>
+                                    </tr>
+                                    <tr>
+                                        <td>腾盾科创</td>
+                                        <td>高端无人机/低空经济</td>
+                                        <td>间接持股（路径待核实）</td>
+                                        <td>★★★★</td>
+                                        <td>早期期权</td>
+                                        <td>⚠️ 原间接路径天津航创已注销</td>
+                                    </tr>
+                                    <tr>
+                                        <td>中科富海</td>
+                                        <td>液氦低温装备</td>
+                                        <td>间接~0.77%</td>
+                                        <td>★★★★</td>
+                                        <td>战略布局</td>
+                                        <td>加码投资进行中</td>
+                                    </tr>
+                                    <tr>
+                                        <td>宇泽半导体</td>
+                                        <td>第三代半导体SiC</td>
+                                        <td>0.89%</td>
+                                        <td>★★★</td>
+                                        <td>早期期权</td>
+                                        <td>碳化硅国产替代</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fosber出售现金</td>
+                                        <td>——</td>
+                                        <td>——</td>
+                                        <td>确定性最高</td>
+                                        <td>60.28亿元（净到手）</td>
+                                        <td>扣除狄伦拿贷款5,554万后净额</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </section>
                 <section
-                    class="slide"
-                    id="slide-5"
-                    data-title="逻辑三A：长光华辰合资公司——技术转化已完成，不是意向而是运转中的机器"
+                    class="slide top"
+                    data-title="五、最重要的发现——人形机器人完整产业链闭环"
                 >
                     <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 06 / 27</div>
-                        <h1 class="slide-title">
-                            逻辑三A：长光华辰合资公司——技术转化已完成，不是意向而是运转中的机器
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="22">
-                                逻辑三A：长光华辰合资公司——技术转化已完成，不是意向而是运转中的机器
-                            </h2>
-                            <p class="source-paragraph" data-block="23">
-                                长光华辰智造技术有限公司于2024年底正式设立。四条已验证证据构成无断点闭环：
-                            </p>
-                            <div class="table-wrap" data-block="24">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>证据层</th>
-                                            <th>内容</th>
-                                            <th>意义</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>专利作价入股</td>
-                                            <td>
-                                                长光大器以专利权（非现金）出资，占股27.27%；华辰出资400万占股72.73%
-                                            </td>
-                                            <td>
-                                                长春光机所核心专利以法律形式注入合资公司——技术产权锁定，排他性，不可复制
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>注册地昆山总部</td>
-                                            <td>
-                                                合资公司注册于华辰昆山生产基地，而非长春技术源头
-                                            </td>
-                                            <td>
-                                                从设立第一天就奔着量产去的，技术已从北方实验室搬进华辰工厂
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>三角协同结构</td>
-                                            <td>
-                                                长春光机所专家+清华智能磨削联合研究中心+华辰工程师同地协作，高管交叉任职
-                                            </td>
-                                            <td>
-                                                隐性知识通过人的流动固化进机床控制系统——壁垒不依赖长光所持续输入，华辰自己能迭代
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>技术平移落地</td>
-                                            <td>
-                                                现有无尘车间、精密装配、年产百台级产能直接承接，无需另建厂房
-                                            </td>
-                                            <td>
-                                                商业化最后一公里已打通——时间成本和资本开支均大幅压缩，机构「周期太长」的顾虑被直接消除
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="note source-callout" data-block="25">
-                                物理与管理双重并表——合资公司注册于华辰昆山总部，长春光机所超精密光学工程研究中心（攻克4米量级反射镜加工的功勋团队）的技术已通过专利产权和人员协作完成南迁。这不是技术合作协议，是技术转化机器已在运转。
-                            </div>
+                        <div class="kicker">05 产业链闭环</div>
+                        <h2 class="slide-title">
+                            五、最重要的发现——人形机器人完整产业链闭环
+                        </h2>
+                        <p class="lead">报告认为这是全文最重要的发现</p>
+                        <p class="lead">
+                            这是今天分析中最震撼的发现：东方精工通过五个层次的精准布局，已在内部形成了人形机器人从&#x27;大脑&#x27;到&#x27;整机&#x27;的完整垂直产业链——这在国内上市公司中极为罕见，甚至可能是唯一一家。
+                        </p>
+                        <div class="table-wrap medium">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>大脑层</th>
+                                        <th>大脑层</th>
+                                        <th>若愚科技（23.31%）</th>
+                                        <th>
+                                            多模态AI大模型，具身智能核心算法，科创板申报中
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>感知层</td>
+                                        <td>感知层</td>
+                                        <td>南京前知智能（15%）</td>
+                                        <td>
+                                            具身智能感知系统，机器人环境理解
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>控制层</td>
+                                        <td>控制层</td>
+                                        <td>深圳和聚智控（15%）</td>
+                                        <td>
+                                            机器人运动控制器，执行指令精准传导
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>执行层（手）</td>
+                                        <td>执行层（手）</td>
+                                        <td>
+                                            灵心巧手（待披露）+黑漫科技防水灵巧手（5%）
+                                        </td>
+                                        <td>软件平台+防水硬件双保险布局</td>
+                                    </tr>
+                                    <tr>
+                                        <td>整机层</td>
+                                        <td>整机层</td>
+                                        <td>
+                                            乐聚机器人（6.84%）+东方元启（持股80%）
+                                        </td>
+                                        <td>整机制造+代工，2026年量产</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </section>
                 <section
-                    class="slide"
-                    id="slide-6"
-                    data-title="逻辑三B：碳化硅衬底超精密磨床——订单概率90%+，时间窗口已前移至2026年Q1-"
+                    class="slide top"
+                    data-title="为什么这个产业链闭环如此重要"
                 >
                     <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 07 / 27</div>
-                        <h1 class="slide-title">
-                            逻辑三B：碳化硅衬底超精密磨床——订单概率90%+，时间窗口已前移至2026年Q1-
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="26">
-                                逻辑三B：碳化硅衬底超精密磨床——订单概率90%+，时间窗口已前移至2026年Q1-Q2
-                            </h2>
-                            <p class="source-paragraph" data-block="27">
-                                碳化硅是华辰可以自主掌控商业化节奏的支线，不依赖国家战略时间表。以下证据分两层：硬证据（可直接引用）和执行层信号（行为推断，权重低于硬证据，但方向一致）。
-                            </p>
+                        <div class="kicker">05 协同价值</div>
+                        <h2 class="slide-title">
+                            为什么这个产业链闭环如此重要
+                        </h2>
+                        <p class="lead">从财务投资转向产业协同的关键论述</p>
+                        <div class="quote">🤖 为什么这个产业链闭环如此重要</div>
+                        <div class="note">
+                            这五个层次不是孤立的财务投资，而是围绕&#x27;人形机器人量产&#x27;这一目标刻意构建的协同体系。<br />东方精工+乐聚机器人联合投资黑漫防水灵巧手——两家被投企业的投资方相互交叉，产业协同已深入零部件层面。<br />东方元启（持股80%）作为乐聚机器人的代工制造伙伴，制造能力+零部件供应链+整机品牌三位一体。<br />若愚科技的AI大模型为整个机器人体系提供&#x27;通用大脑&#x27;，产业链协同价值远超单纯的财务投资收益。<br />当人形机器人2026-2027年进入量产爆发期，东方精工每一层的投资都将同步受益，是真正的&#x27;全产业链赌注&#x27;。
                         </div>
                     </div>
                 </section>
                 <section
-                    class="slide"
-                    id="slide-7"
-                    data-title="第一层：硬证据——市场与竞争格局"
+                    class="slide top"
+                    data-title="六、穿透估值——市场显著低估"
                 >
                     <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 08 / 27</div>
-                        <h1 class="slide-title">
-                            第一层：硬证据——市场与竞争格局
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="28">
-                                【第一层：硬证据——市场与竞争格局】
-                            </h2>
-                            <div class="table-wrap" data-block="29">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>维度</th>
-                                            <th>分析</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>市场空间</td>
-                                            <td>
-                                                国内碳化硅磨抛设备2025年市场规模约23亿元，年增速94%，是碳化硅设备链增速最快的细分环节，高度依赖进口（DISCO+G&amp;N为主）
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>竞争格局</td>
-                                            <td>
-                                                主流机构推荐的碳化硅设备国产替代标的（晶盛、高测、北方华创、迈为）无一涉足超精密曲面磨床——华辰在此细分方向无国内竞争对手，公开招标中尚未出现第二家具备「光学级气浮主轴+亚微米磨削底层算法」的国内供应商
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>技术降维</td>
-                                            <td>
-                                                长光华辰的超精密磨抛技术来自长春光机所超精密光学工程研究中心——能处理EUV光刻机反射镜的技术处理碳化硅衬底是降维打击
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>客户主动性</td>
-                                            <td>
-                                                三安光电、天岳先进处于价格战压迫下的良率竞争阶段：6英寸衬底全年价格降幅超40%→利润压缩至极限→提升良率是唯一出路→采购能提升良率的设备是正回报投入
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>DISCO结构性劣势</td>
-                                            <td>
-                                                DISCO等日本设备单价高、维护周期长，商业模式是标准化大规模供货，不会为中国单体客户提供定制化开发；G&amp;N同样不具备本地化定制服务能力——华辰+长光华辰填补这个空白
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2026年政策加速器</td>
-                                            <td>
-                                                半导体核心设备国产化率是2026年硬指标，采购国产设备从「商业选择」变「合规要求」，采购决策周期大幅缩短
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="kicker">06 穿透估值</div>
+                        <h2 class="slide-title">六、穿透估值——市场显著低估</h2>
+                        <p class="lead">
+                            市场显著低估：报告采用穿透估值，而不是传统营收 / PE
+                        </p>
+                        <p class="lead">
+                            传统财务分析用营收和PE来衡量东方精工，得出&#x27;营收缩水六成、估值虚高&#x27;的结论。这是用错了工具。正确的估值方法是穿透到每一个股权投资标的的内在价值。
+                        </p>
+                        <div class="table-wrap large">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>估值构成</th>
+                                        <th>权益价值</th>
+                                        <th>备注</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>若愚科技（23.31%×400亿+）</td>
+                                        <td>≈93亿元</td>
+                                        <td>企查查最新工商数据确认</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            航天新力（19.89%×预测105-180亿）
+                                        </td>
+                                        <td>≈21-36亿元</td>
+                                        <td>
+                                            2021年3.86%→2025年增持至19.89%；BEST项目全部订单+2025年9月成功发运，收入已落地
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>嘉腾机器人（19.84%×50-100亿）</td>
+                                        <td>≈10-20亿元</td>
+                                        <td>天眼查确认，头部客户验证</td>
+                                    </tr>
+                                    <tr>
+                                        <td>乐聚机器人（6.84%×120亿）</td>
+                                        <td>≈8.2亿元</td>
+                                        <td>2025年10月Pre-IPO融资确认</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            灵心巧手+黑漫科技+前知智能+和聚智控
+                                        </td>
+                                        <td>早期期权，暂不估值</td>
+                                        <td>人形机器人完整产业链卡位</td>
+                                    </tr>
+                                    <tr>
+                                        <td>腾盾科创+辉羲智能+拓元智慧+其他</td>
+                                        <td>早期期权，暂不估值</td>
+                                        <td>低空经济+自动驾驶+智慧城市</td>
+                                    </tr>
+                                    <tr>
+                                        <td>小计：已可估值股权投资</td>
+                                        <td>≈132-157亿元</td>
+                                        <td>保守估算，不含早期期权</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fosber出售现金（确定性最高）</td>
+                                        <td>60.28亿元</td>
+                                        <td>
+                                            基础对价7.74亿欧元，扣除狄伦拿贷款5,554万，安永备考报表确认数字
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>穿透估值合计</td>
+                                        <td>≈192-217亿元</td>
+                                        <td>vs 当前市值约200亿元</td>
+                                    </tr>
+                                    <tr>
+                                        <td>早期期权价值（10+家标的）</td>
+                                        <td>未计入</td>
+                                        <td>纯上行期权，不含在估值中</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="估值结论">
+                    <div class="slide-inner">
+                        <div class="kicker">06 估值结论</div>
+                        <h2 class="slide-title">估值结论</h2>
+                        <p class="lead">保守估算与未计入的上行期权</p>
+                        <div class="quote">📊 估值结论</div>
+                        <div class="note">
+                            保守估算穿透估值195-220亿元，vs
+                            当前市值约200亿元——基本持平，但这是极度保守的估算。<br />10+家早期标的（灵心巧手、黑漫科技、辉羲智能、腾盾科创等）的期权价值完全未计入。<br />若愚科技一旦科创板申报成功，93亿权益价值从&#x27;推算&#x27;变为&#x27;市场验证&#x27;，将是最强催化剂。<br />最关键的认知差：市场在为&#x27;传统制造业转型期&#x27;定价，而实际上应该为&#x27;科技投资控股平台&#x27;定价。<br />这种估值工具的错配，正是当前折价的根本原因，也是未来重估的核心驱动力。
                         </div>
                     </div>
                 </section>
                 <section
-                    class="slide"
-                    id="slide-8"
-                    data-title="第二层：硬证据——招标技术规格精准对位（概率升级的核心依据）"
+                    class="slide top"
+                    data-title="七、对市场悲观观点的正面回应"
                 >
                     <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 09 / 27</div>
-                        <h1 class="slide-title">
-                            第二层：硬证据——招标技术规格精准对位（概率升级的核心依据）
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="30">
-                                【第二层：硬证据——招标技术规格精准对位（概率升级的核心依据）】
-                            </h2>
-                            <div class="table-wrap" data-block="31">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>招标参数</th>
-                                            <th>要求</th>
-                                            <th>华辰能力匹配度</th>
-                                            <th>意义</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>8英寸碳化硅衬底TTV</td>
-                                            <td>&lt; 1μm（总厚度偏差）</td>
-                                            <td>
-                                                ✅ 长光华辰亚微米磨抛核心指标
-                                            </td>
-                                            <td>
-                                                光学级精度要求，传统磨床厂无法达标
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>主轴回转精度</td>
-                                            <td>0.1μm级别</td>
-                                            <td>✅ 气浮主轴研发专员已在招聘</td>
-                                            <td>
-                                                这不是普通工业磨床参数，是光学设备参数
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>招标书性质</td>
-                                            <td>
-                                                采购方与潜在供应商预沟通后确认可行再写入
-                                            </td>
-                                            <td>——</td>
-                                            <td>
-                                                ⚠️
-                                                把「亚微米主轴精度」写进招标书，背后大概率已有技术交流——华辰不是候选人之一就是参与了规格制定
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="kicker">07 悲观观点回应</div>
+                        <h2 class="slide-title">
+                            七、对市场悲观观点的正面回应
+                        </h2>
+                        <p class="lead">把悲观观点放回正确的估值框架中</p>
+                        <div class="two-col">
+                            <div class="card">
+                                <h3>
+                                    悲观观点一：&#x27;营收缩水六成，面临业绩断崖&#x27;
+                                </h3>
+                                <p>
+                                    这个观点本身是事实，但结论是错的。营收缩水六成是正确的；但对于一个正在转型为&#x27;投资控股平台&#x27;的公司，营收不是正确的估值锚。把GIC、淡马锡、博枫这类投资控股公司用营收来估值，会得出同样荒谬的结论。
+                                </p>
                             </div>
+                            <div class="card">
+                                <h3>
+                                    悲观观点二：&#x27;普莱德并购失败的历史会重演&#x27;
+                                </h3>
+                                <p>
+                                    普莱德失败的根因是&#x27;47.5亿大额并购+实际控制力缺失&#x27;——花大钱买了一家公司却无法管理。当前模式是&#x27;小额分散少数股权投资+产业协同&#x27;，每笔投资数千万量级，不需要整合管理。两个模式的风险结构根本不同，用普莱德的失败逻辑来否定当前布局，是在类比不可比的事物。
+                                </p>
+                            </div>
+                            <div class="card">
+                                <h3>
+                                    悲观观点三：&#x27;63亿只是转型第一步，后续不确定&#x27;
+                                </h3>
+                                <p>
+                                    这句话说对了——60.28亿确实只是第一步。但说这句话的人没有看到第二步、第三步已经在推进中：参股30家公司、人形机器人产业链闭环、持续的新标的布局（灵心巧手、辉羲智能、拓元智慧）。60.28亿是子弹，布局已经提前展开。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="真正需要警惕的风险">
+                    <div class="slide-inner">
+                        <div class="kicker">07 风险补充</div>
+                        <h2 class="slide-title">真正需要警惕的风险</h2>
+                        <p class="lead">
+                            报告强调：市场没有充分讨论的部分反而更应该核实
+                        </p>
+                        <div class="quote warn">
+                            ⚠️ 真正需要警惕的风险（市场没有充分讨论的）
+                        </div>
+                        <div class="note warn">
+                            天眼风险条数偏高：自身149条、周边546条、预警432条——需核实是否有实质性重大风险，还是历史积累的供应商纠纷。<br />30家参股公司里是否有&#x27;下一个普莱德&#x27;：即有大额控股+深度整合模式的标的。目前已知均为少数股权，但未知的10家需要关注。<br />万德数科商誉风险：控股51%的子公司2024年商誉减值0.82亿（减值率高达69%），EDF商誉已100%减值——这说明部分控股投资质量存疑，非上市少数股权投资的风险需要同样审视。<br />衍生金融负债1.23亿：少数股东期权安排，具体条款未披露，潜在现金流出风险待核实。<br />百胜动力分拆叫停的真实原因：至今未得到充分解释，是合规问题、业绩问题、还是战略调整？这个疑问需要在年报中寻找答案。
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="八、催化剂时间线">
+                    <div class="slide-inner">
+                        <div class="kicker">08 催化剂</div>
+                        <h2 class="slide-title">八、催化剂时间线</h2>
+                        <p class="lead">哪些事件会触发市场重新定价</p>
+                        <div class="table-wrap large">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>时间节点</th>
+                                        <th>催化剂事件</th>
+                                        <th>预期影响</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>近期</td>
+                                        <td>股东大会召开</td>
+                                        <td>
+                                            交割流程关键节点，意味着外部审批已有实质性进展
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2026年Q2</td>
+                                        <td>意大利/西班牙FDI审查通过</td>
+                                        <td>
+                                            最强催化剂——交割时间线清晰，市值重估触发
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2026年Q3</td>
+                                        <td>Fosber交割完成，60.28亿现金入账</td>
+                                        <td>
+                                            净资产大幅提升，每股净现金价值约4.95元
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2026年内</td>
+                                        <td>若愚科技科创板申报</td>
+                                        <td>
+                                            23.31%×400亿+权益价值从潜在变为可验证
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2026年内</td>
+                                        <td>乐聚机器人量产放量</td>
+                                        <td>东方元启（持股80%）代工收入启动</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2026年内</td>
+                                        <td>新项目披露</td>
+                                        <td>
+                                            30家参股公司尚有10家未完整披露，新标的随时出现
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2026-2027年</td>
+                                        <td>航天新力BEST+ITER项目订单放量</td>
+                                        <td>
+                                            BEST项目磁体支撑2025年9月已发运，核聚变商业化加速，全球唯一认证供应商溢价持续扩大
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2027年+</td>
+                                        <td>若愚/嘉腾/前知智能IPO</td>
+                                        <td>
+                                            股权投资账面价值变为可流通市场价值
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="九、风险矩阵">
+                    <div class="slide-inner">
+                        <div class="kicker">09 风险矩阵</div>
+                        <h2 class="slide-title">九、风险矩阵</h2>
+                        <p class="lead">把“看多逻辑”放进风险矩阵里检验</p>
+                        <div class="table-wrap large">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>风险类型</th>
+                                        <th>具体内容</th>
+                                        <th>发生概率</th>
+                                        <th>冲击程度</th>
+                                        <th>可控性</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>⏱ 资本占用时间（核心风险）</td>
+                                        <td>
+                                            六国审批3-18个月，资金锁定期间机会成本
+                                        </td>
+                                        <td>高</td>
+                                        <td>中</td>
+                                        <td>低</td>
+                                    </tr>
+                                    <tr>
+                                        <td>📉 业绩断崖过渡期</td>
+                                        <td>
+                                            Fosber占67%营收，交割完成前估值倒挂明显
+                                        </td>
+                                        <td>高</td>
+                                        <td>中</td>
+                                        <td>低</td>
+                                    </tr>
+                                    <tr>
+                                        <td>🚢 百胜动力毛利率</td>
+                                        <td>
+                                            五年持续下滑26.87%→21.38%，分拆叫停原因未解
+                                        </td>
+                                        <td>中</td>
+                                        <td>高</td>
+                                        <td>中</td>
+                                    </tr>
+                                    <tr>
+                                        <td>🔒 股权投资流动性</td>
+                                        <td>
+                                            14+家被投企业均未上市，权益价值3-5年才能兑现
+                                        </td>
+                                        <td>中</td>
+                                        <td>中</td>
+                                        <td>低</td>
+                                    </tr>
+                                    <tr>
+                                        <td>📋 普莱德历史教训</td>
+                                        <td>
+                                            2017年47.5亿并购失败，商誉减值34.5亿，巨亏38.76亿
+                                        </td>
+                                        <td>——</td>
+                                        <td>参考意义</td>
+                                        <td>模式已改变</td>
+                                    </tr>
+                                    <tr>
+                                        <td>👤 实控人减持</td>
+                                        <td>2025年10月披露不超过1%减持计划</td>
+                                        <td>中</td>
+                                        <td>中</td>
+                                        <td>中</td>
+                                    </tr>
+                                    <tr>
+                                        <td>⚠️ 天眼风险条数</td>
+                                        <td>
+                                            自身风险149条、周边546条、预警432条，需核实性质
+                                        </td>
+                                        <td>待核实</td>
+                                        <td>待核实</td>
+                                        <td>中</td>
+                                    </tr>
+                                    <tr>
+                                        <td>🏗️ 转型执行风险</td>
+                                        <td>
+                                            30家参股公司管理复杂，60.28亿现金使用效率待考；万德数科2024年已计提商誉减值0.82亿（减值比例69%），经营质量需关注
+                                        </td>
+                                        <td>中</td>
+                                        <td>高</td>
+                                        <td>中</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="十、持续跟踪的核心指标">
+                    <div class="slide-inner">
+                        <div class="kicker">10 跟踪指标</div>
+                        <h2 class="slide-title">十、持续跟踪的核心指标</h2>
+                        <p class="lead">
+                            后续不是只看股价，而是持续验证关键事实
+                        </p>
+                        <div class="table-wrap large">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>股东大会公告日期</th>
+                                        <th>
+                                            一旦公告召开日期，意味着外部审批有实质进展，是最强买入信号
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>若愚科技科创板动态</td>
+                                        <td>
+                                            申报受理→问询→过会→注册，每个节点都是催化剂
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>天眼风险条数核实</td>
+                                        <td>
+                                            需逐条核查风险性质，排除是否有实质重大风险
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>百胜动力毛利率</td>
+                                        <td>
+                                            2025年年报（3月24日披露），若继续下滑需重新评估主业价值
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>新增参股公司</td>
+                                        <td>
+                                            仍有约10家未完整披露，随时可能出现新的重要标的
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>乐聚机器人量产进度</td>
+                                        <td>
+                                            2026年量产节点，直接影响东方元启（持股80%）的代工收入
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>航天新力BEST项目进展</td>
+                                        <td>
+                                            BEST项目磁体支撑2025年9月已发运，关注后续批量订单披露和核聚变商业化时间表
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>万德数科经营质量</td>
+                                        <td>
+                                            控股51%子公司，2024年商誉减值0.82亿（减值率69%），需关注年报中是否继续减值
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>衍生金融负债1.23亿</td>
+                                        <td>
+                                            期权衍生工具余额连续两期未变动，需核实是哪个子公司少数股东的期权安排
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>实控人减持进度</td>
+                                        <td>
+                                            1%减持计划的执行节奏，是观察管理层信心的窗口
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </section>
                 <section
-                    class="slide"
-                    id="slide-9"
-                    data-title="第三层：执行层信号——行政与财务数据（第三方来源，权重高于招聘推断）"
+                    class="slide top"
+                    data-title="十一、综合评级与投资建议"
                 >
                     <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 10 / 27</div>
-                        <h1 class="slide-title">
-                            第三层：执行层信号——行政与财务数据（第三方来源，权重高于招聘推断）
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="32">
-                                【第三层：执行层信号——行政与财务数据（第三方来源，权重高于招聘推断）】
-                            </h2>
-                            <div class="table-wrap" data-block="33">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>信号来源</th>
-                                            <th>具体内容</th>
-                                            <th>推断意义</th>
-                                            <th>证据权重</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>社保缴纳人数净增（⭐最强）</td>
-                                            <td>
-                                                2025年下半年，华辰装备昆山总部（含子公司）社保缴纳人数净增约12%-15%，对应约50-90人净新增
-                                            </td>
-                                            <td>
-                                                社保是每月真实现金支出，是最难造假的企业行为信号。宏观收缩+实控人减持期间逆势扩编，管理层一定有具体的在手业务支撑——首单大概率已在谈判或验证阶段
-                                            </td>
-                                            <td>⭐⭐⭐⭐⭐ 第三方行政数据</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                长春光机所骨干入住周市镇人才公寓
-                                            </td>
-                                            <td>
-                                                昆山周市镇配套宿舍及人才公寓申请名单中，出现多位具有长春光机所项目背景的技术骨干
-                                            </td>
-                                            <td>
-                                                行政系统第三方数据，企业无法控制。长光所技术骨干人在昆山——技术转移已从纸面进入人员层面的物理执行
-                                            </td>
-                                            <td>⭐⭐⭐⭐⭐ 第三方行政数据</td>
-                                        </tr>
-                                        <tr>
-                                            <td>应用工艺工程师薪资质变</td>
-                                            <td>
-                                                新增应用工艺工程师岗位薪资挂牌价较传统岗位高出30%以上；长光大器派驻昆山技术支持团队规模持续扩大
-                                            </td>
-                                            <td>
-                                                薪资溢价30%说明华辰需要的不是普通磨床工人，是能消化亚微米磨抛工艺的复合型工程师——人才结构已发生质变，不是量的扩张而是质的升级
-                                            </td>
-                                            <td>⭐⭐⭐⭐ 公开薪资数据</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="kicker">11 综合评级</div>
+                        <h2 class="slide-title">十一、综合评级与投资建议</h2>
+                        <p class="lead">报告最终评级与持有维度</p>
+                        <div class="two-col">
+                            <div class="panel emphasis">
+                                ★★★★★<br />特殊机会<br />首选标的
+                            </div>
+                            <div class="panel">
+                                核心逻辑：不对称风险收益结构，候选池里唯一一家。<br />下行保护：60.28亿确定性现金（安永备考报表确认）+穿透估值192-217亿，基本等于当前市值。<br />上行空间：15张+Pre-IPO门票+人形机器人完整产业链闭环+核聚变战略卡位。<br />主要风险：资本占用时间成本（而非本金损失风险）。<br />持有维度：2-3年战略持有，以股东大会召开为关键加仓节点。
                             </div>
                         </div>
                     </div>
                 </section>
-                <section
-                    class="slide"
-                    id="slide-10"
-                    data-title="第四层：执行层信号——招聘行为（强烈信号，非直接证据，权重低于行政数据）"
-                >
+                <section class="slide center" data-title="⚠️  重要声明">
                     <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 11 / 27</div>
-                        <h1 class="slide-title">
-                            第四层：执行层信号——招聘行为（强烈信号，非直接证据，权重低于行政数据）
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="34">
-                                【第四层：执行层信号——招聘行为（强烈信号，非直接证据，权重低于行政数据）】
-                            </h2>
-                            <div class="table-wrap" data-block="35">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>信号来源</th>
-                                            <th>具体内容</th>
-                                            <th>推断意义</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>长光大器招聘南移</td>
-                                            <td>
-                                                2025年下半年起招募现场交付/机械调试工程师，明确注明「长期驻派江苏昆山」；岗位关键词从「机加」变为「光电耦合」
-                                            </td>
-                                            <td>
-                                                技术转移不是纸面的，长春光机所有具体的人在昆山华辰工厂执行实机总装调试
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>华辰新增半导体设备商岗位</td>
-                                            <td>
-                                                光学调试工程师、气浮主轴研发专员；要求熟悉激光干涉仪测量技术；「超洁净车间流程」及「有光刻机/涂胶显影机装配经验者优先」
-                                            </td>
-                                            <td>
-                                                华辰正在把自己从磨床厂重新定义为精密半导体设备厂，产品已进入样机到小批量产的临界点
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>管培生逆势扩招</td>
-                                            <td>
-                                                大量增加精密仪器和控制科学硕士名额，研发岗薪资涨幅明显高于传统轧辊业务线
-                                            </td>
-                                            <td>
-                                                管理层对未来12-24个月有具体可执行的业务计划支撑招聘需求
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>三安验证预算增加（待确认）</td>
-                                            <td>
-                                                三安半导体增加国产精密减薄磨削单元验证预算，华辰亚微米随动磨床明确包含半导体衬底减薄工序
-                                            </td>
-                                            <td>
-                                                ⚠️
-                                                需求端与供给端精准对位——强烈信号，华辰是否已列入验证名单尚待确认
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="note source-callout" data-block="36">
-                                订单概率90%以上，首单时间窗口2026年Q1-Q2。
-                                证据链现已形成四个层次：法律层（专利入股）→物理层（注册昆山+骨干南迁）→能力层（招标规格对位+岗位质变）→财务层（社保净增12-15%+薪资溢价30%）。四层均指向同一方向，且社保和公寓申请名单来自第三方行政系统，是整个证据体系里最难被质疑真实性的两条。管理层已在用真实现金成本押注近期业务落地。
-                            </div>
+                        <div class="kicker">重要声明</div>
+                        <h2 class="slide-title">⚠️ 重要声明</h2>
+                        <p class="lead">请保留在所有传播与阅读场景中</p>
+                        <p class="lead">
+                            本报告基于公开信息、上市公司公告、企查查/天眼查工商数据及投资者关系活动记录整理与逻辑分析。
+                        </p>
+                        <p class="lead">
+                            所有观点、估值数据及预测均仅供参考，不构成任何形式的投资建议。股市有风险，投资需谨慎。
+                        </p>
+                        <p class="lead">
+                            所有投资决策请以您自己的独立判断为准，建议在做出投资决策前咨询专业投资顾问。
+                        </p>
+                        <div class="chips">
+                            <span class="chip">不构成投资建议</span
+                            ><span class="chip">公开信息整理</span
+                            ><span class="chip">独立判断</span
+                            ><span class="chip">投资需谨慎</span>
                         </div>
                     </div>
                 </section>
-                <section
-                    class="slide"
-                    id="slide-11"
-                    data-title="逻辑三C：EUV光刻机供应链——战略估值溢价，非短期业绩弹性"
-                >
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 12 / 27</div>
-                        <h1 class="slide-title">
-                            逻辑三C：EUV光刻机供应链——战略估值溢价，非短期业绩弹性
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="37">
-                                逻辑三C：EUV光刻机供应链——战略估值溢价，非短期业绩弹性
-                            </h2>
-                            <p class="source-paragraph alert" data-block="38">
-                                ⚠️
-                                重要定性修正：EUV光学元件需求量极小，这块业务短期内难以贡献大规模营收。其核心价值不在于业绩弹性，而在于两点：
-                            </p>
-                            <div class="table-wrap" data-block="39">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>价值维度</th>
-                                            <th>具体内容</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>战略估值溢价</td>
-                                            <td>
-                                                华辰是国内EUV光刻机光学元件加工的唯一工业级供应商——国产EUV进程不可逆，华辰的稀缺性不消失。市场一旦重新定价EUV自主可控进程，将给予华辰显著的稀缺性溢价，这是非线性的
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>技术垄断地位确认</td>
-                                            <td>
-                                                长光华辰专利入股已将这一垄断地位法律化——不是「可能成为供应商」，而是「已经是唯一获得技术授权并具备量产能力的企业」
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>免费期权属性</td>
-                                            <td>
-                                                当前35元估值完全没有定价EUV逻辑。持有华辰=持有一张免费的EUV自主可控期权——不需要为它单独付出成本，但它确实存在
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <p class="source-paragraph" data-block="40">
-                                正确的跟踪方式：不看EUV对华辰的收入贡献，看国产EUV进程的里程碑节点——长春光机所每一次重大技术突破公告，都会触发市场重新审视华辰的战略价值。
-                            </p>
-                        </div>
-                    </div>
-                </section>
-                <section
-                    class="slide"
-                    id="slide-12"
-                    data-title="逻辑四：人形机器人减速器——亚微米随动磨床覆盖RV和谐波双技术路线"
-                >
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 13 / 27</div>
-                        <h1 class="slide-title">
-                            逻辑四：人形机器人减速器——亚微米随动磨床覆盖RV和谐波双技术路线
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="41">
-                                逻辑四：人形机器人减速器——亚微米随动磨床覆盖RV和谐波双技术路线
-                            </h2>
-                            <p class="source-paragraph" data-block="42">
-                                2024年6月27日，华辰装备发布亚微米随动磨床新产品，财联社确认可应用于人形机器人中RV减速器及谐波减速器核心零件的精密磨削加工。RV减速器和谐波减速器是人形机器人关节的两种主流传动方案，华辰同时覆盖两条技术路线——不押单一赛道，无论哪条路线最终成为主流，华辰都受益。
-                            </p>
-                        </div>
-                    </div>
-                </section>
-                <section
-                    class="slide"
-                    id="slide-13"
-                    data-title="逻辑五：精密数控直线导轨磨床——工业母机+航空航天+精密仪器多领域覆盖"
-                >
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 14 / 27</div>
-                        <h1 class="slide-title">
-                            逻辑五：精密数控直线导轨磨床——工业母机+航空航天+精密仪器多领域覆盖
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="43">
-                                逻辑五：精密数控直线导轨磨床——工业母机+航空航天+精密仪器多领域覆盖
-                            </h2>
-                            <p class="source-paragraph" data-block="44">
-                                2024年12月，华辰装备中标南京理工大学「江苏省高端制造装备工程技术联合实验室高精度外螺纹磨床项目」，该项目明确用途包含：工业母机用PO级滚珠丝杠副加工工艺、新型人形机器人直线运动关键一体化传动组件磨削加工工序。直线导轨磨床可同时两根导轨加工，应用于工业母机、航空航天、精密仪器、汽车、自动化装备等领域。
-                            </p>
-                        </div>
-                    </div>
-                </section>
-                <section
-                    class="slide"
-                    id="slide-14"
-                    data-title="逻辑六：数控轧辊磨床现金牛——全球前三，国内高端市占率28-40%，20年积累"
-                >
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 15 / 27</div>
-                        <h1 class="slide-title">
-                            逻辑六：数控轧辊磨床现金牛——全球前三，国内高端市占率28-40%，20年积累
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="45">
-                                逻辑六：数控轧辊磨床现金牛——全球前三，国内高端市占率28-40%，20年积累
-                            </h2>
-                            <p class="source-paragraph" data-block="46">
-                                轧辊磨床是华辰的根基。国内国产轧辊磨床市场空间约25.5亿元（2023年统计：国产231台×约4000万单价+进口189台×约800万替代空间），华辰市占率约40%（华创测算口径）。宝武集团、鞍钢集团、首钢集团等200余家国内顶级钢铁企业均为其长期客户，产品还成功打入印度、马来西亚、泰国、越南等海外市场。这块业务稳定产生现金流，支撑新产品研发投入，是整个增长逻辑的压舱石。
-                            </p>
-                        </div>
-                    </div>
-                </section>
-                <section
-                    class="slide"
-                    id="slide-15"
-                    data-title="三、竞争格局——财务对比与技术维度分析"
-                >
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 16 / 27</div>
-                        <h1 class="slide-title">
-                            三、竞争格局——财务对比与技术维度分析
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="47">
-                                三、竞争格局——财务对比与技术维度分析
-                            </h2>
-                        </div>
-                    </div>
-                </section>
-                <section
-                    class="slide"
-                    id="slide-16"
-                    data-title="3.1 核心竞争对手财务对比——毛利率与扣非净利润"
-                >
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 17 / 27</div>
-                        <h1 class="slide-title">
-                            3.1 核心竞争对手财务对比——毛利率与扣非净利润
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="48">
-                                3.1 核心竞争对手财务对比——毛利率与扣非净利润
-                            </h2>
-                            <p class="source-paragraph" data-block="49">
-                                毛利率是定价权的直接体现。精密磨床的护城河最终体现在定价权上——越超精密的产品，客户替代成本越高，定价权越强，毛利率越高。
-                            </p>
-                            <div class="table-wrap" data-block="50">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>财务指标（2024年）</th>
-                                            <th>华辰装备（300809）</th>
-                                            <th>秦川机床（000837）</th>
-                                            <th>日发精机（002520）</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>营业收入</td>
-                                            <td>约4.5亿（转型期）</td>
-                                            <td>38.6亿（+2.62%）</td>
-                                            <td>18.04亿（-13.40%）</td>
-                                        </tr>
-                                        <tr>
-                                            <td>归母净利润</td>
-                                            <td>预增1.82-2.12亿（含非经常）</td>
-                                            <td>5,378万（+2.92%）</td>
-                                            <td>-6.75亿</td>
-                                        </tr>
-                                        <tr>
-                                            <td>扣非净利润</td>
-                                            <td>3,200-4,200万（转正拐点）</td>
-                                            <td>⚠️ -4,517万（连续两年亏损）</td>
-                                            <td>⚠️ 深度亏损</td>
-                                        </tr>
-                                        <tr>
-                                            <td>毛利率</td>
-                                            <td>
-                                                约34%（2025Q1，同比+2.6pct）
-                                            </td>
-                                            <td>16.15%（同比-1.62pct）</td>
-                                            <td>
-                                                17.19%（年报）/
-                                                8.25%（2025Q3崩塌）
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>利润质量</td>
-                                            <td>主营改善+非经常浮盈</td>
-                                            <td>
-                                                ⚠️ 扣非亏损依赖政府补贴1.19亿
-                                            </td>
-                                            <td>⚠️ 资产负债率84%，持续失血</td>
-                                        </tr>
-                                        <tr>
-                                            <td>在手订单信号</td>
-                                            <td>合同负债+25%，充足</td>
-                                            <td>未见明显增长</td>
-                                            <td>持续恶化</td>
-                                        </tr>
-                                        <tr>
-                                            <td>定价权判断</td>
-                                            <td>
-                                                超精密产品，高壁垒，强定价权
-                                            </td>
-                                            <td>中低端竞争，价格战承压</td>
-                                            <td>危险边缘，无定价权</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="note source-callout" data-block="51">
-                                秦川机床扣非净利润连续两年亏损，2024年亏损4,517万元，依赖政府补贴1.19亿元才能实现账面盈利——若剔除补贴，实际亏损远超账面。日发精机2024年归母净利润-6.75亿，资产负债率84%，已属危险边缘。两者与华辰的真实财务质量差距，远大于市值对比所呈现的差距。
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section
-                    class="slide"
-                    id="slide-17"
-                    data-title="3.2 技术维度扩展对比——环宇数控、国盛智科、创世纪"
-                >
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 18 / 27</div>
-                        <h1 class="slide-title">
-                            3.2 技术维度扩展对比——环宇数控、国盛智科、创世纪
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="52">
-                                3.2 技术维度扩展对比——环宇数控、国盛智科、创世纪
-                            </h2>
-                            <div class="table-wrap" data-block="53">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>公司</th>
-                                            <th>核心技术方向</th>
-                                            <th>精度天花板</th>
-                                            <th>与华辰的关系</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>秦川机床</td>
-                                            <td>
-                                                齿轮磨床（磨齿机）为主，兼做螺纹磨床
-                                            </td>
-                                            <td>微米级</td>
-                                            <td>
-                                                外螺纹磨床有交集，内螺纹完全空白
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>日发精机</td>
-                                            <td>
-                                                轴承磨床、加工中心，传统主业塌陷
-                                            </td>
-                                            <td>微米级</td>
-                                            <td>无实质竞争，财务危机中</td>
-                                        </tr>
-                                        <tr>
-                                            <td>环宇数控</td>
-                                            <td>
-                                                外圆磨床、无心磨床，主攻轴承/汽车零部件
-                                            </td>
-                                            <td>微米级</td>
-                                            <td>完全不同细分，无竞争</td>
-                                        </tr>
-                                        <tr>
-                                            <td>国盛智科</td>
-                                            <td>
-                                                龙门加工中心，主攻一体化压铸模具、新能源汽车
-                                            </td>
-                                            <td>微米级</td>
-                                            <td>加工中心≠磨床，不同市场</td>
-                                        </tr>
-                                        <tr>
-                                            <td>创世纪</td>
-                                            <td>
-                                                立式/卧式加工中心，3C电子和新能源，毛利率约22%
-                                            </td>
-                                            <td>微米级</td>
-                                            <td>
-                                                通用加工中心≠超精密磨床，不同赛道
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>宇环数控</td>
-                                            <td>
-                                                蓝宝石/碳化硅研磨抛光，毛利率超40%
-                                            </td>
-                                            <td>亚微米级（研磨路线）</td>
-                                            <td>
-                                                最接近但路线不同：研磨≠磨削，不同工序
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>华辰装备</td>
-                                            <td>
-                                                超精密磨削（长光华辰专利注入），亚微米磨抛
-                                            </td>
-                                            <td>亚微米/纳米级（光学基因）</td>
-                                            <td>
-                                                国内唯一具备EUV光学加工基因的磨床企业
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <p class="source-paragraph" data-block="54">
-                                宇环数控是最值得单独说明的对比对象——其毛利率超40%，验证了超精密方向的定价权逻辑。但宇环做的是研磨抛光（化学机械平坦化路线），华辰做的是精密磨削（机械去除路线），两者技术路线、设备结构、适用工序完全不同，不构成竞争。更关键的是：宇环不具备光学级磨削基因，无法做EUV光学元件加工，而这是华辰通过长光华辰获得的独特能力。
-                            </p>
-                            <div class="note source-callout" data-block="55">
-                                结论：精密磨床的护城河体现在定价权上，定价权体现在精度和应用门槛上。秦川、日发、环宇、国盛、创世纪的精度天花板，是华辰超精密产品线的起点。能处理EUV光刻机反射镜的技术处理碳化硅衬底是降维打击——这个技术基因在国内磨床企业中只有华辰一家拥有。
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section
-                    class="slide"
-                    id="slide-18"
-                    data-title="四、财务数据与业绩预测"
-                >
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 19 / 27</div>
-                        <h1 class="slide-title">四、财务数据与业绩预测</h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="56">
-                                四、财务数据与业绩预测
-                            </h2>
-                            <div class="table-wrap" data-block="57">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>年度</th>
-                                            <th>营收（亿元）</th>
-                                            <th>归母净利润（亿元）</th>
-                                            <th>扣非净利润</th>
-                                            <th>备注</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>2023年</td>
-                                            <td>4.50</td>
-                                            <td>0.84</td>
-                                            <td>正常</td>
-                                            <td>基准年</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2024年</td>
-                                            <td>约4.5（估）</td>
-                                            <td>大幅下滑</td>
-                                            <td>亏损</td>
-                                            <td>
-                                                转型阵痛：新产品研发+产能建设
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2025年（预增公告）</td>
-                                            <td>——</td>
-                                            <td>1.82-2.12亿</td>
-                                            <td>3,200-4,200万</td>
-                                            <td>
-                                                归母含非经常损益约1.5-1.7亿（股权投资浮盈）
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2026年（东吴预测）</td>
-                                            <td>5.83亿</td>
-                                            <td>1.42亿</td>
-                                            <td>——</td>
-                                            <td>
-                                                折旧压力缓解，新品收入加速确认
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2027年（东吴预测）</td>
-                                            <td>8.27亿</td>
-                                            <td>1.85亿</td>
-                                            <td>——</td>
-                                            <td>人形机器人丝杠订单持续放量</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <p class="source-paragraph alert" data-block="58">
-                                ⚠️
-                                重要提示：2025年归母净利润预增193%-242%，但扣非净利润仅3,200-4,200万元。净利润大幅增长主要来自股权投资公允价值变动收益（约1.5-1.7亿元非经常性损益），并非全部来自主营业务改善。真正需要跟踪的是扣非利润的爬坡速度——2024年扣非亏损→2025年扣非转正→机构预测2026年净利润1.42亿，这条曲线的兑现才是估值重构的核心驱动。
-                            </p>
-                        </div>
-                    </div>
-                </section>
-                <section
-                    class="slide"
-                    id="slide-19"
-                    data-title="机构预测与估值"
-                >
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 20 / 27</div>
-                        <h1 class="slide-title">机构预测与估值</h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="59">
-                                机构预测与估值
-                            </h2>
-                            <div class="table-wrap" data-block="60">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>机构</th>
-                                            <th>报告日期</th>
-                                            <th>评级</th>
-                                            <th>2025E净利润</th>
-                                            <th>2026E净利润</th>
-                                            <th>当前35元对应2026年PE</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>华创证券</td>
-                                            <td>2025-03-01</td>
-                                            <td>强推（首次覆盖）</td>
-                                            <td>0.84亿</td>
-                                            <td>1.21亿</td>
-                                            <td>约29倍</td>
-                                        </tr>
-                                        <tr>
-                                            <td>东吴证券</td>
-                                            <td>2025-08-25</td>
-                                            <td>增持</td>
-                                            <td>0.21亿（低估）</td>
-                                            <td>1.42亿</td>
-                                            <td>
-                                                约12倍（东吴覆盖时价格更低）
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>官方预增公告</td>
-                                            <td>2026年初</td>
-                                            <td>——</td>
-                                            <td>1.82-2.12亿（含非经常）</td>
-                                            <td>——</td>
-                                            <td>
-                                                当前35元对应2025年PE约17-19倍
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <p class="source-paragraph" data-block="61">
-                                两家机构均未充分预判到1.5-1.7亿的股权投资浮盈，导致2025年预测严重低估。东吴低估近9倍——说明机构覆盖深度不足，认知差极大，是买点而非风险。
-                            </p>
-                        </div>
-                    </div>
-                </section>
-                <section
-                    class="slide"
-                    id="slide-20"
-                    data-title="五、筹码结构与股东动态"
-                >
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 21 / 27</div>
-                        <h1 class="slide-title">五、筹码结构与股东动态</h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="62">
-                                五、筹码结构与股东动态
-                            </h2>
-                            <div class="table-wrap" data-block="63">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>指标</th>
-                                            <th>数据</th>
-                                            <th>解读</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>120天平均持仓成本</td>
-                                            <td>38.56元</td>
-                                            <td>
-                                                当前35.20元低于成本线，整体被套6.33%
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>筹码集中度（90%集中度）</td>
-                                            <td>9.15%——高度密集</td>
-                                            <td>筹码未大规模换手，持仓稳定</td>
-                                        </tr>
-                                        <tr>
-                                            <td>老股民占比</td>
-                                            <td>82.08%（市场均值67.74%）</td>
-                                            <td>
-                                                了解公司的长期持有者为主，不是热点追随者
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>十大流通股东</td>
-                                            <td>三位实控人合计22.39%不变</td>
-                                            <td>
-                                                减持尚未在三季报中体现，四季报才会显示
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>华夏中证机器人ETF</td>
-                                            <td>持仓增加+23.04%</td>
-                                            <td>
-                                                机器人方向专业资金已用真金白银验证
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>永赢半导体产业智选混合</td>
-                                            <td>新进1.33%</td>
-                                            <td>
-                                                半导体方向专业资金新进，两条逻辑线均有机构背书
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>机构调研记录</td>
-                                            <td>最近半年零记录</td>
-                                            <td>
-                                                ⭐
-                                                认知差极大——机构尚未发现，是最强买点信号
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section
-                    class="slide"
-                    id="slide-21"
-                    data-title="六、当前压制——实控人减持，有限期，已知"
-                >
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 22 / 27</div>
-                        <h1 class="slide-title">
-                            六、当前压制——实控人减持，有限期，已知
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="64">
-                                六、当前压制——实控人减持，有限期，已知
-                            </h2>
-                            <p class="source-paragraph" data-block="65">
-                                公司实际控制人曹宇中、刘翔雄、赵泽明计划自2026年1月20日起至2026年4月19日，拟通过大宗交易减持不超过507.1万股，占总股本比例2.00%。
-                            </p>
-                            <div class="table-wrap" data-block="66">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>维度</th>
-                                            <th>分析</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>减持方</td>
-                                            <td>
-                                                三位实际控制人（非财务投资人）
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>减持比例</td>
-                                            <td>2%总股本，减持后仍绝对控股</td>
-                                        </tr>
-                                        <tr>
-                                            <td>窗口期</td>
-                                            <td>
-                                                2026年1月20日至4月19日——还剩约六周结束
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>业绩背景</td>
-                                            <td>
-                                                恰在净利润预增193%-242%公告后减持
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>解读一（中性）</td>
-                                            <td>
-                                                个人资金需要，与公司长期判断无关，2%比例不大
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>解读二（需要关注）</td>
-                                            <td>
-                                                实控人选择在业绩最好看时减持，其对当前价格的判断值得尊重
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>压制消除信号</td>
-                                            <td>
-                                                4月19日窗口到期 或
-                                                提前公告「减持计划已完成」
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="note source-callout" data-block="67">
-                                和美埃科技（688376）的对比：美埃是财务投资人解禁套现，华辰是实控人主动减持。性质不同，但结构相同——都是短期已知的有限期压制，基本面逻辑完好。在减持窗口内用观察仓承接，等压制消除后转战略仓，是清晰的操作框架。
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section
-                    class="slide"
-                    id="slide-22"
-                    data-title="七、催化剂时间线与跟踪指标"
-                >
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 23 / 27</div>
-                        <h1 class="slide-title">七、催化剂时间线与跟踪指标</h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="68">
-                                七、催化剂时间线与跟踪指标
-                            </h2>
-                            <p class="source-paragraph" data-block="69">
-                                【最高优先级】近期催化剂
-                            </p>
-                            <div class="table-wrap" data-block="70">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>时间节点</th>
-                                            <th>事件</th>
-                                            <th>重要性</th>
-                                            <th>预期影响</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>2026年4月19日</td>
-                                            <td>实控人减持窗口到期</td>
-                                            <td>⭐⭐⭐</td>
-                                            <td>
-                                                压制消除，第一个明确的时间节点
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2026年4月（年报）</td>
-                                            <td>
-                                                2025年年报披露：净利润预增193%-242%，扣非拐点确认
-                                            </td>
-                                            <td>⭐⭐⭐</td>
-                                            <td>
-                                                标题效应吸引新资金，机构开始重新评估
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2026年Q1-Q2</td>
-                                            <td>
-                                                100台福立旺订单开始在财报中确认收入
-                                            </td>
-                                            <td>⭐⭐⭐</td>
-                                            <td>
-                                                人形机器人逻辑从预期变为财报数字
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2026年Q1-Q2（前移）</td>
-                                            <td>
-                                                长光华辰碳化硅首单订单公告（三安/天岳/其他）
-                                            </td>
-                                            <td>⭐⭐⭐⭐</td>
-                                            <td>
-                                                招标书已出现亚微米参数+华辰招聘已出现半导体设备商特征，时间窗口较原预判前移；首单落地是认知差修复最强触发点
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>持续监测</td>
-                                            <td>
-                                                投关记录出现中金、中信、高盛等大行调研
-                                            </td>
-                                            <td>⭐⭐⭐⭐⭐</td>
-                                            <td>
-                                                认知差消失、股价主升浪开始的最强信号——见下方详细说明
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="note source-callout" data-block="71">
-                                ⭐
-                                认知差消失的核心观测指标：中金、中信等大行调研记录
-                                当前华辰在投资者关系平台上半年零调研——这是认知差存在的直接证明，也是最佳买点的信号。认知差修复的路径通常是：年报净利润暴增标题效应→中小机构开始关注→首次调研记录出现→大行（中金、中信、招商、华泰）覆盖研报发布→估值重构→主升浪。
-                                操作建议：年报披露后（预计4月），每周检查华辰装备投资者关系平台的调研记录。一旦出现中金、中信、招商、华泰任何一家的调研记录，立即将观察仓转为战略仓——这意味着认知差已经开始消失，窗口期正在关闭。
-                            </div>
-                            <p class="source-paragraph" data-block="72">
-                                【基本面】核心跟踪指标
-                            </p>
-                            <div class="table-wrap" data-block="73">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>跟踪项目</th>
-                                            <th>关注内容</th>
-                                            <th>验证时间</th>
-                                            <th>优先级</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>大行调研记录</td>
-                                            <td>
-                                                中金/中信/招商/华泰首次出现调研记录
-                                            </td>
-                                            <td>年报后持续监测</td>
-                                            <td>⭐⭐⭐⭐⭐</td>
-                                        </tr>
-                                        <tr>
-                                            <td>碳化硅首单</td>
-                                            <td>
-                                                长光华辰拿到三安、天岳或其他半导体客户试用订单
-                                            </td>
-                                            <td>2026年Q1-Q2（前移）</td>
-                                            <td>⭐⭐⭐⭐</td>
-                                        </tr>
-                                        <tr>
-                                            <td>扣非净利润拐点</td>
-                                            <td>
-                                                2025扣非3,200-4,200万→2026目标1.42亿，爬坡速度
-                                            </td>
-                                            <td>年报/中报</td>
-                                            <td>⭐⭐⭐⭐</td>
-                                        </tr>
-                                        <tr>
-                                            <td>丝杠磨床收入</td>
-                                            <td>
-                                                100台福立旺订单确认节奏，内螺纹磨床单价超200万
-                                            </td>
-                                            <td>年报/季报</td>
-                                            <td>⭐⭐⭐⭐</td>
-                                        </tr>
-                                        <tr>
-                                            <td>合同负债变化</td>
-                                            <td>
-                                                2025Q1同比+25%，继续增长说明在手订单饱满
-                                            </td>
-                                            <td>季报</td>
-                                            <td>⭐⭐⭐</td>
-                                        </tr>
-                                        <tr>
-                                            <td>减持完成公告</td>
-                                            <td>
-                                                「减持计划已完成」或「期满未完成」——压制消除最强信号
-                                            </td>
-                                            <td>4月19日前后</td>
-                                            <td>⭐⭐⭐</td>
-                                        </tr>
-                                        <tr>
-                                            <td>EUV里程碑</td>
-                                            <td>
-                                                长春光机所重大技术突破公告——触发战略估值溢价重新定价
-                                            </td>
-                                            <td>不定期</td>
-                                            <td>⭐⭐（期权性质）</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="slide" id="slide-23" data-title="八、风险矩阵">
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 24 / 27</div>
-                        <h1 class="slide-title">八、风险矩阵</h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="74">
-                                八、风险矩阵
-                            </h2>
-                            <div class="table-wrap" data-block="75">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>风险项</th>
-                                            <th>具体内容</th>
-                                            <th>概率</th>
-                                            <th>影响</th>
-                                            <th>应对</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>减持持续压制</td>
-                                            <td>
-                                                实控人减持窗口4月19日到期前股价承压
-                                            </td>
-                                            <td>高</td>
-                                            <td>中</td>
-                                            <td>
-                                                观察仓持有，窗口结束后评估转仓
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>扣非利润爬坡不及预期</td>
-                                            <td>
-                                                2026年扣非净利润未能达到机构预测的1.42亿
-                                            </td>
-                                            <td>中</td>
-                                            <td>高</td>
-                                            <td>
-                                                年报/中报是验证节点，届时重新评估
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>人形机器人量产低于预期</td>
-                                            <td>
-                                                机器人放量时间表延迟，丝杠磨床订单无法持续
-                                            </td>
-                                            <td>中</td>
-                                            <td>高</td>
-                                            <td>
-                                                100台订单已签，短期有保障；长期看量产节奏
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>实控人意图误读</td>
-                                            <td>
-                                                2%减持背后有更大规模减持计划未披露
-                                            </td>
-                                            <td>低</td>
-                                            <td>高</td>
-                                            <td>
-                                                持续跟踪减持进度，超预期减持立即重评
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>非经常损益消失</td>
-                                            <td>
-                                                2025年股权投资浮盈不可持续，2026年净利润大幅下滑
-                                            </td>
-                                            <td>中</td>
-                                            <td>中</td>
-                                            <td>
-                                                核心看扣非，非经常损益不纳入估值模型
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>碳化硅工艺认证周期</td>
-                                            <td>
-                                                试用订单到批量采购需6-12个月认证——2026年收入贡献有限
-                                            </td>
-                                            <td>中</td>
-                                            <td>低</td>
-                                            <td>
-                                                碳化硅逻辑定价在2027年，当前属于期权性质
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>EUV商业化节奏不确定</td>
-                                            <td>
-                                                国产EUV进程由国家战略决定，华辰无法控制时间表
-                                            </td>
-                                            <td>中</td>
-                                            <td>低（短期）</td>
-                                            <td>
-                                                EUV定性为战略估值溢价/免费期权，不纳入短期业绩预测
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>市场整体风险</td>
-                                            <td>
-                                                创业板系统性回调，小市值股票流动性压力
-                                            </td>
-                                            <td>中</td>
-                                            <td>中</td>
-                                            <td>
-                                                仓位管理，观察仓不超过总仓位20%
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section
-                    class="slide"
-                    id="slide-24"
-                    data-title="九、技术面分析——底部特征积累，进攻型建仓的价格依据"
-                >
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 25 / 27</div>
-                        <h1 class="slide-title">
-                            九、技术面分析——底部特征积累，进攻型建仓的价格依据
-                        </h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="76">
-                                九、技术面分析——底部特征积累，进攻型建仓的价格依据
-                            </h2>
-                            <div class="table-wrap" data-block="77">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>指标</th>
-                                            <th>当前读数</th>
-                                            <th>信号</th>
-                                            <th>解读</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>当前价格</td>
-                                            <td>35.20元</td>
-                                            <td>中性</td>
-                                            <td>
-                                                从57.45高点回落38%，处于橙色支撑线附近——多空博弈核心价格
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>周K均线系统</td>
-                                            <td>
-                                                全线空头排列，5/10/30/60/90/120周均线依次压上
-                                            </td>
-                                            <td>空头未解除</td>
-                                            <td>
-                                                中期现象；120周均线（黄线）在31元附近向上倾斜——长期趋势线仍向上，空头排列不是趋势逆转
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>周K MACD</td>
-                                            <td>
-                                                DIFF -0.484，DEA
-                                                -0.295，绿柱仍在但最近两周有收缩迹象
-                                            </td>
-                                            <td>底部磨底早期信号</td>
-                                            <td>
-                                                绿柱收缩≠企稳确认，但是底部积累的必要条件——方向对，时间未到
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>日K MACD</td>
-                                            <td>
-                                                DIFF -0.878，DEA
-                                                -0.447，绿柱仍在放大
-                                            </td>
-                                            <td>日线调整未结束</td>
-                                            <td>
-                                                与周线信号一致，短期仍有下行压力
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>SAR（周K）</td>
-                                            <td>42.29，远在价格上方</td>
-                                            <td>空头信号未解除</td>
-                                            <td>
-                                                历史上SAR在该股有效性较高，两次「S」信号均在高点附近准确——右侧确认需等SAR翻转
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>SAR（日K）</td>
-                                            <td>37.41，在价格上方</td>
-                                            <td>空头未解除</td>
-                                            <td>
-                                                右侧确认的最低标准：日K
-                                                SAR翻转至价格下方
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>支撑层一</td>
-                                            <td>橙色虚线平台支撑约34-35元</td>
-                                            <td>有效支撑</td>
-                                            <td>
-                                                当前价格就在此线上方，反复震荡而不加速下跌——有真实承接力
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>支撑层二</td>
-                                            <td>
-                                                120周均线MA120约31元，向上倾斜
-                                            </td>
-                                            <td>强支撑</td>
-                                            <td>
-                                                月线级别长期支撑，历史多次有效，跌破需要持续负面催化剂
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>支撑层三</td>
-                                            <td>筹码密集区32-34元</td>
-                                            <td>自然承接</td>
-                                            <td>
-                                                82%老股民占比，这批筹码不会轻易割肉
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>右侧确认关键位</td>
-                                            <td>
-                                                38.56元（120天均线/筹码平均成本）
-                                            </td>
-                                            <td>关键阻力→突破目标</td>
-                                            <td>
-                                                放量站稳38.56意味着空头排列开始松动，整体筹码从亏损变盈亏平衡，是技术面真正确认反转的信号
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="note source-callout" data-block="78">
-                                技术面对建仓框架的核心提示：35元是真实的多空博弈位，橙色支撑线+筹码密集区+120周均线向上三重支撑构成这个位置的厚度。3月-4月初逢低定投的「低」优先考虑34元以下——上次底部区间29-34元的筹码成本最低，反转时会率先获利了结，用更低的成本来吸收这批抛压。右侧放量站稳38.56元是均线系统松动的技术确认，与基本面催化剂叠加才是完整的右侧信号。
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section
-                    class="slide"
-                    id="slide-25"
-                    data-title="十、进攻型建仓框架"
-                >
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 26 / 27</div>
-                        <h1 class="slide-title">十、进攻型建仓框架</h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="79">
-                                十、进攻型建仓框架
-                            </h2>
-                            <div class="table-wrap" data-block="80">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>阶段</th>
-                                            <th>时间</th>
-                                            <th>条件</th>
-                                            <th>操作</th>
-                                            <th>目标仓位</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>第一阶段（已执行）</td>
-                                            <td>2026年3月初</td>
-                                            <td>逻辑确认，防止提前抢跑</td>
-                                            <td>35.15元锚定初始仓位</td>
-                                            <td>30%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>第二阶段（进行中）</td>
-                                            <td>3月-4月初</td>
-                                            <td>利用实控人抛压完成左侧建仓</td>
-                                            <td>
-                                                逢低滚动定投，集中火力在34元以下；34元以上放慢节奏
-                                            </td>
-                                            <td>累计至80%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>第三阶段（右侧确认）</td>
-                                            <td>4月19日后</td>
-                                            <td>
-                                                减持窗口结束+放量站稳38.56元（日K
-                                                SAR翻转）
-                                            </td>
-                                            <td>右侧确认后补入剩余仓位</td>
-                                            <td>满仓100%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>止损/重评线</td>
-                                            <td>4月19日后评估</td>
-                                            <td>
-                                                窗口结束后股价仍在32元以下且无正面催化剂
-                                            </td>
-                                            <td>
-                                                不执行右侧加仓，降至50%观察，等待新信息
-                                            </td>
-                                            <td>降至50%</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="table-wrap" data-block="81">
-                                <table class="material-table">
-                                    <thead>
-                                        <tr>
-                                            <th>成本结构</th>
-                                            <th>预估</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>第一阶段成本</td>
-                                            <td>35.15元（30%仓位）</td>
-                                        </tr>
-                                        <tr>
-                                            <td>第二阶段目标成本</td>
-                                            <td>
-                                                33.5-34.5元区间（50%仓位，利用抛压均摊）
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>满仓综合成本</td>
-                                            <td>约34-35元区间</td>
-                                        </tr>
-                                        <tr>
-                                            <td>极端下行最大亏损</td>
-                                            <td>
-                                                综合成本34元，极端情景27元，约-20%
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                碳化硅首单+大行调研+年报三催化齐发的上行空间
-                                            </td>
-                                            <td>
-                                                远大于-20%——赔率不对称，向上空间显著大于向下风险
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="note source-callout" data-block="82">
-                                一句话总结：四层证据体系（法律+物理+能力+财务）全部指向同一方向，社保净增和公寓申请名单是整个证据体系里最难被质疑的两条。三条逻辑支撑35元，EUV免费期权压在上方。碳化硅首单（Q1-Q2）+大行调研出现（年报后）是认知差消失的两个最强触发点——进攻型建仓框架，满仓成本约34-35元，赔率不对称。
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="slide" id="slide-26" data-title="免责声明">
-                    <div class="slide-inner">
-                        <div class="kicker">原文未删减 · 27 / 27</div>
-                        <h1 class="slide-title">免责声明</h1>
-                        <div class="content-scroll">
-                            <h2 class="source-heading" data-block="83">
-                                免责声明
-                            </h2>
-                            <p class="source-paragraph" data-block="84">
-                                本报告仅供参考，不构成任何投资建议。投资有风险，入市需谨慎。报告中所有数据均来源于公开信息（公司公告、投资者关系记录、机构研报），研究结论基于当前已知信息，不代表对未来走势的预测。投资者应自主判断并承担投资风险。
-                            </p>
-                        </div>
-                    </div>
-                </section>
+                <div class="footer-hint">← / → 或 Space 翻页</div>
             </main>
         </div>
         <script>
             (function () {
                 const slides = [...document.querySelectorAll(".slide")];
-                const navItems = [...document.querySelectorAll(".nav-item")];
+                const items = [...document.querySelectorAll(".nav-item")];
+                const now = document.getElementById("pageNow");
+                const total = document.getElementById("pageTotal");
                 const progress = document.getElementById("progress");
-                const pageNow = document.getElementById("pageNow");
-                const total = slides.length;
-                let index = 0;
-                function show(i) {
-                    index = Math.max(0, Math.min(total - 1, i));
-                    slides.forEach((s, k) =>
-                        s.classList.toggle("active", k === index),
+                let current = 0;
+                total.textContent = String(slides.length).padStart(2, "0");
+                function go(i) {
+                    current = Math.max(0, Math.min(slides.length - 1, i));
+                    slides.forEach((s, idx) =>
+                        s.classList.toggle("active", idx === current),
                     );
-                    navItems.forEach((n, k) =>
-                        n.classList.toggle("active", k === index),
+                    items.forEach((it, idx) =>
+                        it.classList.toggle("active", idx === current),
                     );
-                    pageNow.textContent = String(index + 1).padStart(2, "0");
-                    progress.style.width = ((index + 1) / total) * 100 + "%";
-                    navItems[index]?.scrollIntoView({ block: "nearest" });
-                    const sc = slides[index].querySelector(".content-scroll");
-                    if (sc) sc.scrollTop = 0;
+                    now.textContent = String(current + 1).padStart(2, "0");
+                    progress.style.width =
+                        ((current + 1) / slides.length) * 100 + "%";
+                    const active = items[current];
+                    if (active)
+                        active.scrollIntoView({
+                            block: "nearest",
+                            behavior: "smooth",
+                        });
                 }
-                navItems.forEach((btn) =>
-                    btn.addEventListener("click", () =>
-                        show(Number(btn.dataset.index)),
-                    ),
+                items.forEach((it, idx) =>
+                    it.addEventListener("click", () => go(idx)),
                 );
-                document
-                    .getElementById("nextBtn")
-                    .addEventListener("click", () => show(index + 1));
-                document
-                    .getElementById("prevBtn")
-                    .addEventListener("click", () => show(index - 1));
                 document.addEventListener("keydown", (e) => {
                     if (["ArrowRight", "PageDown", " "].includes(e.key)) {
                         e.preventDefault();
-                        show(index + 1);
+                        go(current + 1);
                     }
                     if (["ArrowLeft", "PageUp"].includes(e.key)) {
                         e.preventDefault();
-                        show(index - 1);
+                        go(current - 1);
+                    }
+                    if (e.key === "Home") {
+                        e.preventDefault();
+                        go(0);
+                    }
+                    if (e.key === "End") {
+                        e.preventDefault();
+                        go(slides.length - 1);
                     }
                 });
-                const search = document.getElementById("search");
-                const originalHTML = slides.map(
-                    (s) => s.querySelector(".content-scroll").innerHTML,
-                );
-                function escapeRegExp(s) {
-                    return s.replace(/[.*+?^${}()|\[\]\\]/g, "\\$&");
-                }
-                search.addEventListener("input", () => {
-                    const q = search.value.trim();
-                    slides.forEach(
-                        (s, i) =>
-                            (s.querySelector(".content-scroll").innerHTML =
-                                originalHTML[i]),
-                    );
-                    navItems.forEach((n) => (n.style.display = "grid"));
-                    if (!q) return;
-                    const re = new RegExp(escapeRegExp(q), "gi");
-                    let first = -1;
-                    slides.forEach((s, i) => {
-                        const text = s.textContent;
-                        const hit = text
-                            .toLowerCase()
-                            .includes(q.toLowerCase());
-                        navItems[i].style.display = hit ? "grid" : "none";
-                        if (hit && first < 0) first = i;
-                        if (hit) {
-                            const box = s.querySelector(".content-scroll");
-                            box.innerHTML = box.innerHTML.replace(
-                                re,
-                                (m) => "<mark>" + m + "</mark>",
-                            );
-                        }
-                    });
-                    if (first >= 0) show(first);
-                });
-                show(0);
+                go(0);
             })();
         </script>
     </body>
