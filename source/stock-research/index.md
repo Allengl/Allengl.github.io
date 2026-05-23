@@ -6,6 +6,13 @@ comments: false
 
 <div class="notes-slide-grid">
 
+  <a class="notes-slide-card" href="/stock-research/688008/" title="澜起科技（688008）深度研究报告">
+    <p class="notes-slide-title">澜起科技：内存接口芯片全球龙头</p>
+    <div class="notes-slide-cover">
+      <img src="/stock-research/688008/688008.png" alt="澜起科技：内存接口芯片全球龙头">
+    </div>
+  </a>
+
   <a class="notes-slide-card" href="/stock-research/688376/" title="美埃科技（688376）深度研究报告">
     <p class="notes-slide-title">美埃科技：洁净室精密过滤龙头</p>
     <div class="notes-slide-cover">
