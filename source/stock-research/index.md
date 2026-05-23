@@ -1,6 +1,7 @@
 ---
 title: stocks
 date: 2026-05-22
+comments: false
 ---
 
 <div class="notes-slide-grid">

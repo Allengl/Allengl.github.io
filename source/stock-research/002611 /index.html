@@ -1,0 +1,1760 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>东方精工深度研究报告 · 原文未删减 HTML Slides</title>
+        <style>
+            :root {
+                --paper: #f5efe4;
+                --paper-2: #fbf8f0;
+                --ink: #26312d;
+                --muted: #6f756f;
+                --line: #ded3bf;
+                --coral: #b96a5c;
+                --green: #2f5d50;
+                --blue: #587083;
+                --gold: #a18443;
+                --lav: #8b7aa7;
+                --shadow: 0 22px 70px rgba(75, 55, 31, 0.14);
+                --radius: 24px;
+                --deck-w: min(1720px, calc(100vw - 160px));
+                --deck-h: min(1050px, calc(100vh - 150px));
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+            }
+            body {
+                color: var(--ink);
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "PingFang SC",
+                    "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+                background: var(--paper);
+                background-image:
+                    linear-gradient(
+                        rgba(118, 102, 77, 0.1) 1px,
+                        transparent 1px
+                    ),
+                    linear-gradient(
+                        90deg,
+                        rgba(118, 102, 77, 0.1) 1px,
+                        transparent 1px
+                    ),
+                    radial-gradient(
+                        circle at 22% 10%,
+                        rgba(255, 255, 255, 0.8),
+                        transparent 34%
+                    );
+                background-size:
+                    22px 22px,
+                    22px 22px,
+                    100% 100%;
+                line-height: 1.72;
+            }
+            .deck-frame {
+                width: var(--deck-w);
+                height: var(--deck-h);
+                min-height: 720px;
+                margin: 75px auto;
+                display: grid;
+                grid-template-columns: 360px minmax(0, 1fr);
+                gap: 28px;
+                overflow: visible;
+            }
+            @media (max-height: 980px) {
+                .deck-frame {
+                    margin: 4vh auto;
+                    height: 92vh;
+                    min-height: 0;
+                }
+            }
+            .sidebar {
+                height: 100%;
+                min-height: 0;
+                background: rgba(255, 252, 244, 0.72);
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                padding: 26px;
+                display: flex;
+                flex-direction: column;
+                backdrop-filter: blur(8px);
+                overflow: hidden;
+            }
+            .brand {
+                font-family: Georgia, "Times New Roman", serif;
+                color: var(--green);
+                font-size: 13px;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+            }
+            .sidebar h1 {
+                font-family: Georgia, "Noto Serif SC", "Songti SC", serif;
+                font-size: 29px;
+                line-height: 1.18;
+                margin: 12px 0 10px;
+                font-weight: 600;
+            }
+            .sidebar .summary {
+                font-size: 14px;
+                color: var(--muted);
+                margin: 0 0 18px;
+            }
+            .nav-list {
+                overflow: auto;
+                padding-right: 4px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                min-height: 0;
+            }
+            .nav-item {
+                appearance: none;
+                border: 1px solid transparent;
+                background: transparent;
+                text-align: left;
+                border-radius: 16px;
+                padding: 10px 10px;
+                display: grid;
+                grid-template-columns: 38px 1fr;
+                gap: 8px;
+                color: var(--muted);
+                cursor: pointer;
+                transition: 0.22s ease;
+                font: inherit;
+            }
+            .nav-item:hover {
+                background: rgba(255, 255, 255, 0.58);
+                border-color: var(--line);
+                color: var(--ink);
+            }
+            .nav-item.active {
+                background: rgba(255, 255, 255, 0.86);
+                border-color: #cbbda5;
+                color: var(--ink);
+                box-shadow: 0 8px 24px rgba(69, 49, 20, 0.08);
+            }
+            .nav-num {
+                font-family: Georgia, serif;
+                color: var(--coral);
+                font-size: 15px;
+                padding-top: 1px;
+            }
+            .nav-item b {
+                display: block;
+                font-size: 14px;
+                line-height: 1.25;
+                font-weight: 650;
+            }
+            .nav-item em {
+                display: block;
+                font-style: normal;
+                font-size: 12px;
+                line-height: 1.35;
+                margin-top: 4px;
+                color: var(--muted);
+            }
+            .side-bottom {
+                margin-top: 18px;
+                border-top: 1px solid var(--line);
+                padding-top: 16px;
+            }
+            .page-count {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-family: Georgia, serif;
+                color: var(--muted);
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+            .progress-bar {
+                height: 8px;
+                background: #e7ddcc;
+                border-radius: 999px;
+                overflow: hidden;
+                border: 1px solid #dacdb8;
+            }
+            .progress-bar span {
+                display: block;
+                height: 100%;
+                width: 0;
+                background: linear-gradient(90deg, var(--green), var(--gold));
+                transition: width 0.25s ease;
+            }
+            .copyright {
+                font-size: 12px;
+                color: var(--muted);
+                margin-top: 12px;
+            }
+            .stage {
+                position: relative;
+                height: 100%;
+                min-width: 0;
+                background: rgba(255, 252, 245, 0.62);
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                overflow: hidden;
+            }
+            .stage:before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background:
+                    radial-gradient(
+                        circle at 80% 10%,
+                        rgba(185, 106, 92, 0.09),
+                        transparent 36%
+                    ),
+                    linear-gradient(
+                        120deg,
+                        rgba(255, 255, 255, 0.55),
+                        rgba(255, 255, 255, 0)
+                    );
+                pointer-events: none;
+            }
+            .slide {
+                position: absolute;
+                inset: 0;
+                padding: 56px 72px;
+                display: none;
+                overflow: auto;
+                scroll-padding-top: 56px;
+            }
+            .slide.active {
+                display: flex;
+                animation: rise 0.34s ease both;
+            }
+            .slide.center {
+                align-items: flex-start;
+                justify-content: center;
+            }
+            .slide.top {
+                align-items: flex-start;
+                justify-content: center;
+            }
+            @keyframes rise {
+                from {
+                    opacity: 0;
+                    transform: translateY(12px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .slide-inner {
+                width: 100%;
+                max-width: 1220px;
+                margin: 0 auto;
+                padding-bottom: 28px;
+            }
+            .kicker {
+                font-size: 13px;
+                letter-spacing: 0.14em;
+                color: var(--green);
+                text-transform: uppercase;
+                margin-bottom: 10px;
+                font-weight: 700;
+            }
+            .title,
+            .slide-title {
+                font-family: Georgia, "Noto Serif SC", "Songti SC", serif;
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                color: #1f2b27;
+            }
+            .title {
+                font-size: clamp(44px, 4.1vw, 72px);
+                line-height: 1.08;
+                margin: 10px 0 18px;
+            }
+            .slide-title {
+                font-size: clamp(34px, 3vw, 52px);
+                line-height: 1.14;
+                margin: 0 0 14px;
+            }
+            .lead {
+                font-size: 17px;
+                color: #515950;
+                margin: 0 0 22px;
+                max-width: 980px;
+            }
+            .lead.xl {
+                font-size: clamp(18px, 1.7vw, 22px);
+                color: #3d4842;
+            }
+            .meta-line {
+                font-size: 14px;
+                color: var(--muted);
+                letter-spacing: 0.08em;
+            }
+            .chips {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 22px;
+            }
+            .chip {
+                display: inline-flex;
+                align-items: center;
+                border: 1px solid #d8cbb7;
+                background: rgba(255, 255, 255, 0.58);
+                border-radius: 999px;
+                padding: 7px 12px;
+                color: #53615a;
+                font-size: 13px;
+            }
+            .three-col {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 18px;
+            }
+            .two-col {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+            }
+            .card,
+            .panel,
+            .note,
+            .quote {
+                background: rgba(255, 255, 255, 0.62);
+                border: 1px solid var(--line);
+                border-radius: 20px;
+                box-shadow: 0 10px 28px rgba(67, 50, 27, 0.08);
+            }
+            .card {
+                padding: 22px;
+            }
+            .card h3 {
+                font-family: Georgia, "Noto Serif SC", serif;
+                font-size: 23px;
+                margin: 6px 0 10px;
+            }
+            .card p {
+                margin: 0;
+                color: #4f5a54;
+                font-size: 15px;
+            }
+            .num {
+                font-family: Georgia, serif;
+                color: var(--coral);
+                font-size: 24px;
+            }
+            .panel {
+                padding: 24px;
+                font-size: 17px;
+            }
+            .panel.emphasis {
+                background: rgba(47, 93, 80, 0.08);
+                border-color: rgba(47, 93, 80, 0.25);
+                font-family: Georgia, "Noto Serif SC", serif;
+                font-size: 28px;
+                color: var(--green);
+            }
+            .note {
+                padding: 18px 20px;
+                color: #49534e;
+                font-size: 15px;
+                margin-top: 18px;
+            }
+            .note.warn {
+                border-color: rgba(185, 106, 92, 0.35);
+                background: rgba(185, 106, 92, 0.06);
+            }
+            .quote {
+                padding: 24px 28px;
+                font-family: Georgia, "Noto Serif SC", serif;
+                font-size: 20px;
+                line-height: 1.78;
+                color: #26332d;
+                border-left: 5px solid var(--gold);
+            }
+            .quote.warn {
+                border-left-color: var(--coral);
+                font-family: inherit;
+                font-size: 16px;
+            }
+            .diagram,
+            .timeline {
+                display: grid;
+                gap: 12px;
+                margin-top: 20px;
+            }
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+            .node {
+                display: grid;
+                grid-template-columns: 120px 1fr;
+                gap: 14px;
+                align-items: start;
+                padding: 16px 18px;
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                background: rgba(255, 255, 255, 0.58);
+            }
+            .node b {
+                font-family: Georgia, "Noto Serif SC", serif;
+                color: var(--green);
+            }
+            .node span {
+                color: #404b45;
+            }
+            .table-wrap {
+                overflow: auto;
+                border: 1px solid var(--line);
+                border-radius: 18px;
+                background: rgba(255, 255, 255, 0.52);
+                box-shadow: 0 10px 26px rgba(67, 50, 27, 0.07);
+            }
+            .table-wrap.medium {
+                max-height: clamp(420px, 58vh, 650px);
+            }
+            .table-wrap.large {
+                max-height: clamp(460px, 62vh, 720px);
+            }
+            .material-table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 13.5px;
+                line-height: 1.48;
+                min-width: 760px;
+            }
+            .material-table th {
+                position: sticky;
+                top: 0;
+                background: #294b5e;
+                color: #fff;
+                font-weight: 650;
+                text-align: left;
+                padding: 9px 11px;
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                z-index: 1;
+            }
+            .material-table td {
+                vertical-align: top;
+                padding: 8px 11px;
+                border: 1px solid #ded5c6;
+                background: rgba(255, 255, 255, 0.58);
+            }
+            .material-table tr:nth-child(even) td {
+                background: rgba(250, 246, 237, 0.72);
+            }
+            .cover-block {
+                max-width: 940px;
+                padding-top: 6px;
+            }
+            .cover-block .note {
+                display: inline-block;
+                margin-top: 4px;
+            }
+            .footer-hint {
+                position: absolute;
+                right: 22px;
+                bottom: 14px;
+                color: var(--muted);
+                font-size: 12px;
+            }
+            .stage,
+            .slide {
+                overscroll-behavior: contain;
+            }
+            @media (max-height: 760px) {
+                .deck-frame {
+                    height: 96vh;
+                    margin: 2vh auto;
+                }
+                .slide {
+                    padding: 28px 40px;
+                }
+                .sidebar {
+                    padding: 20px;
+                }
+                .sidebar h1 {
+                    font-size: 25px;
+                }
+                .nav-item {
+                    padding: 8px 10px;
+                }
+                .table-wrap.medium {
+                    max-height: 440px;
+                }
+                .table-wrap.large {
+                    max-height: 480px;
+                }
+            }
+            @media (max-width: 1280px) {
+                :root {
+                    --deck-w: 96vw;
+                    --deck-h: 94vh;
+                }
+                .deck-frame {
+                    grid-template-columns: 330px minmax(0, 1fr);
+                    gap: 22px;
+                    margin: 3vh auto;
+                }
+                .slide {
+                    padding: 38px 46px;
+                }
+                .slide-inner {
+                    max-width: 1040px;
+                }
+                .title {
+                    font-size: clamp(42px, 4.4vw, 58px);
+                }
+                .slide-title {
+                    font-size: clamp(32px, 3.4vw, 44px);
+                }
+            }
+            @media (max-width: 980px) {
+                .deck-frame {
+                    height: auto;
+                    min-height: 0;
+                    margin: 0;
+                    width: 100%;
+                    display: block;
+                }
+                .sidebar {
+                    position: sticky;
+                    top: 0;
+                    z-index: 5;
+                    border-radius: 0;
+                    max-height: 42vh;
+                }
+                .stage {
+                    border-radius: 0;
+                    min-height: 58vh;
+                    height: auto;
+                }
+                .slide {
+                    position: relative;
+                    display: flex !important;
+                    min-height: auto;
+                    padding: 30px 20px;
+                    border-bottom: 1px solid var(--line);
+                }
+                .slide:not(.active) {
+                    animation: none;
+                    opacity: 1;
+                }
+                .nav-list {
+                    display: none;
+                }
+                .three-col,
+                .two-col {
+                    grid-template-columns: 1fr;
+                }
+                .title {
+                    font-size: 40px;
+                }
+                .slide-title {
+                    font-size: 32px;
+                }
+                .deck-frame .stage {
+                    overflow: visible;
+                }
+            }
+            @media print {
+                body {
+                    background: white;
+                }
+                .deck-frame {
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                    margin: 0;
+                }
+                .sidebar {
+                    display: none;
+                }
+                .stage {
+                    box-shadow: none;
+                    border: none;
+                }
+                .slide {
+                    display: flex !important;
+                    position: relative;
+                    page-break-after: always;
+                    min-height: 100vh;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="deck-frame">
+            <aside class="sidebar">
+                <div class="brand">Allen's Talk #002611</div>
+                <h1>东方精工深度研究报告</h1>
+                <p class="summary">
+                    原始报告文字未删减版本。左侧目录切换章节，右侧逐页演示；长表格保留完整内容并可滚动查看。
+                </p>
+                <nav class="nav-list" id="navList">
+                    <button class="nav-item" data-index="0">
+                        <span class="nav-num">00</span
+                        ><span
+                            ><b>开场页</b
+                            ><em
+                                >报告原文完整保留，转换为可交互网页 slides</em
+                            ></span
+                        ></button
+                    ><button class="nav-item" data-index="1">
+                        <span class="nav-num">01</span
+                        ><span
+                            ><b>今天聊什么</b
+                            ><em
+                                >用“确定性现金—产业链闭环—穿透估值—风险跟踪”的路径读完报告</em
+                            ></span
+                        ></button
+                    ><button class="nav-item" data-index="2">
+                        <span class="nav-num">02</span
+                        ><span
+                            ><b>一、研究历程——为什么这份报告与众不同</b
+                            ><em>为什么这份报告与众不同</em></span
+                        ></button
+                    ><button class="nav-item" data-index="3">
+                        <span class="nav-num">03</span
+                        ><span
+                            ><b>二、公司基本面</b
+                            ><em>公司当前主业、财务与股权投资基础盘</em></span
+                        ></button
+                    ><button class="nav-item" data-index="4">
+                        <span class="nav-num">04</span
+                        ><span
+                            ><b>三、Fosber出售——最确定的价值释放事件</b
+                            ><em>最确定的价值释放事件</em></span
+                        ></button
+                    ><button class="nav-item" data-index="5">
+                        <span class="nav-num">05</span
+                        ><span
+                            ><b>重大资产重组认定的意义</b
+                            ><em>审批、披露与股东大会的信号价值</em></span
+                        ></button
+                    ><button class="nav-item" data-index="6">
+                        <span class="nav-num">06</span
+                        ><span
+                            ><b>四、完整投资版图——15张Pre-IPO门票</b
+                            ><em
+                                >参股公司 30 家，已知约 20
+                                家；下表保留原始字段</em
+                            ></span
+                        ></button
+                    ><button class="nav-item" data-index="7">
+                        <span class="nav-num">07</span
+                        ><span
+                            ><b>完整投资版图（续）</b
+                            ><em>后半部分标的与 Fosber 出售现金保留</em></span
+                        ></button
+                    ><button class="nav-item" data-index="8">
+                        <span class="nav-num">08</span
+                        ><span
+                            ><b>五、最重要的发现——人形机器人完整产业链闭环</b
+                            ><em>报告认为这是全文最重要的发现</em></span
+                        ></button
+                    ><button class="nav-item" data-index="9">
+                        <span class="nav-num">09</span
+                        ><span
+                            ><b>为什么这个产业链闭环如此重要</b
+                            ><em>从财务投资转向产业协同的关键论述</em></span
+                        ></button
+                    ><button class="nav-item" data-index="10">
+                        <span class="nav-num">10</span
+                        ><span
+                            ><b>六、穿透估值——市场显著低估</b
+                            ><em
+                                >市场显著低估：报告采用穿透估值，而不是传统营收
+                                / PE</em
+                            ></span
+                        ></button
+                    ><button class="nav-item" data-index="11">
+                        <span class="nav-num">11</span
+                        ><span
+                            ><b>估值结论</b
+                            ><em>保守估算与未计入的上行期权</em></span
+                        ></button
+                    ><button class="nav-item" data-index="12">
+                        <span class="nav-num">12</span
+                        ><span
+                            ><b>七、对市场悲观观点的正面回应</b
+                            ><em>把悲观观点放回正确的估值框架中</em></span
+                        ></button
+                    ><button class="nav-item" data-index="13">
+                        <span class="nav-num">13</span
+                        ><span
+                            ><b>真正需要警惕的风险</b
+                            ><em
+                                >报告强调：市场没有充分讨论的部分反而更应该核实</em
+                            ></span
+                        ></button
+                    ><button class="nav-item" data-index="14">
+                        <span class="nav-num">14</span
+                        ><span
+                            ><b>八、催化剂时间线</b
+                            ><em>哪些事件会触发市场重新定价</em></span
+                        ></button
+                    ><button class="nav-item" data-index="15">
+                        <span class="nav-num">15</span
+                        ><span
+                            ><b>九、风险矩阵</b
+                            ><em>把“看多逻辑”放进风险矩阵里检验</em></span
+                        ></button
+                    ><button class="nav-item" data-index="16">
+                        <span class="nav-num">16</span
+                        ><span
+                            ><b>十、持续跟踪的核心指标</b
+                            ><em
+                                >后续不是只看股价，而是持续验证关键事实</em
+                            ></span
+                        ></button
+                    ><button class="nav-item" data-index="17">
+                        <span class="nav-num">17</span
+                        ><span
+                            ><b>十一、综合评级与投资建议</b
+                            ><em>报告最终评级与持有维度</em></span
+                        ></button
+                    ><button class="nav-item" data-index="18">
+                        <span class="nav-num">18</span
+                        ><span
+                            ><b>⚠️ 重要声明</b
+                            ><em>请保留在所有传播与阅读场景中</em></span
+                        >
+                    </button>
+                </nav>
+                <div class="side-bottom">
+                    <div class="page-count">
+                        <span id="pageNow">00</span
+                        ><span id="pageTotal">19</span>
+                    </div>
+                    <div class="progress-bar"><span id="progress"></span></div>
+                    <div class="copyright">
+                        © 2026 · 仅供研究复盘，不构成投资建议
+                    </div>
+                </div>
+            </aside>
+            <main class="stage" id="stage">
+                <section class="slide center" data-title="开场页">
+                    <div class="slide-inner">
+                        <div class="kicker">东方精工研究</div>
+                        <h2 class="slide-title">开场页</h2>
+                        <p class="lead">
+                            报告原文完整保留，转换为可交互网页 slides
+                        </p>
+                        <div class="cover-block">
+                            <div class="meta-line">
+                                2026 年 3 月 4 日 · 深度研究报告·最终版
+                            </div>
+                            <h1 class="title">
+                                东方精工（002611）深度研究报告
+                            </h1>
+                            <p class="lead xl">
+                                参股公司 30 家 · 人形机器人完整产业链 · Pre-IPO
+                                门票 15 张+
+                            </p>
+                            <p class="note">
+                                特殊机会 · 不对称风险收益结构 · 2-3
+                                年战略持有<br />仅供参考，不构成投资建议
+                            </p>
+                            <div class="chips">
+                                <span class="chip">002611</span
+                                ><span class="chip">Fosber 出售</span
+                                ><span class="chip">人形机器人</span
+                                ><span class="chip">Pre-IPO</span
+                                ><span class="chip">穿透估值</span
+                                ><span class="chip">风险矩阵</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="今天聊什么">
+                    <div class="slide-inner">
+                        <div class="kicker">阅读地图</div>
+                        <h2 class="slide-title">今天聊什么</h2>
+                        <p class="lead">
+                            用“确定性现金—产业链闭环—穿透估值—风险跟踪”的路径读完报告
+                        </p>
+                        <div class="three-col">
+                            <div class="card">
+                                <span class="num">01</span>
+                                <h3>先看确定性现金</h3>
+                                <p>
+                                    Fosber
+                                    出售是报告中最确定的价值释放事件：安永备考报表确认净到手约
+                                    60.28 亿元。
+                                </p>
+                            </div>
+                            <div class="card">
+                                <span class="num">02</span>
+                                <h3>再看产业链闭环</h3>
+                                <p>
+                                    从大脑、感知、控制、执行到整机，报告认为东方精工已形成完整的人形机器人产业链卡位。
+                                </p>
+                            </div>
+                            <div class="card">
+                                <span class="num">03</span>
+                                <h3>最后看重估逻辑</h3>
+                                <p>
+                                    报告的核心分歧不是传统
+                                    PE，而是市场是否愿意把它从制造公司重新理解为科技投资控股平台。
+                                </p>
+                            </div>
+                        </div>
+                        <p class="note">
+                            本页为阅读导览；后续各页保留报告原始文字、表格与风险声明。
+                        </p>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    data-title="一、研究历程——为什么这份报告与众不同"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">01 研究历程</div>
+                        <h2 class="slide-title">
+                            一、研究历程——为什么这份报告与众不同
+                        </h2>
+                        <p class="lead">为什么这份报告与众不同</p>
+                        <p class="lead">
+                            本报告是今日一整天深度对话研究的最终成果，历经十余轮信息迭代、逐层穿透，从表面的&#x27;瓦楞纸板设备公司&#x27;一直剥开到&#x27;手持15张以上Pre-IPO门票的人形机器人产业链控股平台&#x27;。这个穿透过程本身，就是东方精工最重要的投资价值所在。
+                        </p>
+                        <div class="timeline">
+                            <div class="node">
+                                <b>第一层</b
+                                ><span
+                                    >瓦楞纸板设备，47倍PE，大多数人止步于此</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>第二层</b
+                                ><span
+                                    >Fosber出售：净到手60.28亿现金（安永备考报表确认），十年9倍增值，相当于市值30%</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>第三层</b
+                                ><span
+                                    >买方博枫（AUM超1万亿美元西方资本），六国审批政治阻力极小</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>第四层</b
+                                ><span
+                                    >百胜动力+英伟达供应链+东方元启（持股80%）整机制造</span
+                                >
+                            </div>
+                            <div class="node">
+                                <b>第五层</b
+                                ><span
+                                    >参股30家公司——人形机器人完整产业链+核聚变+低空经济+自动驾驶</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="二、公司基本面">
+                    <div class="slide-inner">
+                        <div class="kicker">02 公司基本面</div>
+                        <h2 class="slide-title">二、公司基本面</h2>
+                        <p class="lead">公司当前主业、财务与股权投资基础盘</p>
+                        <div class="table-wrap medium">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>证券代码</th>
+                                        <th>002611（深交所主板）</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>成立时间</td>
+                                        <td>1996年12月9日</td>
+                                    </tr>
+                                    <tr>
+                                        <td>实际控制人</td>
+                                        <td>唐灼林、唐灼棉</td>
+                                    </tr>
+                                    <tr>
+                                        <td>注册资本</td>
+                                        <td>121728.634万元人民币</td>
+                                    </tr>
+                                    <tr>
+                                        <td>员工人数</td>
+                                        <td>2259人</td>
+                                    </tr>
+                                    <tr>
+                                        <td>主营业务（现）</td>
+                                        <td>
+                                            智能包装装备（Fosber，出售中）、水上动力设备（百胜动力）
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>主营业务（未来）</td>
+                                        <td>
+                                            水上动力设备+人工智能机器人+新质生产力战略投资
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024年营收</td>
+                                        <td>47.78亿元（+0.68%）</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024年净利润</td>
+                                        <td>5.01亿元（+15.54%）</td>
+                                    </tr>
+                                    <tr>
+                                        <td>资产负债率</td>
+                                        <td>30.61%（持续下降，财务稳健）</td>
+                                    </tr>
+                                    <tr>
+                                        <td>当前市值</td>
+                                        <td>约200亿元人民币</td>
+                                    </tr>
+                                    <tr>
+                                        <td>参股公司</td>
+                                        <td>
+                                            30家（已披露约20家，仍有约10家未完整公开）
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    data-title="三、Fosber出售——最确定的价值释放事件"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">03 Fosber 出售</div>
+                        <h2 class="slide-title">
+                            三、Fosber出售——最确定的价值释放事件
+                        </h2>
+                        <p class="lead">最确定的价值释放事件</p>
+                        <div class="table-wrap medium">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>交易规模</th>
+                                        <th>
+                                            基础对价7.74亿欧元，扣除狄伦拿贷款偿还5,554万后，安永备考报表确认净到手约60.28亿人民币；或有对价最高额外2,500万欧元
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>买方</td>
+                                        <td>
+                                            ForesightUSBidCo,Inc.（美国）+ForesightItalyBidCoS.p.A.（意大利）——博枫集团专项SPV
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>卖出资产</td>
+                                        <td>
+                                            广东佛斯伯100%+狄伦拿（广东）100%+FosberS.p.A.100%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>十年回报</td>
+                                        <td>
+                                            2014/2017年合计约7400万欧元收购，此次出售7.74亿欧元，增值约9倍
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>每股现金</td>
+                                        <td>
+                                            约5.18元/股（基于12.17亿总股本）
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>审批状态</td>
+                                        <td>
+                                            董事会已通过；尚需股东大会审议+六国监管机构审批
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>审批风险判断</td>
+                                        <td>
+                                            买方为西方资本，方向为中国卖给西方，政治阻力极小；时间风险大于通过风险
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>最新进展</td>
+                                        <td>
+                                            2026年2月26日公告：标的经营正常，各项工作有序推进
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="重大资产重组认定的意义">
+                    <div class="slide-inner">
+                        <div class="kicker">03 程序节点</div>
+                        <h2 class="slide-title">重大资产重组认定的意义</h2>
+                        <p class="lead">审批、披露与股东大会的信号价值</p>
+                        <div class="quote">📋 重大资产重组认定的意义</div>
+                        <div class="note">
+                            2月26日公告明确&#x27;预计构成重大资产重组&#x27;——这比早期的&#x27;不构成重大资产重组&#x27;表述升级。<br />构成重大资产重组意味着：审批标准更高、信息披露更完整、股东大会程序更规范。<br />管理层选择等外部审批有实质进展后再召开股东大会——说明对审批通过有相当把握。<br />股东大会召开时间将是交割进程的最重要信号节点，一旦公告召开日期，市场将大幅提前定价。
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    data-title="四、完整投资版图——15张Pre-IPO门票"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">04 投资版图 · 上</div>
+                        <h2 class="slide-title">
+                            四、完整投资版图——15张Pre-IPO门票
+                        </h2>
+                        <p class="lead">
+                            参股公司 30 家，已知约 20 家；下表保留原始字段
+                        </p>
+                        <p class="lead">
+                            经过全天十余轮信息迭代，东方精工的完整股权投资版图已基本确认。参股公司30家，已知约20家，仍有约10家未完整披露。以下为截至2026年3月4日可确认的完整持仓。
+                        </p>
+                        <div class="table-wrap large">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>投资标的</th>
+                                        <th>赛道</th>
+                                        <th>持股比例</th>
+                                        <th>战略价值</th>
+                                        <th>权益价值估算</th>
+                                        <th>Pre-IPO潜力</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>若愚科技</td>
+                                        <td>AI大模型/具身智能大脑</td>
+                                        <td>23.31%</td>
+                                        <td>★★★★★</td>
+                                        <td>≈93亿元</td>
+                                        <td>
+                                            科创板申报中；当前仍处亏损投入期
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>航天新力</td>
+                                        <td>可控核聚变关键结构材料</td>
+                                        <td>
+                                            19.89%<br />（2021年3.86%→2025年增持）
+                                        </td>
+                                        <td>★★★★★</td>
+                                        <td>≈21-36亿元</td>
+                                        <td>
+                                            ITER+BEST全部订单，2025年9月已发运
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>嘉腾机器人</td>
+                                        <td>AGV工业机器人</td>
+                                        <td>19.84%</td>
+                                        <td>★★★★</td>
+                                        <td>≈10-20亿元</td>
+                                        <td>✅ 唯一已盈利的机器人被投企业</td>
+                                    </tr>
+                                    <tr>
+                                        <td>南京前知智能</td>
+                                        <td>具身智能感知</td>
+                                        <td>15%+5.67%</td>
+                                        <td>★★★★</td>
+                                        <td>早期，难估值</td>
+                                        <td>
+                                            持续亏损中（年亏约1,750-2,250万）
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>深圳和聚智控</td>
+                                        <td>机器人运动控制</td>
+                                        <td>15%</td>
+                                        <td>★★★★</td>
+                                        <td>早期，难估值</td>
+                                        <td>控制器稀缺标的</td>
+                                    </tr>
+                                    <tr>
+                                        <td>乐聚机器人</td>
+                                        <td>人形机器人整机</td>
+                                        <td>6.84%</td>
+                                        <td>★★★★★</td>
+                                        <td>≈8.2亿元</td>
+                                        <td>2026年量产在即</td>
+                                    </tr>
+                                    <tr>
+                                        <td>珠海三锐精工</td>
+                                        <td>精密制造零部件</td>
+                                        <td>10%</td>
+                                        <td>★★★</td>
+                                        <td>早期，难估值</td>
+                                        <td>装备制造协同</td>
+                                    </tr>
+                                    <tr>
+                                        <td>灵心巧手（北京）</td>
+                                        <td>云端智能灵巧手平台</td>
+                                        <td>待披露</td>
+                                        <td>★★★★★</td>
+                                        <td>早期期权</td>
+                                        <td>灵巧手软件平台</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="完整投资版图（续）">
+                    <div class="slide-inner">
+                        <div class="kicker">04 投资版图 · 下</div>
+                        <h2 class="slide-title">完整投资版图（续）</h2>
+                        <p class="lead">后半部分标的与 Fosber 出售现金保留</p>
+                        <div class="table-wrap large">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>投资标的</th>
+                                        <th>赛道</th>
+                                        <th>持股比例</th>
+                                        <th>战略价值</th>
+                                        <th>权益价值估算</th>
+                                        <th>Pre-IPO潜力</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>杭州黑漫科技</td>
+                                        <td>防水灵巧手硬件</td>
+                                        <td>5%</td>
+                                        <td>★★★★★</td>
+                                        <td>早期期权</td>
+                                        <td>与乐聚联合投资</td>
+                                    </tr>
+                                    <tr>
+                                        <td>北京辉羲智能</td>
+                                        <td>自动驾驶/智能驾驶</td>
+                                        <td>待披露</td>
+                                        <td>★★★★</td>
+                                        <td>早期期权</td>
+                                        <td>新增标的</td>
+                                    </tr>
+                                    <tr>
+                                        <td>拓元智慧</td>
+                                        <td>智慧城市/数字孪生</td>
+                                        <td>待披露</td>
+                                        <td>★★★</td>
+                                        <td>早期期权</td>
+                                        <td>新增标的</td>
+                                    </tr>
+                                    <tr>
+                                        <td>腾盾科创</td>
+                                        <td>高端无人机/低空经济</td>
+                                        <td>间接持股（路径待核实）</td>
+                                        <td>★★★★</td>
+                                        <td>早期期权</td>
+                                        <td>⚠️ 原间接路径天津航创已注销</td>
+                                    </tr>
+                                    <tr>
+                                        <td>中科富海</td>
+                                        <td>液氦低温装备</td>
+                                        <td>间接~0.77%</td>
+                                        <td>★★★★</td>
+                                        <td>战略布局</td>
+                                        <td>加码投资进行中</td>
+                                    </tr>
+                                    <tr>
+                                        <td>宇泽半导体</td>
+                                        <td>第三代半导体SiC</td>
+                                        <td>0.89%</td>
+                                        <td>★★★</td>
+                                        <td>早期期权</td>
+                                        <td>碳化硅国产替代</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fosber出售现金</td>
+                                        <td>——</td>
+                                        <td>——</td>
+                                        <td>确定性最高</td>
+                                        <td>60.28亿元（净到手）</td>
+                                        <td>扣除狄伦拿贷款5,554万后净额</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    data-title="五、最重要的发现——人形机器人完整产业链闭环"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">05 产业链闭环</div>
+                        <h2 class="slide-title">
+                            五、最重要的发现——人形机器人完整产业链闭环
+                        </h2>
+                        <p class="lead">报告认为这是全文最重要的发现</p>
+                        <p class="lead">
+                            这是今天分析中最震撼的发现：东方精工通过五个层次的精准布局，已在内部形成了人形机器人从&#x27;大脑&#x27;到&#x27;整机&#x27;的完整垂直产业链——这在国内上市公司中极为罕见，甚至可能是唯一一家。
+                        </p>
+                        <div class="table-wrap medium">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>大脑层</th>
+                                        <th>大脑层</th>
+                                        <th>若愚科技（23.31%）</th>
+                                        <th>
+                                            多模态AI大模型，具身智能核心算法，科创板申报中
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>感知层</td>
+                                        <td>感知层</td>
+                                        <td>南京前知智能（15%）</td>
+                                        <td>
+                                            具身智能感知系统，机器人环境理解
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>控制层</td>
+                                        <td>控制层</td>
+                                        <td>深圳和聚智控（15%）</td>
+                                        <td>
+                                            机器人运动控制器，执行指令精准传导
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>执行层（手）</td>
+                                        <td>执行层（手）</td>
+                                        <td>
+                                            灵心巧手（待披露）+黑漫科技防水灵巧手（5%）
+                                        </td>
+                                        <td>软件平台+防水硬件双保险布局</td>
+                                    </tr>
+                                    <tr>
+                                        <td>整机层</td>
+                                        <td>整机层</td>
+                                        <td>
+                                            乐聚机器人（6.84%）+东方元启（持股80%）
+                                        </td>
+                                        <td>整机制造+代工，2026年量产</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    data-title="为什么这个产业链闭环如此重要"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">05 协同价值</div>
+                        <h2 class="slide-title">
+                            为什么这个产业链闭环如此重要
+                        </h2>
+                        <p class="lead">从财务投资转向产业协同的关键论述</p>
+                        <div class="quote">🤖 为什么这个产业链闭环如此重要</div>
+                        <div class="note">
+                            这五个层次不是孤立的财务投资，而是围绕&#x27;人形机器人量产&#x27;这一目标刻意构建的协同体系。<br />东方精工+乐聚机器人联合投资黑漫防水灵巧手——两家被投企业的投资方相互交叉，产业协同已深入零部件层面。<br />东方元启（持股80%）作为乐聚机器人的代工制造伙伴，制造能力+零部件供应链+整机品牌三位一体。<br />若愚科技的AI大模型为整个机器人体系提供&#x27;通用大脑&#x27;，产业链协同价值远超单纯的财务投资收益。<br />当人形机器人2026-2027年进入量产爆发期，东方精工每一层的投资都将同步受益，是真正的&#x27;全产业链赌注&#x27;。
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    data-title="六、穿透估值——市场显著低估"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">06 穿透估值</div>
+                        <h2 class="slide-title">六、穿透估值——市场显著低估</h2>
+                        <p class="lead">
+                            市场显著低估：报告采用穿透估值，而不是传统营收 / PE
+                        </p>
+                        <p class="lead">
+                            传统财务分析用营收和PE来衡量东方精工，得出&#x27;营收缩水六成、估值虚高&#x27;的结论。这是用错了工具。正确的估值方法是穿透到每一个股权投资标的的内在价值。
+                        </p>
+                        <div class="table-wrap large">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>估值构成</th>
+                                        <th>权益价值</th>
+                                        <th>备注</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>若愚科技（23.31%×400亿+）</td>
+                                        <td>≈93亿元</td>
+                                        <td>企查查最新工商数据确认</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            航天新力（19.89%×预测105-180亿）
+                                        </td>
+                                        <td>≈21-36亿元</td>
+                                        <td>
+                                            2021年3.86%→2025年增持至19.89%；BEST项目全部订单+2025年9月成功发运，收入已落地
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>嘉腾机器人（19.84%×50-100亿）</td>
+                                        <td>≈10-20亿元</td>
+                                        <td>天眼查确认，头部客户验证</td>
+                                    </tr>
+                                    <tr>
+                                        <td>乐聚机器人（6.84%×120亿）</td>
+                                        <td>≈8.2亿元</td>
+                                        <td>2025年10月Pre-IPO融资确认</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            灵心巧手+黑漫科技+前知智能+和聚智控
+                                        </td>
+                                        <td>早期期权，暂不估值</td>
+                                        <td>人形机器人完整产业链卡位</td>
+                                    </tr>
+                                    <tr>
+                                        <td>腾盾科创+辉羲智能+拓元智慧+其他</td>
+                                        <td>早期期权，暂不估值</td>
+                                        <td>低空经济+自动驾驶+智慧城市</td>
+                                    </tr>
+                                    <tr>
+                                        <td>小计：已可估值股权投资</td>
+                                        <td>≈132-157亿元</td>
+                                        <td>保守估算，不含早期期权</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fosber出售现金（确定性最高）</td>
+                                        <td>60.28亿元</td>
+                                        <td>
+                                            基础对价7.74亿欧元，扣除狄伦拿贷款5,554万，安永备考报表确认数字
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>穿透估值合计</td>
+                                        <td>≈192-217亿元</td>
+                                        <td>vs 当前市值约200亿元</td>
+                                    </tr>
+                                    <tr>
+                                        <td>早期期权价值（10+家标的）</td>
+                                        <td>未计入</td>
+                                        <td>纯上行期权，不含在估值中</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="估值结论">
+                    <div class="slide-inner">
+                        <div class="kicker">06 估值结论</div>
+                        <h2 class="slide-title">估值结论</h2>
+                        <p class="lead">保守估算与未计入的上行期权</p>
+                        <div class="quote">📊 估值结论</div>
+                        <div class="note">
+                            保守估算穿透估值195-220亿元，vs
+                            当前市值约200亿元——基本持平，但这是极度保守的估算。<br />10+家早期标的（灵心巧手、黑漫科技、辉羲智能、腾盾科创等）的期权价值完全未计入。<br />若愚科技一旦科创板申报成功，93亿权益价值从&#x27;推算&#x27;变为&#x27;市场验证&#x27;，将是最强催化剂。<br />最关键的认知差：市场在为&#x27;传统制造业转型期&#x27;定价，而实际上应该为&#x27;科技投资控股平台&#x27;定价。<br />这种估值工具的错配，正是当前折价的根本原因，也是未来重估的核心驱动力。
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    data-title="七、对市场悲观观点的正面回应"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">07 悲观观点回应</div>
+                        <h2 class="slide-title">
+                            七、对市场悲观观点的正面回应
+                        </h2>
+                        <p class="lead">把悲观观点放回正确的估值框架中</p>
+                        <div class="two-col">
+                            <div class="card">
+                                <h3>
+                                    悲观观点一：&#x27;营收缩水六成，面临业绩断崖&#x27;
+                                </h3>
+                                <p>
+                                    这个观点本身是事实，但结论是错的。营收缩水六成是正确的；但对于一个正在转型为&#x27;投资控股平台&#x27;的公司，营收不是正确的估值锚。把GIC、淡马锡、博枫这类投资控股公司用营收来估值，会得出同样荒谬的结论。
+                                </p>
+                            </div>
+                            <div class="card">
+                                <h3>
+                                    悲观观点二：&#x27;普莱德并购失败的历史会重演&#x27;
+                                </h3>
+                                <p>
+                                    普莱德失败的根因是&#x27;47.5亿大额并购+实际控制力缺失&#x27;——花大钱买了一家公司却无法管理。当前模式是&#x27;小额分散少数股权投资+产业协同&#x27;，每笔投资数千万量级，不需要整合管理。两个模式的风险结构根本不同，用普莱德的失败逻辑来否定当前布局，是在类比不可比的事物。
+                                </p>
+                            </div>
+                            <div class="card">
+                                <h3>
+                                    悲观观点三：&#x27;63亿只是转型第一步，后续不确定&#x27;
+                                </h3>
+                                <p>
+                                    这句话说对了——60.28亿确实只是第一步。但说这句话的人没有看到第二步、第三步已经在推进中：参股30家公司、人形机器人产业链闭环、持续的新标的布局（灵心巧手、辉羲智能、拓元智慧）。60.28亿是子弹，布局已经提前展开。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="真正需要警惕的风险">
+                    <div class="slide-inner">
+                        <div class="kicker">07 风险补充</div>
+                        <h2 class="slide-title">真正需要警惕的风险</h2>
+                        <p class="lead">
+                            报告强调：市场没有充分讨论的部分反而更应该核实
+                        </p>
+                        <div class="quote warn">
+                            ⚠️ 真正需要警惕的风险（市场没有充分讨论的）
+                        </div>
+                        <div class="note warn">
+                            天眼风险条数偏高：自身149条、周边546条、预警432条——需核实是否有实质性重大风险，还是历史积累的供应商纠纷。<br />30家参股公司里是否有&#x27;下一个普莱德&#x27;：即有大额控股+深度整合模式的标的。目前已知均为少数股权，但未知的10家需要关注。<br />万德数科商誉风险：控股51%的子公司2024年商誉减值0.82亿（减值率高达69%），EDF商誉已100%减值——这说明部分控股投资质量存疑，非上市少数股权投资的风险需要同样审视。<br />衍生金融负债1.23亿：少数股东期权安排，具体条款未披露，潜在现金流出风险待核实。<br />百胜动力分拆叫停的真实原因：至今未得到充分解释，是合规问题、业绩问题、还是战略调整？这个疑问需要在年报中寻找答案。
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="八、催化剂时间线">
+                    <div class="slide-inner">
+                        <div class="kicker">08 催化剂</div>
+                        <h2 class="slide-title">八、催化剂时间线</h2>
+                        <p class="lead">哪些事件会触发市场重新定价</p>
+                        <div class="table-wrap large">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>时间节点</th>
+                                        <th>催化剂事件</th>
+                                        <th>预期影响</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>近期</td>
+                                        <td>股东大会召开</td>
+                                        <td>
+                                            交割流程关键节点，意味着外部审批已有实质性进展
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2026年Q2</td>
+                                        <td>意大利/西班牙FDI审查通过</td>
+                                        <td>
+                                            最强催化剂——交割时间线清晰，市值重估触发
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2026年Q3</td>
+                                        <td>Fosber交割完成，60.28亿现金入账</td>
+                                        <td>
+                                            净资产大幅提升，每股净现金价值约4.95元
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2026年内</td>
+                                        <td>若愚科技科创板申报</td>
+                                        <td>
+                                            23.31%×400亿+权益价值从潜在变为可验证
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2026年内</td>
+                                        <td>乐聚机器人量产放量</td>
+                                        <td>东方元启（持股80%）代工收入启动</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2026年内</td>
+                                        <td>新项目披露</td>
+                                        <td>
+                                            30家参股公司尚有10家未完整披露，新标的随时出现
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2026-2027年</td>
+                                        <td>航天新力BEST+ITER项目订单放量</td>
+                                        <td>
+                                            BEST项目磁体支撑2025年9月已发运，核聚变商业化加速，全球唯一认证供应商溢价持续扩大
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2027年+</td>
+                                        <td>若愚/嘉腾/前知智能IPO</td>
+                                        <td>
+                                            股权投资账面价值变为可流通市场价值
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="九、风险矩阵">
+                    <div class="slide-inner">
+                        <div class="kicker">09 风险矩阵</div>
+                        <h2 class="slide-title">九、风险矩阵</h2>
+                        <p class="lead">把“看多逻辑”放进风险矩阵里检验</p>
+                        <div class="table-wrap large">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>风险类型</th>
+                                        <th>具体内容</th>
+                                        <th>发生概率</th>
+                                        <th>冲击程度</th>
+                                        <th>可控性</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>⏱ 资本占用时间（核心风险）</td>
+                                        <td>
+                                            六国审批3-18个月，资金锁定期间机会成本
+                                        </td>
+                                        <td>高</td>
+                                        <td>中</td>
+                                        <td>低</td>
+                                    </tr>
+                                    <tr>
+                                        <td>📉 业绩断崖过渡期</td>
+                                        <td>
+                                            Fosber占67%营收，交割完成前估值倒挂明显
+                                        </td>
+                                        <td>高</td>
+                                        <td>中</td>
+                                        <td>低</td>
+                                    </tr>
+                                    <tr>
+                                        <td>🚢 百胜动力毛利率</td>
+                                        <td>
+                                            五年持续下滑26.87%→21.38%，分拆叫停原因未解
+                                        </td>
+                                        <td>中</td>
+                                        <td>高</td>
+                                        <td>中</td>
+                                    </tr>
+                                    <tr>
+                                        <td>🔒 股权投资流动性</td>
+                                        <td>
+                                            14+家被投企业均未上市，权益价值3-5年才能兑现
+                                        </td>
+                                        <td>中</td>
+                                        <td>中</td>
+                                        <td>低</td>
+                                    </tr>
+                                    <tr>
+                                        <td>📋 普莱德历史教训</td>
+                                        <td>
+                                            2017年47.5亿并购失败，商誉减值34.5亿，巨亏38.76亿
+                                        </td>
+                                        <td>——</td>
+                                        <td>参考意义</td>
+                                        <td>模式已改变</td>
+                                    </tr>
+                                    <tr>
+                                        <td>👤 实控人减持</td>
+                                        <td>2025年10月披露不超过1%减持计划</td>
+                                        <td>中</td>
+                                        <td>中</td>
+                                        <td>中</td>
+                                    </tr>
+                                    <tr>
+                                        <td>⚠️ 天眼风险条数</td>
+                                        <td>
+                                            自身风险149条、周边546条、预警432条，需核实性质
+                                        </td>
+                                        <td>待核实</td>
+                                        <td>待核实</td>
+                                        <td>中</td>
+                                    </tr>
+                                    <tr>
+                                        <td>🏗️ 转型执行风险</td>
+                                        <td>
+                                            30家参股公司管理复杂，60.28亿现金使用效率待考；万德数科2024年已计提商誉减值0.82亿（减值比例69%），经营质量需关注
+                                        </td>
+                                        <td>中</td>
+                                        <td>高</td>
+                                        <td>中</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section class="slide top" data-title="十、持续跟踪的核心指标">
+                    <div class="slide-inner">
+                        <div class="kicker">10 跟踪指标</div>
+                        <h2 class="slide-title">十、持续跟踪的核心指标</h2>
+                        <p class="lead">
+                            后续不是只看股价，而是持续验证关键事实
+                        </p>
+                        <div class="table-wrap large">
+                            <table class="material-table">
+                                <thead>
+                                    <tr>
+                                        <th>股东大会公告日期</th>
+                                        <th>
+                                            一旦公告召开日期，意味着外部审批有实质进展，是最强买入信号
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>若愚科技科创板动态</td>
+                                        <td>
+                                            申报受理→问询→过会→注册，每个节点都是催化剂
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>天眼风险条数核实</td>
+                                        <td>
+                                            需逐条核查风险性质，排除是否有实质重大风险
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>百胜动力毛利率</td>
+                                        <td>
+                                            2025年年报（3月24日披露），若继续下滑需重新评估主业价值
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>新增参股公司</td>
+                                        <td>
+                                            仍有约10家未完整披露，随时可能出现新的重要标的
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>乐聚机器人量产进度</td>
+                                        <td>
+                                            2026年量产节点，直接影响东方元启（持股80%）的代工收入
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>航天新力BEST项目进展</td>
+                                        <td>
+                                            BEST项目磁体支撑2025年9月已发运，关注后续批量订单披露和核聚变商业化时间表
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>万德数科经营质量</td>
+                                        <td>
+                                            控股51%子公司，2024年商誉减值0.82亿（减值率69%），需关注年报中是否继续减值
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>衍生金融负债1.23亿</td>
+                                        <td>
+                                            期权衍生工具余额连续两期未变动，需核实是哪个子公司少数股东的期权安排
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>实控人减持进度</td>
+                                        <td>
+                                            1%减持计划的执行节奏，是观察管理层信心的窗口
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section
+                    class="slide top"
+                    data-title="十一、综合评级与投资建议"
+                >
+                    <div class="slide-inner">
+                        <div class="kicker">11 综合评级</div>
+                        <h2 class="slide-title">十一、综合评级与投资建议</h2>
+                        <p class="lead">报告最终评级与持有维度</p>
+                        <div class="two-col">
+                            <div class="panel emphasis">
+                                ★★★★★<br />特殊机会<br />首选标的
+                            </div>
+                            <div class="panel">
+                                核心逻辑：不对称风险收益结构，候选池里唯一一家。<br />下行保护：60.28亿确定性现金（安永备考报表确认）+穿透估值192-217亿，基本等于当前市值。<br />上行空间：15张+Pre-IPO门票+人形机器人完整产业链闭环+核聚变战略卡位。<br />主要风险：资本占用时间成本（而非本金损失风险）。<br />持有维度：2-3年战略持有，以股东大会召开为关键加仓节点。
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="slide center" data-title="⚠️  重要声明">
+                    <div class="slide-inner">
+                        <div class="kicker">重要声明</div>
+                        <h2 class="slide-title">⚠️ 重要声明</h2>
+                        <p class="lead">请保留在所有传播与阅读场景中</p>
+                        <p class="lead">
+                            本报告基于公开信息、上市公司公告、企查查/天眼查工商数据及投资者关系活动记录整理与逻辑分析。
+                        </p>
+                        <p class="lead">
+                            所有观点、估值数据及预测均仅供参考，不构成任何形式的投资建议。股市有风险，投资需谨慎。
+                        </p>
+                        <p class="lead">
+                            所有投资决策请以您自己的独立判断为准，建议在做出投资决策前咨询专业投资顾问。
+                        </p>
+                        <div class="chips">
+                            <span class="chip">不构成投资建议</span
+                            ><span class="chip">公开信息整理</span
+                            ><span class="chip">独立判断</span
+                            ><span class="chip">投资需谨慎</span>
+                        </div>
+                    </div>
+                </section>
+                <div class="footer-hint">← / → 或 Space 翻页</div>
+            </main>
+        </div>
+        <script>
+            (function () {
+                const slides = [...document.querySelectorAll(".slide")];
+                const items = [...document.querySelectorAll(".nav-item")];
+                const now = document.getElementById("pageNow");
+                const total = document.getElementById("pageTotal");
+                const progress = document.getElementById("progress");
+                let current = 0;
+                total.textContent = String(slides.length).padStart(2, "0");
+                function go(i) {
+                    current = Math.max(0, Math.min(slides.length - 1, i));
+                    slides.forEach((s, idx) =>
+                        s.classList.toggle("active", idx === current),
+                    );
+                    items.forEach((it, idx) =>
+                        it.classList.toggle("active", idx === current),
+                    );
+                    now.textContent = String(current + 1).padStart(2, "0");
+                    progress.style.width =
+                        ((current + 1) / slides.length) * 100 + "%";
+                    const active = items[current];
+                    if (active)
+                        active.scrollIntoView({
+                            block: "nearest",
+                            behavior: "smooth",
+                        });
+                }
+                items.forEach((it, idx) =>
+                    it.addEventListener("click", () => go(idx)),
+                );
+                document.addEventListener("keydown", (e) => {
+                    if (["ArrowRight", "PageDown", " "].includes(e.key)) {
+                        e.preventDefault();
+                        go(current + 1);
+                    }
+                    if (["ArrowLeft", "PageUp"].includes(e.key)) {
+                        e.preventDefault();
+                        go(current - 1);
+                    }
+                    if (e.key === "Home") {
+                        e.preventDefault();
+                        go(0);
+                    }
+                    if (e.key === "End") {
+                        e.preventDefault();
+                        go(slides.length - 1);
+                    }
+                });
+                go(0);
+            })();
+        </script>
+    </body>
+</html>
