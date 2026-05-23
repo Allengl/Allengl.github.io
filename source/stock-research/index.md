@@ -6,10 +6,17 @@ comments: false
 
 <div class="notes-slide-grid">
 
+  <a class="notes-slide-card" href="/stock-research/002611/" title="东方精工（002611）深度研究报告">
+    <p class="notes-slide-title">东方精工：人形机器人完整产业链</p>
+    <div class="notes-slide-cover">
+      <img src="/stock-research/002611/002611.png" alt="东方精工：人形机器人完整产业链">
+    </div>
+  </a>
+
   <a class="notes-slide-card" href="/stock-research/300809/" title="华辰装备：磨削当下，光铸未来">
     <p class="notes-slide-title">华辰装备：磨削当下，光铸未来</p>
     <div class="notes-slide-cover">
-      <img src="https://cdn.jsdelivr.net/gh/Allengl/Allengl.github.io@main/img/fdfa0fef-0b8e-4dec-a577-349a7b680dae.png" alt="华辰装备：磨削当下，光铸未来">
+      <img src="/stock-research/300809/300809.png" alt="华辰装备：磨削当下，光铸未来">
     </div>
   </a>
 
