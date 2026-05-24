@@ -1,7 +1,7 @@
 ---
 date: 2026-05-24T00:00:00+00:00
 created: 2026-05-24T02:40:00+00:00
-updated: 2026-05-24T02:41:00+00:00
+updated: 2026-05-24T23:45:00+00:00
 title: AI靠堆算力和大模型永远达不到人的思想
 cover: https://www.notion.so/images/page-cover/solid_beige.png
 id: 36a260b3-9251-80a3-af6b-e736dcfb0b68
