@@ -34,6 +34,13 @@ comments: false
     </div>
   </a>
 
+  <a class="notes-slide-card" href="/stock-research/QS/" title="QuantumScape 深度研究报告">
+    <p class="notes-slide-title">QuantumScape：固态电池的持有验证之路</p>
+    <div class="notes-slide-cover">
+      <img src="/stock-research/QS/QS.png" alt="QuantumScape：固态电池的持有验证之路">
+    </div>
+  </a>
+
 </div>
 
 <style>
