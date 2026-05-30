@@ -33,6 +33,7 @@ skip_render:
     - "stock-research/002611/**"
     - "stock-research/688376/**"
     - "stock-research/688008/**"
+    - "stock-research/QS/**"
 
 # Writing
 new_post_name: :title.md # File name of new posts
