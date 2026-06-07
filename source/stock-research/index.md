@@ -41,6 +41,13 @@ comments: false
     </div>
   </a>
 
+  <a class="notes-slide-card" href="/stock-research/000426/" title="兴业银锡（000426）深度研究报告">
+    <p class="notes-slide-title">兴业银锡：战略稀缺资产的重估之路</p>
+    <div class="notes-slide-cover">
+      <img src="/stock-research/000426/000426.png" alt="兴业银锡：战略稀缺资产的重估之路">
+    </div>
+  </a>
+
 </div>
 
 <style>
